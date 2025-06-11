@@ -1,0 +1,36 @@
+================================================================================
+DESIGN:
+================================================================================
+Logos:
+- Animated Logo
+  https://www.youtube.com/watch?v=1-fMP77uLr4
+
+================================================================================
+LEARNING:
+================================================================================
+Learning Javascript:
+  https://youtu.be/TjjKcgtlsY8?si=Fwmn22drZ9AAuyDR
+
+Learning React:
+  https://youtu.be/xxRAA0v2lvM?si=v58c_CA_xbibB8xg
+
+Learning Next.js:
+  https://youtu.be/_EgI9WH8q1A?si=1OBsXXFooBN3EJ4S
+
+Learning Tailwind.css:
+ - Why it's great:
+  https://youtu.be/lHZwlzOUOZ4?si=RIsiQtzHBp9GM3Gj
+ - Tutorial:
+
+Learn SQL (DataBase):
+  https://vimeo.com/477647164
+
+================================================================================
+PROJECT ARCHITECTURE BREAKDOWN:
+================================================================================
+- TBD
+
+================================================================================
+DEVELOPER NECESSARY INSTALLATIONS:
+================================================================================
+- n/a ; [update later]
