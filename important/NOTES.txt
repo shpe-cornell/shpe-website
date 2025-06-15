@@ -22,8 +22,8 @@ Learning Tailwind.css:
   https://youtu.be/lHZwlzOUOZ4?si=RIsiQtzHBp9GM3Gj
  - Tutorial:
 
-Learn SQL (DataBase):
-  https://vimeo.com/477647164
+Learn SQL (DataBase - postgresql):
+  https://youtu.be/qw--VYLpxG4?si=JYYg__Fx_6pz0JW6
 
 ================================================================================
 PROJECT ARCHITECTURE BREAKDOWN:
@@ -33,4 +33,8 @@ PROJECT ARCHITECTURE BREAKDOWN:
 ================================================================================
 DEVELOPER NECESSARY INSTALLATIONS:
 ================================================================================
-- n/a ; [update later]
+- npm install pg (for integrating database)
+- etc [update later]
+
+
+#b49696 pretty color
