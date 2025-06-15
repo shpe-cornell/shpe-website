@@ -1,8 +1,35 @@
 @import "tailwindcss";
 
+/* Our Edits */
+.shpe-navy {
+  color: #001F5B;
+}
+
+.shpe-light-blue {
+  color: #72A9BE;
+}
+
+.shpe-blue {
+  color: #0070C0;
+}
+
+.shpe-dark-orange {
+  color: #D33A02;
+}
+
+.shpe-orange {
+  color: #FD652F;
+}
+
+.shpe-orange-back{
+  background-color:  #FD652F;
+}
+
+/* Next.js Provided */
+
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #c05c5c;
 }
 
 @theme inline {
@@ -14,7 +41,7 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    --background: #ffffff;
     --foreground: #ededed;
   }
 }
