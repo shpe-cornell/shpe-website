@@ -31,10 +31,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <meta name="theme-color" content="#001F5B" />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <header className=" text-white text-center">
+        <header className="text-white text-center">
           <Navigation />
           <hr />
         </header>
