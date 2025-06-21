@@ -1,48 +1,152 @@
+"use client";
+import { useState } from "react";
+import Head from "next/head";
+import { Changa } from "next/font/google";
 import Image from "next/image";
+import CountdownTimer from "../components/countdown";
+
+const changa = Changa({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+});
+
+function HeaderSection() {
+  return (
+    <section>
+      <h2 className="text-6xl font-bold m-15 text-center text-[#7bb4ff]">
+        Points System
+      </h2>
+      <p className="pt-2 text-2xl text-center px-8 mt-8 m-15 text-[#a8c9ff]">
+        Our club uses a point-based system to recognize active members. Points
+        are awarded for attending events, participating in outreach, and
+        volunteering. These points determine eligibility for conferences and
+        exclusive opportunities.
+      </p>
+    </section>
+  );
+}
+
+function PointsDescription() {
+  return (
+    <div
+      className="border-2 border-white rounded-s p-4 max-w-xl text-3xl bg-black/30 backdrop-blur-xs text-left md:w-[60%]"
+      style={{ backgroundColor: "transparent" }}
+    >
+      <p className="text-center underline underline-offset-2 text-[#a8c9ff]">
+        POINTS
+      </p>
+      <p className="p-4 text-center text-[#a8c9ff]">
+        +1 [Insert Description Here]
+      </p>
+      <p className="p-4 text-center text-[#6293e1]">
+        +2 [Insert Description Here]
+      </p>
+      <p className="p-4 text-center text-[#3261a8]">
+        +3 [Insert Description Here]
+      </p>
+    </div>
+  );
+}
+
+function PointsChecker({
+  fakePointsDatabase,
+}: {
+  fakePointsDatabase: Record<string, number>;
+}) {
+  const [memberId, setMemberId] = useState("");
+  const [points, setPoints] = useState<number | null>(null);
+  const [lookupAttempted, setLookupAttempted] = useState(false);
+
+  const handleCheckPoints = (e?: React.FormEvent) => {
+    if (e) e.preventDefault();
+
+    setLookupAttempted(true);
+
+    if (fakePointsDatabase.hasOwnProperty(memberId)) {
+      setPoints(fakePointsDatabase[memberId]);
+    } else {
+      setPoints(null);
+    }
+  };
+
+  return (
+    <div className="flex flex-col items-center gap-4 w-full md:w-[40%] mt-[60px]">
+      <label className="text-[#ffffff] text-3xl text-center" htmlFor="memberId">
+        Check My Points ✏️
+      </label>
+
+      <input
+        type="text"
+        id="memberId"
+        value={memberId}
+        onChange={(e) => setMemberId(e.target.value)}
+        onKeyDown={(e) => e.key === "Enter" && handleCheckPoints()}
+        className="px-4 py-2 rounded-md bg-black text-[#ffffff] border text-center border-white outline-none w-[250px]"
+        placeholder="Enter Your Cornell Netid"
+      />
+
+      {lookupAttempted && points !== null && (
+        <div className="text-white text-center">
+          <p className="text-6xl font-semibold">
+            <span className="text-[#fdff98]">{points}</span>
+          </p>
+        </div>
+      )}
+
+      {lookupAttempted && points === null && (
+        <div className="text-center">
+          <p className="text-xl text-[#cf85b8]">NetID not recognized.</p>
+          <p className="text-xs text-gray-300 mt-1">
+            Contact us if you think this is wrong.
+          </p>
+        </div>
+      )}
+    </div>
+  );
+}
+
+// Chalk picture with timer next to it
+function FooterSection() {
+  return (
+    <div className="flex items-center justify-center gap-6 mt-10 w-full">
+      <CountdownTimer />
+      <Image
+        src="/images/backgrounds/white-chalk.png"
+        alt="Description"
+        width={150}
+        height={150}
+      />
+    </div>
+  );
+}
+
+// Main page component -- IMPLEMENT THIS AFTER GETTING FEEDBACK FROM MELANIE FOR BACKEND
+const fakePointsDatabase = {
+  "123": 15,
+  "456": 27,
+  "789": 42,
+};
 
 export default function PointsPage() {
   return (
-    <div className="text-black grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div
+      className={`min-h-screen bg-cover bg-center flex flex-col mt-[50px] ${changa.className}`}
+      style={{ backgroundImage: "url('images/backgrounds/blackboard.jpg')" }}
+    >
+      <Head>
+        <title>Points System</title>
+      </Head>
 
-        <div className="text-black flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
+      <div className="flex flex-col gap-8 px-4">
+        <HeaderSection />
+
+        <section className="flex flex-col md:flex-row justify-center items-start gap-6 px-4">
+          <PointsDescription />
+          <PointsChecker fakePointsDatabase={fakePointsDatabase} />
+        </section>
+
+        <FooterSection />
+      </div>
     </div>
   );
 }

@@ -1,48 +1,77 @@
 import Image from "next/image";
+import { Changa } from "next/font/google";
+
+const changa = Changa({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+
+const buttonClass =
+  "w-[300px] px-6 py-4 text-xl text-white rounded-full transition font-semibold bg-[#72A9BE] hover:shadow-[#001F5B] hover:shadow-md hover:bg-[#0070C0]";
 
 export default function MemberInfoPage() {
   return (
-    <div className="text-black grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div
+      className="flex flex-col items-center min-h-screen px-4 pt-15"
+      style={{ fontFamily: "'Jaldi', sans-serif" }}
+    >
+      {/* ============================================================== */}
+      {/* Calendar Section */}
+      {/* ============================================================== */}
+      <section className="w-full max-w-4xl text-center">
+        <h2 className="text-3xl font-semibold shpe-navy">Upcoming Events</h2>
+        <div className="flex justify-center mt-3">
+          <iframe
+            src="https://calendar.google.com/calendar/u/0/embed?src=10c8673a173371a1e5b9a8f48a00471f49c586b233f14ab287c11a8818f933ea@group.calendar.google.com&ctz=America/New_York"
+            style={{ border: 0 }}
+            width="800"
+            height="600"
+            frameBorder="0"
+            scrolling="no"
+          ></iframe>
+        </div>
+      </section>
 
-        <div className="text-black flex gap-4 items-center flex-col sm:flex-row">
+      {/* ============================================================== */}
+      {/* Get Plugged in Section */}
+      {/* ============================================================== */}
+      <section className="w-full max-w-4xl text-center mt-0 pt-5 mb-5">
+        <h2 className="text-3xl font-semibold mb-4 shpe-navy">
+          Get Plugged In
+        </h2>
+        <div
+          className={`flex flex-col sm:flex-row flex-wrap gap-4 justify-center items-center ${changa.className}`}
+        >
           <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+            href="https://cornellshpe.slack.com/join/shared_invite/zt-37j10butw-sgOpkzAGx9JRtKH6x~5n8w#/shared-invite/email"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
+            <button className={`${buttonClass}`}>Join us on Slack</button>
           </a>
           <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+            href="https://calendar.google.com/calendar/u/0/embed?src=10c8673a173371a1e5b9a8f48a00471f49c586b233f14ab287c11a8818f933ea@group.calendar.google.com&ctz=America/New_York"
             target="_blank"
             rel="noopener noreferrer"
           >
-            Read our docs
+            <button className={`${buttonClass}`}>Join our Calendar</button>
+          </a>
+          <a
+            href="https://www.instagram.com/cornellshpe/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <button className={`${buttonClass}`}>Follow us on Insta</button>
+          </a>
+          <a
+            href="https://www.linkedin.com/company/shpe-at-cornell-university/?trk=ppro_cprof"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <button className={`${buttonClass}`}>Follow us on LinkedIn</button>
           </a>
         </div>
-      </main>
+      </section>
     </div>
   );
 }

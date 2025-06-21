@@ -1,48 +1,159 @@
 import Image from "next/image";
+import HeroScroll from "../components/hero-scroll";
+import ExecCard from "../components/exec-card";
+
+/* ============================================================== */
+/** Hero Images */
+/* ============================================================== */
+const images = [
+  "/images/leadership/Spring_2025/grouppic_line.JPG",
+  "/images/conference/2024/conference2.jpeg",
+  "/images/leadership/2025-2026/boba_day.png",
+];
 
 export default function TeamPage() {
   return (
-    <div className="text-black grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div className="flex flex-col items-center min-h-screen mt-[50px] bg-white">
+      <HeroScroll images={images} />
 
-        <div className="text-black flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
+      <div className="flex flex-wrap justify-center gap-20 py-10 px-5">
+        {execBoard.map((member, idx) => (
+          <ExecCard key={idx} member={member} />
+        ))}
+      </div>
     </div>
   );
 }
+
+/* ============================================================== */
+/** EXECUTIVE BOARD LIST */
+/* ============================================================== */
+const execBoard = [
+  {
+    name: "Emilio Ceballos",
+    position: "Co-President",
+    image: "/images/leadership/Spring_2025/emilio.png",
+    major: "MechE",
+    year: "'26",
+    email: "eac288@cornell.edu",
+    linkedin: "https://www.linkedin.com/in/janedoe",
+  },
+  {
+    name: "Marco Le Vecchia",
+    position: "Co-President",
+    image: "/images/leadership/Spring_2025/marco.png",
+    major: "ORIE",
+    year: "'26",
+    email: "mal426@cornell.edu",
+    linkedin: "https://www.linkedin.com/in/janedoe",
+  },
+  {
+    name: "Alison Chavez",
+    position: "Secretary",
+    image: "/images/leadership/Spring_2025/alison.jpg",
+    major: "MechE",
+    year: "'27",
+    email: "",
+    linkedin: "https://www.linkedin.com/in/janedoe",
+  },
+  {
+    name: "Alexis Laurel",
+    position: "Publicity Chair Lead",
+    image: "/images/leadership/Spring_2025/alexis.png",
+    major: "ECE",
+    year: "'27",
+    email: "",
+    linkedin: "https://www.linkedin.com/in/janedoe",
+  },
+  {
+    name: "Ruby Penafiel Gutierrez",
+    position: "Web Development Lead",
+    image: "/images/leadership/Spring_2025/ruby.png",
+    major: "CS",
+    year: "'27",
+    email: "rsp227@cornell.edu",
+    linkedin: "https://www.linkedin.com/in/janedoe",
+  },
+  {
+    name: "Sarah Garcia Moreno",
+    position: "Corporate Chair",
+    image: "/images/leadership/Spring_2025/sarah.png",
+    major: "BME",
+    year: "'27",
+    email: "",
+    linkedin: "https://www.linkedin.com/in/janedoe",
+  },
+  {
+    name: "Anthony Manjarrez-Flores",
+    position: "Publicity Chair",
+    image: "/images/leadership/Spring_2025/anthony.png",
+    major: "CS",
+    year: "'27",
+    email: "",
+    linkedin: "https://www.linkedin.com/in/janedoe",
+  },
+  {
+    name: "Melanie Jalbert",
+    position: "Webmaster / Ex-Copresident",
+    image: "/images/leadership/Spring_2025/melanie.jpg",
+    major: "ISST",
+    year: "'26",
+    email: "",
+    linkedin: "https://www.linkedin.com/in/janedoe",
+  },
+  {
+    name: "Jane Doe",
+    position: "Treasurer",
+    image: "/images/icons/usericon.png",
+    major: "MAJOR",
+    year: "'YY",
+    email: "",
+    linkedin: "https://www.linkedin.com/in/janedoe",
+  },
+  {
+    name: "Jane Doe",
+    position: "Chapter Development Chair",
+    image: "/images/icons/usericon.png",
+    major: "MAJOR",
+    year: "'YY",
+    email: "",
+    linkedin: "https://www.linkedin.com/in/janedoe",
+  },
+  {
+    name: "Jane Doe",
+    position: "Outreach Committee Chair Lead",
+    image: "/images/icons/usericon.png",
+    major: "MAJOR",
+    year: "'YY",
+    email: "",
+    linkedin: "https://www.linkedin.com/in/janedoe",
+  },
+  {
+    name: "Jane Doe",
+    position: "Academic Chair",
+    image: "/images/icons/usericon.png",
+    major: "MAJOR",
+    year: "'YY",
+    email: "",
+    linkedin: "https://www.linkedin.com/in/janedoe",
+  },
+  {
+    name: "Jane Doe",
+    position: "Outreach Committee Chair",
+    image: "/images/icons/usericon.png",
+    major: "MAJOR",
+    year: "'YY",
+    email: "",
+    linkedin: "https://www.linkedin.com/in/janedoe",
+  },
+  {
+    name: "Jane Doe",
+    position: "Freshman Representative",
+    image: "/images/icons/usericon.png",
+    major: "MAJOR",
+    year: "'YY",
+    email: "",
+    linkedin: "https://www.linkedin.com/in/janedoe",
+  },
+  // Add more...
+];

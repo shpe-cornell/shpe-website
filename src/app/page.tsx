@@ -1,56 +1,138 @@
-import Image from "next/image";
+import HeroScroll from "./components/hero-scroll";
+import GreyBanner from "./components/grey-banner";
+import GreyQuoteBanner from "./components/grey-quote-banner";
+import HorizontalAccordion from "./components/horizontal-accordion";
+
+/* ============================================================== */
+/** Hero Images */
+/* ============================================================== */
+const images = [
+  "/images/leadership/Spring_2025/grouppic_line.JPG",
+  "/images/conference/2024/conference2.jpeg",
+  "/images/conference/2024/conference3.jpeg",
+];
+
+/* ============================================================== */
+/** What We Do Items */
+/* ============================================================== */
+const boxes = [
+  {
+    title: "Professional Development",
+    text: "We host resume reviews, mock interviews, and technical workshops to help students prepare for their careers.",
+  },
+  {
+    title: "Community Outreach",
+    text: "We visit local schools and participate in community events to promote STEM and inspire the next generation.",
+  },
+  {
+    title: "Info Sessions",
+    text: "We collaborate with top companies to host sessions about their mission, open roles, and internship opportunities.",
+  },
+  {
+    title: "Socials",
+    text: "We build community through game nights, cultural celebrations, and events that strengthen bonds between members.",
+  },
+  {
+    title: "MentorSHPE",
+    text: "Our mentorship program pairs upperclassmen with underclassmen to foster academic and personal growth.",
+  },
+  {
+    title: "Study Jams",
+    text: "We provide a collaborative space for students to study together and support each other during exams and project deadlines.",
+  },
+];
+
+/* ============================================================== */
+/** Accordion Items */
+/* ============================================================== */
+const items = [
+  {
+    title: "Donate",
+    description: "Support our mission through donations.",
+    icon: "/images/icons/donate.png",
+    link: "https://securelb.imodules.com/s/1717/giving/interior.aspx?sid=1717&gid=2&pgid=16421&bledit=1&dids=789.&appealcode=GIVDY25P",
+  },
+  {
+    title: "Become a Member",
+    description: "Join our supportive community.",
+    icon: "/images/icons/member.png",
+    link: "/member-info",
+  },
+  {
+    title: "Events",
+    description: "See upcoming SHPE activities and programs.",
+    icon: "/images/icons/united.png",
+    link: "/member-info",
+  },
+];
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div className="flex flex-col bg-white items-center min-h-screen mt-[50px]">
+      <HeroScroll images={images} />
+      <GreyBanner />
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+      {/* ============================================================== */}
+      {/* Our Goal Section */}
+      {/* ============================================================== */}
+      <section
+        className="w-full px-6 mt-5"
+        style={{ fontFamily: "'Jaldi', sans-serif" }}
+      >
+        <h2 className="text-left text-4xl text-[#FD652F] font-bold">
+          Our Goal
+        </h2>
+        <p className="text-xl leading-relaxed text-black pt-[0px] pb-[10px]">
+          SHPE's mission is to increase the participation of Hispanic
+          professionals and college students in the fields of engineering,
+          technology, science, and math.
+        </p>
+      </section>
+
+      {/* ============================================================== */}
+      {/* What We Do Section*/}
+      {/* ============================================================== */}
+      <section
+        className="w-full px-6 mt-0"
+        style={{ fontFamily: "'Jaldi', sans-serif" }}
+      >
+        <h2 className="text-left text-4xl text-[#FD652F] font-bold">
+          What We Do
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 w-full px-6 py-8">
+          {boxes.map((item, idx) => (
+            <div
+              key={idx}
+              className="bg-white border border-gray-300 rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow duration-200"
+              style={{ fontFamily: "'Jaldi', sans-serif" }}
+            >
+              <p className="text-2xl font-semibold text-[#001F5B]">
+                {item.title}
+              </p>
+              <p className="text-lg text-gray-700 mt-2">{item.text}</p>
+            </div>
+          ))}
         </div>
-      </main>
+      </section>
+
+      {/* ============================================================== */}
+      {/* Alumni Quote Section */}
+      {/* ============================================================== */}
+      <GreyQuoteBanner />
+
+      {/* ============================================================== */}
+      {/* Accordion Section */}
+      {/* ============================================================== */}
+      <section
+        className="w-full px-6 mt-5"
+        style={{ fontFamily: "'Jaldi', sans-serif" }}
+      >
+        <h2 className="text-left text-4xl text-[#FD652F] font-bold">
+          Learn More
+        </h2>
+
+        <HorizontalAccordion items={items} />
+      </section>
     </div>
   );
 }
