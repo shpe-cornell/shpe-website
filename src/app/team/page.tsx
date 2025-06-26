@@ -15,8 +15,10 @@ export default function TeamPage() {
   return (
     <div className="flex flex-col items-center min-h-screen mt-[50px] bg-white">
       <HeroScroll images={images} />
-
-      <div className="flex flex-wrap justify-center gap-20 py-10 px-20">
+      <h1 className="text-[#001f5b] font-bold p-5 text-3xl font-[Jaldi]">
+        Executive Board
+      </h1>
+      <div className="flex flex-wrap justify-center gap-20 py-0 px-20 pb-10">
         {execBoard.map((member, idx) => (
           <ExecCard key={idx} member={member} />
         ))}
