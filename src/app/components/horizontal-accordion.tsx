@@ -28,12 +28,12 @@ export default function HorizontalAccordion({
           href={item.link}
           className={`relative transition-all duration-300 ease-in-out ${
             activeIndex === index ? "flex-[4]" : "flex-[1]"
-          } cursor-pointer overflow-hidden bg-[#F5F5F5] hover:bg-[#e6f0ff]`}
+          } cursor-pointer overflow-hidden bg-[#F5F5F5] hover:bg-orange-100`}
           onMouseEnter={() => setActiveIndex(index)}
           onMouseLeave={() => setActiveIndex(null)}
         >
           <div className="flex h-full w-full items-center justify-center text-center p-4">
-            <div className="text-black flex flex-col items-center px-2">
+            <div className="text-[#001F5B] flex flex-col items-center px-2">
               {item.icon && (
                 <img
                   src={item.icon}
@@ -43,7 +43,7 @@ export default function HorizontalAccordion({
               )}
               <h3
                 className={`text-2xl font-bold transition-colors ${
-                  activeIndex === index ? "text-blue-700" : "text-black"
+                  activeIndex === index ? "text-[#0070C0]" : "shpe-navy"
                 }`}
               >
                 {item.title}

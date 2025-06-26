@@ -16,7 +16,7 @@ export default function TeamPage() {
     <div className="flex flex-col items-center min-h-screen mt-[50px] bg-white">
       <HeroScroll images={images} />
 
-      <div className="flex flex-wrap justify-center gap-20 py-10 px-5">
+      <div className="flex flex-wrap justify-center gap-20 py-10 px-20">
         {execBoard.map((member, idx) => (
           <ExecCard key={idx} member={member} />
         ))}

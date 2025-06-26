@@ -21,7 +21,7 @@ export default function HeroScroll({ images }: HeroScrollProps) {
 
   return (
     <div
-      className="w-full overflow-x-auto scroll-smooth snap-x snap-mandatory"
+      className="w-full overflow-x-auto scroll-smooth snap-x snap-mandatory bg-blue-100"
       ref={scrollRef}
       style={{ scrollBehavior: "smooth" }}
     >

@@ -109,13 +109,21 @@ function PointsChecker({
 function FooterSection() {
   return (
     <div className="flex items-center justify-center gap-6 mt-10 w-full">
-      <CountdownTimer />
-      <Image
-        src="/images/backgrounds/white-chalk.png"
-        alt="Description"
-        width={150}
-        height={150}
-      />
+      {/* Fixed-width box to prevent shifting */}
+      <div className="w-[1000px] flex justify-center items-center">
+        <CountdownTimer />
+      </div>
+
+      {/* Chalk image in a fixed-size box */}
+      <div className="w-[150px] h-[150px] shrink-0">
+        <Image
+          src="/images/backgrounds/white-chalk.png"
+          alt="Chalk"
+          width={150}
+          height={150}
+          className="object-contain"
+        />
+      </div>
     </div>
   );
 }
@@ -130,8 +138,8 @@ const fakePointsDatabase = {
 export default function PointsPage() {
   return (
     <div
-      className={`min-h-screen bg-cover bg-center flex flex-col mt-[50px] ${changa.className}`}
-      style={{ backgroundImage: "url('images/backgrounds/blackboard.jpg')" }}
+      className={`min-h-screen bg-cover bg-gray-900 bg-center flex flex-col mt-[50px] ${changa.className}`}
+      // style={{ backgroundImage: "url('images/backgrounds/blackboard.jpg')" }}
     >
       <Head>
         <title>Points System</title>
