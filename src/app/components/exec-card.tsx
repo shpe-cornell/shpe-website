@@ -20,16 +20,17 @@ export default function ExecCard({ member }: ExecCardProps) {
 
   return (
     <div
-      className="w-[300px] rounded-md shadow-lg overflow-hidden group relative"
+      className="w-[270px] rounded-md shadow-lg overflow-hidden group relative bg-gray-900"
       style={{
-        fontFamily: "'IBM Plex Serif', serif",
-        background: `linear-gradient(
-        135deg,
-      #001F5B 0%,
-      #004080 50%,
-      #337AB7 70%,
-      #002550 100%
-    )`,
+        // fontFamily: "'IBM Plex Serif', serif",
+        fontFamily: "'Jaldi', sans-serif",
+        //     background: `linear-gradient(
+        //     135deg,
+        //   #001F5B 0%,
+        //   #004080 50%,
+        //   #337AB7 70%,
+        //   #002550 100%
+        // )`,
       }}
     >
       {/* Eboard Position */}
@@ -63,8 +64,9 @@ export default function ExecCard({ member }: ExecCardProps) {
       /** Overlay Control */
       /* ============================================================== */}
       <div
-        className="absolute bottom-0 left-0 w-full h-[70px] bg-[#6C82AD] opacity-90 text-white px-4 py-3 flex justify-between items-center
-                   transform translate-y-full group-hover:translate-y-0 transition-transform duration-300 rounded-md"
+        className="absolute bottom-0 left-0 w-full h-[70px] bg-white/20 backdrop-blur-xs text-white px-4 py-3 flex justify-between items-center
+               translate-y-full group-hover:translate-y-0 transition-transform duration-300 z-10"
+        style={{ borderTopLeftRadius: 8, borderTopRightRadius: 8 }}
       >
         <div>
           <p className="text-lg font-semibold">
@@ -82,8 +84,8 @@ export default function ExecCard({ member }: ExecCardProps) {
               <Image
                 src="/images/icons/mail.png"
                 alt="email"
-                width={50}
-                height={50}
+                width={35}
+                height={35}
               />
             </a>
           )}
@@ -92,8 +94,8 @@ export default function ExecCard({ member }: ExecCardProps) {
               <Image
                 src="/images/icons/linkedin2.png"
                 alt="linkedin"
-                width={50}
-                height={50}
+                width={35}
+                height={35}
               />
             </a>
           )}
