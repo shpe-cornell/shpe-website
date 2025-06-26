@@ -1,3 +1,5 @@
+"use client";
+
 import HeroScroll from "./components/hero-scroll";
 import GreyBanner from "./components/grey-banner";
 import GreyQuoteBanner from "./components/grey-quote-banner";
@@ -68,71 +70,62 @@ const items = [
 
 export default function Home() {
   return (
-    <div className="flex flex-col bg-white items-center min-h-screen mt-[50px]">
+    <div className="flex flex-col items-center min-h-screen mt-[50px] bg-white font-[Jaldi]">
       <HeroScroll images={images} />
       <GreyBanner />
 
       {/* ============================================================== */}
       {/* Our Goal Section */}
-      {/* ============================================================== */}
-      <section
-        className="w-full px-6 mt-5"
-        style={{ fontFamily: "'Jaldi', sans-serif" }}
-      >
-        <h2 className="text-left text-4xl text-[#FD652F] font-bold">
-          Our Goal
-        </h2>
-        <p className="text-xl leading-relaxed text-black pt-[0px] pb-[10px]">
+
+      <Section title="Our Goal">
+        <p className="text-xl leading-relaxed text-black pb-2">
           SHPE's mission is to increase the participation of Hispanic
           professionals and college students in the fields of engineering,
           technology, science, and math.
         </p>
-      </section>
+      </Section>
 
-      {/* ============================================================== */}
-      {/* What We Do Section*/}
-      {/* ============================================================== */}
-      <section
-        className="w-full px-6 mt-0"
-        style={{ fontFamily: "'Jaldi', sans-serif" }}
-      >
-        <h2 className="text-left text-4xl text-[#FD652F] font-bold">
-          What We Do
-        </h2>
+      {/* What We Do Section */}
+      <Section title="What We Do">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 w-full px-6 py-8">
-          {boxes.map((item, idx) => (
+          {boxes.map((box, idx) => (
             <div
               key={idx}
               className="bg-white border border-gray-300 rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow duration-200"
-              style={{ fontFamily: "'Jaldi', sans-serif" }}
             >
               <p className="text-2xl font-semibold text-[#001F5B]">
-                {item.title}
+                {box.title}
               </p>
-              <p className="text-lg text-gray-700 mt-2">{item.text}</p>
+              <p className="text-lg text-gray-700 mt-2">{box.text}</p>
             </div>
           ))}
         </div>
-      </section>
+      </Section>
 
-      {/* ============================================================== */}
-      {/* Alumni Quote Section */}
-      {/* ============================================================== */}
       <GreyQuoteBanner />
 
-      {/* ============================================================== */}
       {/* Accordion Section */}
-      {/* ============================================================== */}
-      <section
-        className="w-full px-6 mt-5"
-        style={{ fontFamily: "'Jaldi', sans-serif" }}
-      >
-        <h2 className="text-left text-4xl text-[#FD652F] font-bold">
-          Learn More
-        </h2>
-
+      <Section title="Learn More">
         <HorizontalAccordion items={items} />
-      </section>
+      </Section>
     </div>
+  );
+}
+
+/** Reusable Section Component */
+function Section({
+  title,
+  children,
+}: {
+  title: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <section className="w-full px-12 mt-5">
+      <h2 className="text-left text-4xl text-[#FD652F] font-semibold mb-2">
+        {title}
+      </h2>
+      {children}
+    </section>
   );
 }
