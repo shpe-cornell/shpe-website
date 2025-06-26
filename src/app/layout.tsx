@@ -44,7 +44,7 @@ export default function RootLayout({
       >
         <header className="text-white text-center">
           <Navigation />
-          <hr />
+          <hr className="bg-white scale-75" />
         </header>
         {children}
         <footer className="bg-[#001F5B] text-white">
