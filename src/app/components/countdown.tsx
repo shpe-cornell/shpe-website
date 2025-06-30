@@ -42,7 +42,7 @@ export default function CountdownTimer() {
   }, []);
 
   return (
-    <div className={`text-center text-5xl text-[#a8c9ff] ${changa.className}`}>
+    <div className={`text-center text-3xl text-[#6293e1] ${changa.className}`}>
       {timeLeft}
     </div>
   );

@@ -5,7 +5,7 @@ export default function GreyQuoteBanner() {
   return (
     <div className="relative w-full h-auto flex items-center justify-center px-6 overflow-hidden">
       {/* Background Color */}
-      <div className="absolute inset-0 bg-[#72A9BE] opacity-60 blur-sm pointer-events-none"></div>
+      <div className="absolute inset-0 bg-[gray]/20  opacity-60 blur-sm pointer-events-none"></div>
 
       {/* Quote */}
       <div className="relative w-full flex flex-col sm:flex-row items-center justify-between z-10 p-6">

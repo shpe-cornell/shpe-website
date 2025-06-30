@@ -4,8 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 
-const shadowStyle =
-  "transition-transform duration-300 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-[cyan]";
+const shadowStyle = "transition-transform duration-300 group-hover:scale-110";
 
 const socialLinks = [
   {
@@ -30,26 +29,26 @@ export function FooterNav() {
 
   return (
     <nav
-      className="w-full flex items-center shadow-lg px-4 lg:px-12 bg-[#001F5B]"
+      className="w-full flex items-center justify-between bg-[#001F5B] px-6 py-4 shadow-lg"
       style={{ fontFamily: "'Jaldi', sans-serif" }}
     >
-      {/* === Logo + Copyright === */}
-      <div className="flex basis-1/3 justify-start">
+      {/* Logo and Copyright */}
+      <div className="flex flex-col justify-center items-start basis-1/3">
         <Link href="/" className="flex flex-col items-start">
           <Image
             src="/images/shpe-logos/shpe_transparent.png"
             alt="SHPE Logo"
-            width={150}
-            height={150}
+            width={110}
+            height={110}
             className="cursor-pointer w-[75px] md:w-[100px] lg:w-[110px] transition-all duration-200"
             priority
           />
-          <p className="text-xs">@ 2025 SHPE at Cornell</p>
+          <p className="mt-1 text-xs text-[#FD652F]">@ 2025 SHPE at Cornell</p>
         </Link>
       </div>
 
-      {/* === Social Links === */}
-      <div className="flex basis-1/3 justify-center items-center space-x-4">
+      {/* Social Media Links */}
+      <div className="flex basis-1/3 justify-center items-center space-x-6">
         {socialLinks.map(({ href, src, alt }) => (
           <Link
             key={alt}
@@ -70,9 +69,9 @@ export function FooterNav() {
         ))}
       </div>
 
-      {/* === Address === */}
-      <div className="flex basis-1/3 justify-end items-center space-x-4">
-        <div className="text-right text-xs">
+      {/* Address */}
+      <div className="flex basis-1/3 justify-end items-center space-x-3 text-right text-xs text-[#FD652F]">
+        <div>
           <p>Cornell University</p>
           <p>146 Olin Hall, Ithaca, NY 14853</p>
         </div>

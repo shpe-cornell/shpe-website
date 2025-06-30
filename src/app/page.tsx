@@ -58,7 +58,7 @@ const items = [
     title: "Become a Member",
     description: "Join our supportive community.",
     icon: "/images/icons/member.png",
-    link: "/member-info",
+    link: "https://www.shpeconnect.org/eweb/DynamicPage.aspx?WebCode=LoginRequired&expires=yes&Site=shpe",
   },
   {
     title: "Events",
@@ -70,32 +70,38 @@ const items = [
 
 export default function Home() {
   return (
-    <div className="flex flex-col items-center min-h-screen mt-[50px] bg-white font-[Jaldi]">
-      <HeroScroll images={images} />
-      <GreyBanner />
+    <div className="flex flex-col items-center min-h-screen mt-[50px] bg-white text-[#001F5B]">
+      <HeroScroll
+        images={images}
+        welcomeMessage="Welcome to SHPE at Cornell!"
+        subMessage="Empowering leaders, celebrating culture, and having fun doing it."
+        showButton={true}
+        buttonHref="/member-info"
+        buttonText="Join SHPE"
+      />
 
       {/* ============================================================== */}
       {/* Our Goal Section */}
-
+      {/* ============================================================== */}
       <Section title="Our Goal">
-        <p className="text-xl leading-relaxed text-black pb-2">
+        <p className="text-xl leading-relaxed text-gray-800 max-w-4xl">
           SHPE's mission is to increase the participation of Hispanic
           professionals and college students in the fields of engineering,
           technology, science, and math.
         </p>
       </Section>
 
+      {/* ============================================================== */}
       {/* What We Do Section */}
+      {/* ============================================================== */}
       <Section title="What We Do">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 w-full px-6 py-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 w-full px-4 py-6">
           {boxes.map((box, idx) => (
             <div
               key={idx}
-              className="bg-white border border-gray-300 rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow duration-200"
+              className="bg-white border border-gray-200 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-200"
             >
-              <p className="text-2xl font-semibold text-[#001F5B]">
-                {box.title}
-              </p>
+              <p className="text-2xl font-bold text-[#FD652F]">{box.title}</p>
               <p className="text-lg text-gray-700 mt-2">{box.text}</p>
             </div>
           ))}
@@ -104,7 +110,9 @@ export default function Home() {
 
       <GreyQuoteBanner />
 
+      {/* ============================================================== */}
       {/* Accordion Section */}
+      {/* ============================================================== */}
       <Section title="Learn More">
         <HorizontalAccordion items={items} />
       </Section>
@@ -112,7 +120,9 @@ export default function Home() {
   );
 }
 
-/** Reusable Section Component */
+/* ============================================================== */
+/** Reusable Section Wrapper */
+/* ============================================================== */
 function Section({
   title,
   children,
@@ -121,8 +131,8 @@ function Section({
   children: React.ReactNode;
 }) {
   return (
-    <section className="w-full px-12 mt-5">
-      <h2 className="text-left text-4xl text-[#FD652F] font-semibold mb-2">
+    <section className="w-full px-6 sm:px-12 mt-12 max-w-7xl">
+      <h2 className="text-left text-4xl font-semibold text-[#00308E] mb-4">
         {title}
       </h2>
       {children}
