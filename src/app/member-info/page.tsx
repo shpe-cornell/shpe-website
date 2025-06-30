@@ -9,7 +9,7 @@ const changa = Changa({
 });
 
 const buttonClass =
-  "w-[280px] px-6 py-4 text-xl text-white rounded-full transition font-semibold bg-[#001F5B] hover:shadow-md hover:shadow-[#001F5B] hover:bg-[#0070C0]";
+  "w-[280px] px-6 py-4 text-xl text-white rounded-full transition font-semibold bg-[#001F5B] border border-white/30 hover:bg-[#0070C0] hover:scale-105";
 
 const flyers = [
   "/images/events/flyers/gbody-03-26-25.png",
@@ -19,16 +19,16 @@ const flyers = [
 
 export default function MemberInfoPage() {
   return (
-    <div className="flex flex-col items-center min-h-screen px-4 mt-18 bg-white">
+    <div className="flex flex-col items-center min-h-screen px-4 bg-gradient-to-b from-[#0a1f44] to-[#001f5b] text-white font-sans">
       {/* Upcoming Events Header */}
-      <h2 className="text-3xl font-semibold text-[#FD652F] mb-4">
+      <h2 className="text-4xl font-extrabold text-[#40c4ff] mb-6 mt-20 tracking-wide drop-shadow-lg">
         Upcoming Events
       </h2>
 
       {/* Events Section */}
-      <section className="w-full flex flex-col lg:flex-row justify-center gap-6 max-w-7xl">
+      <section className="w-full flex flex-col lg:flex-row justify-center gap-8 max-w-7xl">
         {/* Calendar */}
-        <div className="w-full lg:w-2/3 max-w-[800px] h-[600px] bg-[#001F5B] rounded-xl p-4 shadow-lg">
+        <div className="w-full lg:w-2/3 max-w-[800px] h-[600px] bg-[#002550] rounded-xl p-5 shadow-xl border border-[#004080]">
           <iframe
             src="https://calendar.google.com/calendar/u/0/embed?src=10c8673a173371a1e5b9a8f48a00471f49c586b233f14ab287c11a8818f933ea@group.calendar.google.com&ctz=America/New_York"
             style={{ border: 0 }}
@@ -40,8 +40,8 @@ export default function MemberInfoPage() {
         </div>
 
         {/* Flyers */}
-        <div className="w-full lg:w-1/3 h-[600px] bg-[#001F5B] rounded-xl p-5 overflow-y-auto text-white relative shadow-lg">
-          <div className="space-y-10">
+        <div className="w-full lg:w-1/3 h-[600px] bg-[#002550] rounded-xl p-6 overflow-y-auto relative shadow-xl border border-[#004080]">
+          <div className="space-y-12">
             {flyers.map((src, idx) => (
               <Image
                 key={idx}
@@ -50,25 +50,25 @@ export default function MemberInfoPage() {
                 width={0}
                 height={0}
                 sizes="100vw"
-                className="w-full h-auto rounded-md shadow-md"
+                className="w-full h-auto rounded-lg shadow-lg"
                 priority={idx === 0}
               />
             ))}
           </div>
-          <div className="absolute bottom-3 left-1/2 transform -translate-x-1/2 text-white opacity-60 animate-bounce text-sm pointer-events-none select-none">
+          <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-white opacity-50 animate-bounce text-sm pointer-events-none select-none">
             . . .
           </div>
         </div>
       </section>
 
       {/* Get Plugged In Section */}
-      <section className="w-full max-w-5xl text-center mt-7 mb-10">
+      <section className="w-full max-w-5xl text-center mt-10 mb-12">
         <h2
-          className={`text-3xl font-semibold mb-6 text-[#FD652F] ${changa.className}`}
+          className={`text-4xl font-extrabold mb-8 text-[#40c4ff] tracking-wide drop-shadow-lg ${changa.className}`}
         >
           Get Plugged In
         </h2>
-        <div className="flex flex-col sm:flex-row flex-wrap gap-4 justify-center items-center">
+        <div className="flex flex-col sm:flex-row flex-wrap gap-6 justify-center items-center">
           <a
             href="https://cornellshpe.slack.com/join/shared_invite/zt-37j10butw-sgOpkzAGx9JRtKH6x~5n8w#/shared-invite/email"
             target="_blank"
