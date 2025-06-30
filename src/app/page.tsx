@@ -1,52 +1,51 @@
 "use client";
 
 import HeroScroll from "./components/hero-scroll";
-import GreyBanner from "./components/grey-banner";
 import GreyQuoteBanner from "./components/grey-quote-banner";
 import HorizontalAccordion from "./components/horizontal-accordion";
 
-/* ============================================================== */
-/** Hero Images */
-/* ============================================================== */
+// ==============================================================
+// Hero Images
+// ==============================================================
 const images = [
   "/images/leadership/Spring_2025/grouppic_line.JPG",
   "/images/conference/2024/conference2.jpeg",
   "/images/conference/2024/conference3.jpeg",
 ];
 
-/* ============================================================== */
-/** What We Do Items */
-/* ============================================================== */
+// ==============================================================
+// What We Do Items
+// ==============================================================
 const boxes = [
   {
     title: "Professional Development",
-    text: "We host resume reviews, mock interviews, and technical workshops to help students prepare for their careers.",
+    text: "Resume reviews, mock interviews, and technical workshops to shape the engineers of tomorrow.",
   },
   {
     title: "Community Outreach",
-    text: "We visit local schools and participate in community events to promote STEM and inspire the next generation.",
+    text: "We spark STEM curiosity in schools, mentoring the next generation of thinkers.",
   },
   {
     title: "Info Sessions",
-    text: "We collaborate with top companies to host sessions about their mission, open roles, and internship opportunities.",
+    text: "Top companies connect with SHPE to present roles, missions, and paths for growth.",
   },
   {
     title: "Socials",
-    text: "We build community through game nights, cultural celebrations, and events that strengthen bonds between members.",
+    text: "Culture meets community. From game nights to fiestas — we make bonding fun.",
   },
   {
     title: "MentorSHPE",
-    text: "Our mentorship program pairs upperclassmen with underclassmen to foster academic and personal growth.",
+    text: "Underclassmen are matched with leaders to grow through guidance and shared experience.",
   },
   {
     title: "Study Jams",
-    text: "We provide a collaborative space for students to study together and support each other during exams and project deadlines.",
+    text: "Our collaborative study zones support academic excellence and reduce stress during crunch time.",
   },
 ];
 
-/* ============================================================== */
-/** Accordion Items */
-/* ============================================================== */
+// ==============================================================
+// Accordion Items
+// ==============================================================
 const items = [
   {
     title: "Donate",
@@ -70,39 +69,44 @@ const items = [
 
 export default function Home() {
   return (
-    <div className="flex flex-col items-center min-h-screen mt-[50px] bg-white text-[#001F5B]">
+    <div className="flex flex-col items-center min-h-screen mt-[50px] bg-gradient-to-b from-[#00031A] to-[#001F5B] text-white font-sans">
+      {/* ==============================================================
+          Hero Section
+        ============================================================== */}
       <HeroScroll
         images={images}
-        welcomeMessage="Welcome to SHPE at Cornell!"
-        subMessage="Empowering leaders, celebrating culture, and having fun doing it."
+        welcomeMessage="Welcome to SHPE x Cornell"
+        subMessage="Empowerment. Community. Excellence.."
         showButton={true}
         buttonHref="/member-info"
-        buttonText="Join SHPE"
+        buttonText="Join SHPE National"
       />
 
-      {/* ============================================================== */}
-      {/* Our Goal Section */}
-      {/* ============================================================== */}
-      <Section title="Our Goal">
-        <p className="text-xl leading-relaxed text-gray-800 max-w-4xl">
-          SHPE's mission is to increase the participation of Hispanic
-          professionals and college students in the fields of engineering,
-          technology, science, and math.
+      {/* ==============================================================
+          Our Goal
+        ============================================================== */}
+      <Section title="Our Mission">
+        <p className="text-lg md:text-xl leading-relaxed text-[#C1D3FF] max-w-4xl font-light mx-auto">
+          The purpose of Cornell Society of Hispanic Professional Engineers is
+          to increase the participation of Hispanic professionals and college
+          students in the fields of engineering, technology, science, and math.
         </p>
       </Section>
 
-      {/* ============================================================== */}
-      {/* What We Do Section */}
-      {/* ============================================================== */}
+      {/* ==============================================================
+          What We Do
+        ============================================================== */}
       <Section title="What We Do">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 w-full px-4 py-6">
           {boxes.map((box, idx) => (
             <div
               key={idx}
-              className="bg-white border border-gray-200 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-200"
+              className="bg-white/10 border border-white/20 backdrop-blur-md rounded-xl p-6 shadow-xl hover:shadow-2xl transition-shadow duration-300 hover:scale-[1.03]"
             >
-              <p className="text-2xl font-bold text-[#FD652F]">{box.title}</p>
-              <p className="text-lg text-gray-700 mt-2">{box.text}</p>
+              <h3 className="text-xl font-semibold text-[#FD652F]">
+                {box.title}
+              </h3>
+              <p className="text-sm mt-2 text-[#E5EFFF]">{box.text}</p>
             </div>
           ))}
         </div>
@@ -110,19 +114,19 @@ export default function Home() {
 
       <GreyQuoteBanner />
 
-      {/* ============================================================== */}
-      {/* Accordion Section */}
-      {/* ============================================================== */}
-      <Section title="Learn More">
+      {/* ==============================================================
+          Accordion Section
+        ============================================================== */}
+      <Section title="Explore More">
         <HorizontalAccordion items={items} />
       </Section>
     </div>
   );
 }
 
-/* ============================================================== */
-/** Reusable Section Wrapper */
-/* ============================================================== */
+// ==============================================================
+// Reusable Section Wrapper
+// ==============================================================
 function Section({
   title,
   children,
@@ -131,8 +135,8 @@ function Section({
   children: React.ReactNode;
 }) {
   return (
-    <section className="w-full px-6 sm:px-12 mt-12 max-w-7xl">
-      <h2 className="text-left text-4xl font-semibold text-[#00308E] mb-4">
+    <section className="w-full px-6 sm:px-12 mt-12 max-w-7xl text-center">
+      <h2 className="text-3xl sm:text-4xl font-bold text-[#85B6FF] mb-4 tracking-tight">
         {title}
       </h2>
       {children}
