@@ -36,7 +36,7 @@ export default function ExecCard({ member }: ExecCardProps) {
 
       {/* Profile Pic */}
       <div className="flex justify-center">
-        <div className="relative w-[200px] h-[275px] rounded-lg overflow-hidden border-4 border-[#004080] shadow-inner shadow-black/30">
+        <div className="relative w-[200px] h-[275px] rounded-lg overflow-hidden  shadow-inner shadow-black/30">
           <Image
             src={member.image}
             alt={member.name}
