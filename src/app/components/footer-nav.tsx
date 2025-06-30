@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 
-const shadowStyle = "transition-transform duration-300 group-hover:scale-110";
+const shadowStyle = "transition-transform duration-300 group-hover:scale-120";
 
 const socialLinks = [
   {
@@ -48,25 +48,30 @@ export function FooterNav() {
       </div>
 
       {/* Social Media Links */}
-      <div className="flex basis-1/3 justify-center items-center space-x-6">
-        {socialLinks.map(({ href, src, alt }) => (
-          <Link
-            key={alt}
-            href={href}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group shrink-0"
-          >
-            <Image
-              src={src}
-              alt={alt}
-              width={30}
-              height={30}
-              priority
-              className={`rounded-full ${shadowStyle}`}
-            />
-          </Link>
-        ))}
+      <div className="flex flex-col basis-1/3 justify-center items-center space-y-1">
+        <div className="flex space-x-10">
+          {socialLinks.map(({ href, src, alt }) => (
+            <Link
+              key={alt}
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group shrink-0"
+            >
+              <Image
+                src={src}
+                alt={alt}
+                width={30}
+                height={30}
+                priority
+                className={`rounded-full ${shadowStyle}`}
+              />
+            </Link>
+          ))}
+        </div>
+        <p className="text-xs text-[#FD652F] font-semibold select-none mt-1">
+          All are welcome
+        </p>
       </div>
 
       {/* Address */}
