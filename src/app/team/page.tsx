@@ -15,8 +15,8 @@ const images = [
 
 export default function TeamPage() {
   return (
-    <div className="flex flex-col items-center min-h-screen mt-[50px] bg-white">
-      {/* HeroScroll with custom messages; no button here */}
+    <div className="flex flex-col items-center min-h-screen mt-[50px] bg-gradient-to-b from-[#0a1f44] to-[#001f5b] text-white font-sans">
+      {/* Hero Scroll */}
       <HeroScroll
         images={images}
         welcomeMessage="Meet your SHPE Executive Board"
@@ -24,13 +24,13 @@ export default function TeamPage() {
         showButton={false}
       />
 
-      {/* Executive Board Heading */}
-      <h1 className="text-[#001f5b] font-bold p-5 text-3xl font-[Jaldi]">
+      {/* Title */}
+      <h1 className="text-[#40c4ff] font-extrabold p-6 text-4xl tracking-wide drop-shadow-lg font-[Jaldi]">
         Executive Board
       </h1>
 
-      {/* Executive Board Cards */}
-      <div className="flex flex-wrap justify-center gap-20 py-0 px-20 pb-10">
+      {/* Exec cards container */}
+      <div className="flex flex-wrap justify-center gap-16 px-10 py-10 max-w-7xl">
         {execBoard.map((member, idx) => (
           <ExecCard key={idx} member={member} />
         ))}
@@ -115,7 +115,6 @@ const execBoard = [
     email: "",
     linkedin: "https://www.linkedin.com/in/janedoe",
   },
-  // Placeholder members with generic info
   {
     name: "Jane Doe",
     position: "Treasurer",
