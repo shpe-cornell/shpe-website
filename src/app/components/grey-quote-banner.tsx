@@ -4,10 +4,10 @@ import Link from "next/link";
 export default function GreyQuoteBanner() {
   return (
     <div className="relative w-full h-auto flex items-center justify-center px-6 py-10 bg-gradient-to-r from-[#00031A] to-[#001F5B] overflow-hidden">
-      {/* Blurred Frosted Glass Effect */}
+      {/* Background effects */}
       <div className="absolute inset-0 bg-white/10 backdrop-blur-md rounded-xl pointer-events-none z-0" />
 
-      {/* Quote Content */}
+      {/* Quote */}
       <div className="relative z-10 max-w-5xl text-center p-6 md:p-10">
         <link
           href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap"
