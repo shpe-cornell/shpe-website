@@ -34,7 +34,12 @@ PROJECT ARCHITECTURE BREAKDOWN:
 DEVELOPER NECESSARY INSTALLATIONS:
 ================================================================================
 - npm install pg (for integrating database)
-- etc [update later]
+
+If You Ever Run Into Dependency Issues:
+  rm -rf node_modules package-lock.json .next
+  npm install
+  npm run dev
+
 
 
 #b49696 pretty color
