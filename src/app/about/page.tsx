@@ -1,8 +1,7 @@
 import Image from "next/image";
 import HeroScroll from "../components/hero-scroll";
-import { BiLogoSass } from "react-icons/bi";
-import { GiEarthSpit } from "react-icons/gi";
 
+//some images of shpe tabling or volunteering might be nice for this
 const images = [
   "/images/leadership/Spring_2025/grouppic_line.JPG",
   "/images/conference/2024/conference4.jpeg",
@@ -11,7 +10,9 @@ const images = [
 
 export default function AboutPage() {
   return (
-    <div className="flex flex-col min-h-screen mt-[55px] bg-gradient-to-b from-[#00031A] to-[#001F5B] text-black">
+    <div className="flex flex-col min-h-screen mt-[55px] bg-gradient-to-b from-[#00031A] to-[#001F5B]">
+
+      {/* Page title and images */}
       <HeroScroll
         images={images}
         welcomeMessage="Learn about SHPE @ Cornell"
@@ -19,6 +20,7 @@ export default function AboutPage() {
         showButton={false}
       />
 
+      {/* Mission Statement section */}
       <h2 className="text-[#FD652F] text-3xl px-10 py-8 font-bold">Mission Statement</h2>
       <p className="text-white text-xl px-10">
         SHPE changes lives by empowering the Hispanic community and individuals from all backgrounds to realize their fullest 
@@ -37,6 +39,7 @@ export default function AboutPage() {
         />
       </div>
 
+      {/* SHPE National section */}
       <h2 className="text-[#FD652F] text-3xl px-10 pb-8 font-bold">About SHPE National</h2>
       <p className="text-white text-xl px-10">
         The Society of Hispanic Professional Engineers (SHPE), Inc. is a non-profit organization dedicated to increasing the 
@@ -57,6 +60,7 @@ export default function AboutPage() {
         />
       </div>
 
+      {/* Cornell Chapter section */}
       <h2 className="text-[#FD652F] text-3xl px-10 pb-8 font-bold">Chapter History</h2>
       <p className="text-white px-10 text-xl">
         The Cornell University Student Chapter of SHPE was founded in the fall of 1979 by Federico Moncayo, Edwin Rivera, 
@@ -76,6 +80,7 @@ export default function AboutPage() {
         />
       </div>
 
+      {/* Bylaws section */}
       <h1 className="text-[#FD652F] text-3xl px-10 pb-8 font-bold">
         {/* Link to gdoc or cg once its ready */}
         Explore our bylaws <a className="underline" href="https://google.com">here</a>!
