@@ -44,12 +44,10 @@ export default function RootLayout({
       >
         <header className="text-white text-center">
           <Navigation />
-          <hr className="bg-white scale-75" />
         </header>
         {children}
         <footer className="bg-[#001F5B] text-white">
           <FooterNav />
-          <hr />
         </footer>
       </body>
     </html>

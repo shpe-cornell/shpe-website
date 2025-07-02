@@ -76,7 +76,7 @@ export default function Home() {
       <HeroScroll
         images={images}
         welcomeMessage="Welcome to SHPE x Cornell"
-        subMessage="Empowerment. Community. Excellence.."
+        subMessage="Empowerment. Community. Excellence."
         showButton={true}
         buttonHref="/member-info"
         buttonText="Join SHPE National"
