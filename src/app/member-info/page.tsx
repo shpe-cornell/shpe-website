@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { Changa } from "next/font/google";
+import { motion } from "framer-motion";
 
 const changa = Changa({
   subsets: ["latin"],
@@ -19,7 +20,30 @@ const flyers = [
 
 export default function MemberInfoPage() {
   return (
-    <div className="flex flex-col items-center min-h-screen px-4 bg-gradient-to-b from-[#0a1f44] to-[#001f5b] text-white font-sans">
+    <div className="flex flex-col items-center mt-[55px] min-h-screen bg-gradient-to-b from-[#0a1f44] to-[#001f5b] text-white font-sans">
+      {/* Welcome Message Text */}
+      <section className="w-full min-h-[40vh] flex items-center justify-center bg-gradient-to-b from-[#00031A] to-[#001F5B] text-center px-6">
+        <div className="z-10 w-full max-w-7xl">
+          <motion.h1
+            initial={{ opacity: 0, y: -30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
+            className="text-4xl md:text-6xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-[#85B6FF] to-[#FD652F]"
+            style={{ fontFamily: "'Changa', sans-serif" }}
+          >
+            Members
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.7 }}
+            className="text-[#E5EFFF] text-md sm:text-lg mt-4 max-w-xl mx-auto"
+          >
+            Get involved with SHPE @ Cornell!
+          </motion.p>
+        </div>
+      </section>
       {/* Upcoming Events Header */}
       <h2 className="text-4xl font-extrabold text-[#40c4ff] mb-6 mt-20 tracking-wide drop-shadow-lg">
         Upcoming Events

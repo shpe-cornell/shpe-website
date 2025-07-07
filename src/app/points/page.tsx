@@ -143,7 +143,7 @@ const fakePointsDatabase = {
 export default function PointsPage() {
   return (
     <div
-      className={`min-h-screen pt-[70px] pb-16 bg-gradient-to-b from-[#00031A] to-[#001F5B] ${changa.className}`}
+      className={`min-h-screen mt-[55px] pt-[70px] pb-16 bg-gradient-to-b from-[#00031A] to-[#001F5B] ${changa.className}`}
     >
       <Head>
         <title>Points System</title>

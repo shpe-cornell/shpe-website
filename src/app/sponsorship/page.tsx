@@ -1,90 +1,302 @@
-import HeroScroll from "../components/hero-scroll";
-import SponsorCard from "../components/sponsor-card";
-import Link from "next/link";
+"use client";
 
-// we need info session images, someone must have
-const images = [
-  "/images/leadership/Spring_2025/grouppic_line.JPG",
-  "/images/conference/2024/conference4.jpeg",
-  "/images/leadership/2025-2026/boba_day.png",
-];
+import Link from "next/link";
+import { motion } from "framer-motion";
+
+type SponsorCardProps = {
+  tier: string;
+  logo: string;
+};
+
+const tierStyles: Record<string, string> = {
+  Platinum: "from-[#C0D8FF] to-[#A7B8FF] border-[#B7BFCC]",
+  Gold: "from-[#FFD280] to-[#FFBB33] border-[#C09E5E]",
+  Silver: "from-[#E3E3E3] to-[#F5F5F5] border-[#A0A0A0]",
+  Bronze: "from-[#FAD0C4] to-[#FFD1A4] border-[#CD7F32]",
+};
+
+function SponsorCard({ tier, logo }: SponsorCardProps) {
+  return (
+    <div
+      className={`w-full max-w-[240px] h-[140px] rounded-2xl border px-6 py-4 flex items-center justify-center bg-gradient-to-br ${tierStyles[tier]} shadow-xl backdrop-blur-md hover:scale-[1.04] transition-transform duration-300`}
+    >
+      <img
+        src={logo}
+        alt={`${tier} sponsor`}
+        className="max-h-16 object-contain"
+      />
+    </div>
+  );
+}
+
+const CheckIcon = (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    className="inline-block w-5 h-5 text-green-400"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+    strokeWidth={2}
+  >
+    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+  </svg>
+);
+
+const Dash = (
+  <span className="inline-block w-5 h-5 text-gray-200 select-none">—</span>
+);
+
+const sponsors = {
+  Platinum: ["/logos/openai.svg", "/logos/anthropic.svg"],
+  Gold: ["/logos/huggingface.svg", "/logos/deepmind.svg"],
+  Silver: ["/logos/stabilityai.svg", "/logos/scaleai.svg"],
+  Bronze: ["/logos/replicate.svg", "/logos/weightsandbiases.svg"],
+  Other: ["/logos/replicate.svg", "/logos/weightsandbiases.svg"],
+};
 
 export default function SponsorPage() {
+  const buttonCommonClasses =
+    "rounded-xl border border-[#A5AACD]/40 bg-gradient-to-r from-[#001F5B] to-[#003377] text-white font-medium py-4 px-8 flex items-center justify-center gap-3 text-base transition transform hover:scale-105 hover:shadow-md hover:from-[#003377] hover:to-[#0050a0]";
+
+  const benefits = [
+    ["Cost", "$2,000+", "$1,750", "$1,500", "$1,250", "<$1,000"],
+    [
+      "Recognition on Cornell SHPE Website",
+      CheckIcon,
+      CheckIcon,
+      CheckIcon,
+      CheckIcon,
+      CheckIcon,
+    ],
+    ["Resume Book", CheckIcon, CheckIcon, CheckIcon, CheckIcon, Dash],
+    [
+      "Speaking Opportunity at SHPE G-Body Meeting",
+      CheckIcon,
+      CheckIcon,
+      CheckIcon,
+      Dash,
+      Dash,
+    ],
+    [
+      "Complimentary Information Session",
+      CheckIcon,
+      CheckIcon,
+      Dash,
+      Dash,
+      Dash,
+    ],
+    [
+      "Company Logo on SHPE Merch and Additional Info Session",
+      CheckIcon,
+      Dash,
+      Dash,
+      Dash,
+      Dash,
+    ],
+  ];
+
   return (
-    <div className="flex flex-col min-h-screen mt-[55px] bg-gradient-to-b from-[#00031A] to-[#001F5B]">
+    <div className="flex flex-col min-h-screen mt-[55px] bg-gradient-to-b from-[#00031A] to-[#001F5B] text-white">
+      {/* Welcome Message Text */}
+      <section className="w-full min-h-[50vh] flex items-center justify-center bg-gradient-to-b from-[#00031A] to-[#001F5B] text-center px-6">
+        <div className="z-10 w-full max-w-7xl">
+          <motion.h1
+            initial={{ opacity: 0, y: -30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
+            className="text-4xl md:text-6xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-[#85B6FF] to-[#FD652F]"
+            style={{ fontFamily: "'Changa', sans-serif" }}
+          >
+            Sponsorship
+          </motion.h1>
 
-      {/* Page title and images */}
-      <HeroScroll
-        images={images}
-        welcomeMessage="Corporate Sponsorship"
-        subMessage="Supporting our values, empowering our mission."
-        showButton={false}
-      />
-
-      {/* Intro Paragraph */}
-      <p className="text-white text-xl p-10">
-        Cornell SHPE works with many of its corporate partners to provide workshops, information sessions, and scholarships 
-        for its members. On behalf of the members of our chapter, we would like to thank all of our sponsors for their 
-        generosity. It is through their efforts and support that we are able to meet many of our goals.
-      </p>
-      
-      {/* Sponsor Section Title */}
-      <div className="text-center my-6">
-        <div className="inline-block">
-          <div className="h-[2px] bg-[#FD652F] mb-2" />
-          <p className="text-[#FD652F] text-3xl px-10 py-2 font-bold">Our Sponsors</p>
-          <div className="h-[2px] bg-[#FD652F] mt-2" />
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.7 }}
+            className="text-[#E5EFFF] text-md sm:text-lg mt-4 max-w-xl mx-auto"
+          >
+            Support SHPE @ Cornell
+          </motion.p>
         </div>
-      </div>
+      </section>
 
-      {/* Sponsor Card Grid */}
-      <div className="flex justify-center gap-6 flex-wrap px-6 pb-10">
-        <SponsorCard tier="Platinum" logo="/images/icons/slack.png"/>
-        <SponsorCard tier="Gold" logo="/images/icons/slack.png" />
-        <SponsorCard tier="Silver" logo="/images/icons/slack.png"/>
-        <SponsorCard tier="Bronze" logo="/images/icons/slack.png"/>
-        <SponsorCard tier="Bronze" logo="/images/icons/slack.png"/>
-      </div>
+      <section className="max-w-4xl mx-auto py-16">
+        <h1 className="text-4xl font-extrabold mb-6 text-center">
+          Partner With Us
+        </h1>
+        <p className="text-xl leading-relaxed text-gray-300 text-center">
+          Cornell SHPE collaborates with corporate partners to bring impactful
+          workshops, mentorship, scholarships, and career opportunities to our
+          members. Thank you to all our sponsors for your generous support!
+        </p>
+      </section>
 
-      {/* Support Section Title           MISSING LINK*/}
-      <div className="text-center my-6">
-        <div className="inline-block">
-          <div className="h-[2px] bg-[#FD652F] mb-2" />
-          <p className="text-[#FD652F] text-3xl px-10 py-2 font-bold">Support SHPE @ Cornell</p>
-          <div className="h-[2px] bg-[#FD652F] mt-2" />
+      <section>
+        <h2 className="text-3xl font-bold text-center text-[#FD652F] mb-10">
+          Our Sponsors
+        </h2>
+
+        {Object.entries(sponsors).map(([tier, logos]) => (
+          <div key={tier} className="mb-16">
+            <h3 className="text-2xl font-semibold text-center uppercase mb-6 tracking-wide text-gray-200">
+              {tier} Sponsors
+            </h3>
+            <div className="flex flex-wrap justify-center gap-6">
+              {logos.map((logo, idx) => (
+                <SponsorCard key={idx} tier={tier} logo={logo} />
+              ))}
+            </div>
+          </div>
+        ))}
+      </section>
+
+      <section className="w-full px-4 md:px-12 py-5 bg-transparent">
+        <div className="w-full max-w-7xl mx-auto bg-[#0A0A2A]/70 backdrop-blur-md rounded-3xl shadow-xl border border-[#1F2C50] p-6 md:p-12">
+          <h2 className="text-4xl font-extrabold text-center text-white mb-12 tracking-tight">
+            Sponsorship Tier Comparison
+          </h2>
+
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm md:text-base text-white border-separate border-spacing-y-2 border-spacing-x-2 table-fixed">
+              <thead>
+                <tr className="bg-gradient-to-r from-[#1A2A50] to-[#2A3970] text-white">
+                  <th className="text-left py-4 px-4 font-semibold tracking-wide rounded-l-2xl shadow-sm bg-[#1F2C50]/90 w-1/3">
+                    Benefit
+                  </th>
+                  <th className="text-center py-4 px-4 font-bold uppercase bg-[#1F2C50]/90 w-1/6">
+                    Platinum
+                  </th>
+                  <th className="text-center py-4 px-4 font-bold uppercase bg-[#1F2C50]/90 w-1/6">
+                    Gold
+                  </th>
+                  <th className="text-center py-4 px-4 font-bold uppercase bg-[#1F2C50]/90 w-1/6">
+                    Silver
+                  </th>
+                  <th className="text-center py-4 px-4 font-bold uppercase bg-[#1F2C50]/90 w-1/6">
+                    Bronze
+                  </th>
+                  <th className="text-center py-4 px-4 font-bold uppercase bg-[#1F2C50]/90 rounded-r-2xl w-1/6">
+                    Other
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {benefits.map(
+                  ([benefit, platinum, gold, silver, bronze, other], i) => (
+                    <tr
+                      key={i}
+                      className={`transition ${
+                        i % 2 === 0 ? "bg-[#1B2340]/70" : "bg-[#2A355D]/50"
+                      } hover:bg-[#344b7e]/30`}
+                    >
+                      <td className="py-3 px-4 font-medium text-gray-100">
+                        {benefit}
+                      </td>
+                      <td className="py-3 px-4 text-center">{platinum}</td>
+                      <td className="py-3 px-4 text-center">{gold}</td>
+                      <td className="py-3 px-4 text-center">{silver}</td>
+                      <td className="py-3 px-4 text-center">{bronze}</td>
+                      <td className="py-3 px-4 text-center">{other}</td>
+                    </tr>
+                  )
+                )}
+              </tbody>
+            </table>
+          </div>
         </div>
-      </div>
+      </section>
 
-      <div className="flex flex-wrap justify-center gap-6 pb-20">
-        {/* Corporate Packet Button.       MISSING LINK*/}
-        <a
-          href="https://google.com"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <button className="bg-[#A5AACD] text-lg text-[#0A0A2A] font-semibold py-3 px-8 rounded-lg shadow h-[100px] w-[220px] flex flex-col items-center justify-center text-center hover:bg-[#9297bf] transition">
-            Explore our <br /> Corporate Packet
-          </button>
-        </a>
+      <section className="text-center pb-10 pt-10">
+        <h2 className="text-3xl font-semibold text-[#FD652F] mb-12 tracking-wide drop-shadow-sm">
+          Support SHPE @ Cornell
+        </h2>
 
-        {/* Donate Button */}
-        <a
-          href="https://google.com"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <button className="bg-[#FFA8A0] text-lg text-[#0A0A2A] font-bold py-3 px-8 rounded-lg shadow h-[100px] w-[220px] flex flex-col items-center justify-center text-center hover:bg-[#e1948d] transition">
-            Donate Now!
-          </button>
-        </a>
+        <div className="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-6">
+          {/* Corporate Packet */}
+          <a
+            href="/important/25-26-corporate.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={buttonCommonClasses}
+            style={{
+              WebkitBackdropFilter: "blur(10px)",
+              backdropFilter: "blur(10px)",
+            }}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6 text-[#FD652F]"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M12 4v16m8-8H4"
+              />
+            </svg>
+            Corporate Packet
+          </a>
 
-        {/* Learn More Button */}
-        <Link href="/about">
-          <button className="bg-[#A5AACD] text-lg text-[#0A0A2A] font-semibold py-3 px-8 rounded-lg shadow h-[100px] w-[220px] flex flex-col items-center justify-center text-center hover:bg-[#9297bf] transition">
-            Learn More About <br /> SHPE
-          </button>
-        </Link>
-      </div>
+          {/* Donate */}
+          <a
+            href="https://securelb.imodules.com/s/1717/giving/interior.aspx?sid=1717&gid=2&pgid=16421&bledit=1&dids=789.&appealcode=GIVDY25P"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={buttonCommonClasses}
+            style={{
+              WebkitBackdropFilter: "blur(10px)",
+              backdropFilter: "blur(10px)",
+            }}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6 text-[#FD652F]"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M5 13l4 4L19 7"
+              />
+            </svg>
+            Donate Now
+          </a>
+
+          {/* Learn More */}
+          <Link href="/about" passHref>
+            <p
+              className={buttonCommonClasses}
+              style={{
+                WebkitBackdropFilter: "blur(10px)",
+                backdropFilter: "blur(10px)",
+              }}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6 text-[#FD652F]"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M13 16h-1v-4h-1m1-4h.01M12 20a8 8 0 100-16 8 8 0 000 16z"
+                />
+              </svg>
+              Learn About SHPE
+            </p>
+          </Link>
+        </div>
+      </section>
     </div>
   );
 }

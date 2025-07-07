@@ -69,7 +69,7 @@ const items = [
 
 export default function Home() {
   return (
-    <div className="flex flex-col items-center min-h-screen mt-[50px] bg-gradient-to-b from-[#00031A] to-[#001F5B] text-white font-sans">
+    <div className="flex flex-col items-center min-h-screen mt-[55px] bg-gradient-to-b from-[#00031A] to-[#001F5B] text-white font-sans">
       {/* ==============================================================
           Hero Section
         ============================================================== */}

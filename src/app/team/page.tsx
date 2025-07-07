@@ -15,7 +15,7 @@ const images = [
 
 export default function TeamPage() {
   return (
-    <div className="flex flex-col items-center min-h-screen mt-[50px] bg-gradient-to-b from-[#0a1f44] to-[#001f5b] text-white font-sans">
+    <div className="flex flex-col items-center min-h-screen mt-[55px] bg-gradient-to-b from-[#0a1f44] to-[#001f5b] text-white font-sans">
       {/* Hero Scroll */}
       <HeroScroll
         images={images}
