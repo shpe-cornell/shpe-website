@@ -4,6 +4,7 @@ import { useState } from "react";
 import Head from "next/head";
 import { Changa } from "next/font/google";
 import CountdownTimer from "../components/countdown";
+import Announcements from "../components/announcements";
 
 const changa = Changa({ subsets: ["latin"], weight: ["400", "700"] });
 
@@ -158,6 +159,7 @@ export default function PointsPage() {
         </section>
 
         <FooterSection />
+        <Announcements></Announcements>
       </main>
     </div>
   );
