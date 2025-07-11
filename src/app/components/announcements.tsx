@@ -12,7 +12,7 @@ interface Announcement {
 
 const ANNOUNCEMENTS_LIST: Announcement[] = [
   {
-    date: "June 5, 2024",
+    date: "July 11,2024",
     title: "No Announcements Yet",
     description: "Have a fun summer!",
   },
