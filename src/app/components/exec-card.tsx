@@ -17,16 +17,9 @@ interface ExecCardProps {
 export default function ExecCard({ member }: ExecCardProps) {
   return (
     <div
-      className="w-[270px] rounded-md shadow-lg overflow-hidden group relative"
+      className="w-[270px] rounded-md shadow-lg overflow-hidden group relative bg-[#001f5b] shadow-sm shadow-black hover:shadow-white "
       style={{
         fontFamily: "'Jaldi', sans-serif",
-        background: `linear-gradient(
-          135deg,
-          #001F5B 0%,
-          #004080 50%,
-          #337AB7 70%,
-          #002550 100%
-        )`,
       }}
     >
       {/* Position */}
