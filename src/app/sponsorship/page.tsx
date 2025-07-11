@@ -2,12 +2,16 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
+import Donation_Section from "../components/donation-boxes";
 
 type SponsorCardProps = {
   tier: string;
   logo: string;
 };
 
+// =============================================================================
+// Constants
+// =============================================================================
 const tierStyles: Record<string, string> = {
   Platinum: "from-[#C0D8FF] to-[#A7B8FF] border-[#B7BFCC]",
   Gold: "from-[#FFD280] to-[#FFBB33] border-[#C09E5E]",
@@ -53,6 +57,10 @@ const sponsors = {
   Bronze: ["/logos/replicate.svg", "/logos/weightsandbiases.svg"],
   Other: ["/logos/replicate.svg", "/logos/weightsandbiases.svg"],
 };
+
+// =============================================================================
+// Page Implementation
+// =============================================================================
 
 export default function SponsorPage() {
   const buttonCommonClasses =
@@ -207,7 +215,17 @@ export default function SponsorPage() {
         </div>
       </section>
 
-      <section className="text-center pb-10 pt-10">
+      <section id="pricing">
+        {/* ==============================================================
+          Non-Sponsor Donation Details
+        ============================================================== */}
+        <Donation_Section></Donation_Section>
+      </section>
+
+      {/* ==============================================================
+          Support SHPE Section
+        ============================================================== */}
+      <section className="text-center pb-10 pt-8">
         <h2 className="text-3xl font-semibold text-[#FD652F] mb-12 tracking-wide drop-shadow-sm">
           Support SHPE @ Cornell
         </h2>
@@ -238,7 +256,7 @@ export default function SponsorPage() {
                 d="M12 4v16m8-8H4"
               />
             </svg>
-            Corporate Packet
+            Corporate Packet (.pdf)
           </a>
 
           {/* Donate */}
