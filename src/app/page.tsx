@@ -51,13 +51,13 @@ const items = [
     title: "Donate",
     description: "Support our mission through donations.",
     icon: "/images/icons/donate.png",
-    link: "https://securelb.imodules.com/s/1717/giving/interior.aspx?sid=1717&gid=2&pgid=16421&bledit=1&dids=789.&appealcode=GIVDY25P",
+    link: "/sponsorship#pricing",
   },
   {
     title: "Become a Member",
     description: "Join our supportive community.",
     icon: "/images/icons/member.png",
-    link: "https://www.shpeconnect.org/eweb/DynamicPage.aspx?WebCode=LoginRequired&expires=yes&Site=shpe",
+    link: "https://shpe.org/membership/become-a-member/",
   },
   {
     title: "Events",
@@ -75,10 +75,10 @@ export default function Home() {
         ============================================================== */}
       <HeroScroll
         images={images}
-        welcomeMessage="Welcome to SHPE x Cornell"
+        welcomeMessage="Welcome to SHPE @ Cornell"
         subMessage="Empowerment. Community. Excellence."
         showButton={true}
-        buttonHref="/member-info"
+        buttonHref="https://shpe.org/membership/become-a-member/"
         buttonText="Join SHPE National"
       />
 
