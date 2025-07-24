@@ -4,31 +4,74 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import Donation_Section from "../components/donation-boxes";
 
-type SponsorCardProps = {
+// =============================================================================
+// Types and Constants
+// =============================================================================
+type Tier = "Platinum" | "Gold" | "Silver" | "Bronze";
+
+interface TierStyle {
+  border: string;
+  shadow: string;
+  shine: string;
+}
+
+const tierStyles: Record<Tier, TierStyle> = {
+  Platinum: {
+    border: "border-[#B7BFCC]",
+    shadow: "shadow-[0_0_20px_-5px_rgba(183,191,204,0.8)]",
+    shine: "from-[#E6F0FF] to-[#FFFFFF]",
+  },
+  Gold: {
+    border: "border-[#C09E5E]",
+    shadow: "shadow-[0_0_20px_-5px_rgba(192,158,94,0.8)]",
+    shine: "from-[#FFF4E0] to-[#FFFFFF]",
+  },
+  Silver: {
+    border: "border-[#A0A0A0]",
+    shadow: "shadow-[0_0_20px_-5px_rgba(160,160,160,0.6)]",
+    shine: "from-[#F5F5F5] to-[#FFFFFF]",
+  },
+  Bronze: {
+    border: "border-[#CD7F32]",
+    shadow: "shadow-[0_0_20px_-5px_rgba(205,127,50,0.6)]",
+    shine: "from-[#FFE9DD] to-[#FFFFFF]",
+  },
+};
+
+interface SponsorCardProps {
   tier: string;
   logo: string;
-};
+}
 
 // =============================================================================
-// Constants
+// Component
 // =============================================================================
-const tierStyles: Record<string, string> = {
-  Platinum: "from-[#C0D8FF] to-[#A7B8FF] border-[#B7BFCC]",
-  Gold: "from-[#FFD280] to-[#FFBB33] border-[#C09E5E]",
-  Silver: "from-[#E3E3E3] to-[#F5F5F5] border-[#A0A0A0]",
-  Bronze: "from-[#FAD0C4] to-[#FFD1A4] border-[#CD7F32]",
-};
-
 function SponsorCard({ tier, logo }: SponsorCardProps) {
+  // If tier not specified, default is bronze
+  const style = tierStyles[tier as Tier] || tierStyles.Bronze;
+
   return (
-    <div
-      className={`w-full max-w-[240px] h-[140px] rounded-2xl border px-6 py-4 flex items-center justify-center bg-gradient-to-br ${tierStyles[tier]} shadow-xl backdrop-blur-md hover:scale-[1.04] transition-transform duration-300`}
-    >
-      <img
-        src={logo}
-        alt={`${tier} sponsor`}
-        className="max-h-16 object-contain"
-      />
+    <div className="relative group">
+      <div
+        className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${style.shine} opacity-0 group-hover:opacity-30 transition-opacity duration-300 pointer-events-none`}
+      ></div>
+
+      {/* Main */}
+      <div
+        className={`w-full max-w-[240px] h-[140px] border-4 rounded-3xl px-6 py-4 flex items-center justify-center bg-white ${style.border} ${style.shadow} transition-all duration-300 group-hover:scale-[1.04] group-hover:shadow-[0_0_25px_-5px_var(--tw-shadow-color)]`}
+      >
+        <img
+          src={logo}
+          alt={`${tier} sponsor`}
+          className="object-contain max-h-[80%] transition-transform duration-300 group-hover:scale-105"
+          loading="lazy"
+        />
+      </div>
+
+      {/* Shine effect */}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden rounded-2xl pointer-events-none">
+        <div className="absolute top-0 left-[-100%] w-1/3 h-full bg-gradient-to-r from-transparent via-white/70 to-transparent group-hover:left-[150%] transition-all duration-1000"></div>
+      </div>
     </div>
   );
 }
@@ -51,11 +94,11 @@ const Dash = (
 );
 
 const sponsors = {
-  Platinum: ["/logos/openai.svg", "/logos/anthropic.svg"],
-  Gold: ["/logos/huggingface.svg", "/logos/deepmind.svg"],
-  Silver: ["/logos/stabilityai.svg", "/logos/scaleai.svg"],
-  Bronze: ["/logos/replicate.svg", "/logos/weightsandbiases.svg"],
-  Other: ["/logos/replicate.svg", "/logos/weightsandbiases.svg"],
+  Platinum: ["/images/sponsors/Lockheed_Martin_logo.svg.png"],
+  Gold: ["/images/sponsors/Capital_One_logo.svg.png"],
+  Silver: [],
+  Bronze: ["/images/sponsors/Jane_Street.png"],
+  Other: [],
 };
 
 // =============================================================================
@@ -145,18 +188,20 @@ export default function SponsorPage() {
           Our Sponsors
         </h2>
 
-        {Object.entries(sponsors).map(([tier, logos]) => (
-          <div key={tier} className="mb-16">
-            <h3 className="text-2xl font-semibold text-center uppercase mb-6 tracking-wide text-gray-200">
-              {tier} Sponsors
-            </h3>
-            <div className="flex flex-wrap justify-center gap-6">
-              {logos.map((logo, idx) => (
-                <SponsorCard key={idx} tier={tier} logo={logo} />
-              ))}
+        {Object.entries(sponsors)
+          .filter(([_, logos]) => logos.length > 0) // Only show tiers with sponsors
+          .map(([tier, logos]) => (
+            <div key={tier} className="mb-16">
+              <h3 className="text-2xl font-semibold text-center uppercase mb-6 tracking-wide text-gray-200">
+                {tier} Sponsors
+              </h3>
+              <div className="flex flex-wrap justify-center gap-6">
+                {logos.map((logo, idx) => (
+                  <SponsorCard key={idx} tier={tier} logo={logo} />
+                ))}
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
       </section>
 
       <section className="w-full px-4 md:px-12 py-5 bg-transparent">
