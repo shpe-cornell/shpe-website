@@ -82,7 +82,7 @@ export default function HeroScroll({
             {images.map((src, idx) => (
               <div
                 key={idx}
-                className="relative min-w-[75vw] h-[500px] snap-center shrink-0 rounded-xl overflow-hidden border border-white/10 shadow-2xl"
+                className="relative min-w-[75vw] h-[500px] snap-center shrink-0 rounded-xs overflow-hidden border border-white/10 shadow-2xl"
               >
                 <Image
                   src={src}
