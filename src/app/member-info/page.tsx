@@ -12,23 +12,19 @@ const changa = Changa({
 const buttonClass =
   "w-[280px] px-6 py-4 text-xl text-white rounded-full transition font-semibold bg-[#001F5B] border border-white/30 hover:bg-[#0070C0] hover:scale-105";
 
-const flyers = [
-  "/images/events/flyers/gbody-03-26-25.png",
-  "/images/events/flyers/paint-n-sip-05-03-25.png",
-  "/images/events/flyers/tote-painting-03-24-25.png",
-];
+const flyers = ["/images/events/flyers/gbody-03-26-25.png"];
 
 export default function MemberInfoPage() {
   return (
     <div className="flex flex-col items-center mt-[55px] min-h-screen bg-gradient-to-b from-[#0a1f44] to-[#001f5b] text-white font-sans">
       {/* Welcome Message Text */}
-      <section className="w-full min-h-[40vh] flex items-center justify-center bg-gradient-to-b from-[#00031A] to-[#001F5B] text-center px-6">
+      <section className="w-full min-h-[30vh] flex items-center justify-center bg-gradient-to-b from-[#00031A] to-[#001F5B] text-center px-6 relative overflow-hidden">
         <div className="z-10 w-full max-w-7xl">
           <motion.h1
             initial={{ opacity: 0, y: -30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
-            className="text-4xl md:text-6xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-[#85B6FF] to-[#FD652F]"
+            className="text-4xl md:text-6xl font-bold tracking-tight bg-clip-text bg-gradient-to-r from-[#FD652F] to-[#FFFFFF] text-[#FD652F]"
             style={{ fontFamily: "'Changa', sans-serif" }}
           >
             Members
@@ -42,10 +38,28 @@ export default function MemberInfoPage() {
           >
             Get involved with SHPE @ Cornell!
           </motion.p>
+
+          {/* Feedback Button */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1 }}
+            className="mt-4"
+          >
+            <a
+              href="https://docs.google.com/forms/d/e/1FAIpQLSefPfxjHbs45JLnP2LcNlrwjV3rT5Q3BlfkPQwEyqCBoiGojQ/viewform?usp=header" // Replace with your actual form URL
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block px-3 py-2 text-sm font-medium tracking-wider uppercase rounded-full bg-gradient-to-r from-[#FD652F] to-[#FF8E53] text-white shadow-lg hover:shadow-xl hover:shadow-orange-500/30 transition-all duration-300 hover:scale-105"
+            >
+              Give Us Feedback
+            </a>
+          </motion.div>
         </div>
       </section>
+
       {/* Upcoming Events Header */}
-      <h2 className="text-4xl font-extrabold text-[#40c4ff] mb-6 mt-20 tracking-wide drop-shadow-lg">
+      <h2 className="text-4xl font-extrabold text-[#0070C0] mb-6 mt-10 tracking-wide drop-shadow-lg">
         Upcoming Events
       </h2>
 
@@ -88,7 +102,7 @@ export default function MemberInfoPage() {
       {/* Get Plugged In Section */}
       <section className="w-full max-w-5xl text-center mt-10 mb-12">
         <h2
-          className={`text-4xl font-extrabold mb-8 text-[#40c4ff] tracking-wide drop-shadow-lg ${changa.className}`}
+          className={`text-4xl font-extrabold mb-8  text-[#40c4ff] tracking-wide drop-shadow-lg ${changa.className}`}
         >
           Get Plugged In
         </h2>
