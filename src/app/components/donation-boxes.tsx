@@ -4,30 +4,62 @@ export default function DonationSection() {
       amount: "$10",
       title: "National Membership",
       description: "Covers the National SHPE Membership cost for one student.",
+      pricingType: "student",
       icon: "👥",
     },
     {
-      amount: "$20",
+      amount: "$25",
       title: "Meal Support",
-      description: "Covers a nutritious meal for one student.",
+      description:
+        "Covers one meal for a student during the SHPE Conference — because no one networks well on an empty stomach.",
+      pricingType: "student",
       icon: "🍽️",
     },
     {
-      amount: "$200",
+      amount: "$30",
+      title: "SHPE Merch",
+      description: "Covers SHPE merchandise for a Cornell student. ",
+      pricingType: "student",
+      icon: "👔",
+    },
+    {
+      amount: "$50",
+      title: "Printed Materials",
+      description:
+        "Supports printing for recruitment, event marketing, and informational materials for the Cornell SHPE chapter.",
+      pricingType: "order",
+      icon: "📑",
+    },
+    {
+      amount: "$100",
+      title: "Prep Event",
+      description:
+        "Funds an on-campus workshop like elevator pitch training or resume reviews — essential for conference readiness.",
+      pricingType: "event",
+      icon: "🤵‍♀️🤵‍♂️",
+    },
+    {
+      amount: "$180",
       title: "Hotel Accommodation",
-      description: "Covers a hotel room for 4 students at conferences.",
+      description:
+        "Covers one night of lodging at the conference — safe, accessible housing so students can fully engage",
+      pricingType: "student",
       icon: "🏨",
     },
     {
-      amount: "$200",
+      amount: "$250",
       title: "Transportation",
-      description: "Covers travel costs to conference for one student.",
-      icon: "🚌",
+      description:
+        "Helps a student get to the SHPE National Convention — because talent shouldn’t be limited by travel costs.",
+      pricingType: "student",
+      icon: "🛫",
     },
     {
-      amount: "$250",
+      amount: "$345",
       title: "Conference Pass",
-      description: "Full conference registration fee for one student.",
+      description:
+        "Covers one student’s full SHPE National Convention registration — unlocking access to networking, workshops, and career opportunities.",
+      pricingType: "student",
       icon: "🎟️",
     },
   ];
@@ -44,7 +76,7 @@ export default function DonationSection() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {donationTiers.map((tier, index) => (
           <div
             key={index}
@@ -63,7 +95,11 @@ export default function DonationSection() {
                     {tier.amount}
                   </span>
                   <span className="ml-2 text-sm text-blue-300/80">
-                    /student
+                    {tier.pricingType === "event"
+                      ? "/event"
+                      : tier.pricingType === "student"
+                      ? "/student"
+                      : "/order"}
                   </span>
                 </div>
 
