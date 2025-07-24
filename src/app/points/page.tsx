@@ -37,9 +37,10 @@ function PointsDescription() {
         Points Breakdown
       </h3>
       <ul className="text-xl space-y-6 text-[#A4C2FF]">
-        <li className="text-center">+1 — [Insert Description]</li>
-        <li className="text-center">+2 — [Insert Description]</li>
-        <li className="text-center">+3 — [Insert Description]</li>
+        <li className="pl-15">+1 — Complete Tech Workshops & Study Jams</li>
+        <li className="pl-15">+2 — Join Professional Development & Socials</li>
+        <li className="pl-15">+3 — Contribute to G-body Initiatives</li>
+        <li className="pl-15">+5 — Lead/Serve in Community Projects</li>
       </ul>
     </div>
   );
