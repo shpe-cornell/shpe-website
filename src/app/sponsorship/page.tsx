@@ -146,17 +146,10 @@ export default function SponsorPage() {
     ],
   ];
 
-  const images = [
-  // "/images/leadership/Spring_2025/grouppic_line.JPG",
-  // "/images/conference/2024/conference_upscaled.jpeg",
-  // "/images/leadership/2025-2026/boba_day.png",
-];
-
   return (
     <div className="flex flex-col min-h-screen mt-[55px] bg-gradient-to-b from-[#00031A] to-[#001F5B] text-white">
       {/* Welcome Message Text */}
           <HeroScroll
-            images={images}
             welcomeMessage="Explore Sponsorship Opportunities"
             subMessage="Support SHPE @ Cornell"
             showButton={false}

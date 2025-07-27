@@ -6,12 +6,13 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 
 interface HeroScrollProps {
-  images: string[];
+  images?: string[];
   welcomeMessage?: string;
   subMessage?: string;
   showButton?: boolean;
   buttonHref?: string;
   buttonText?: string;
+  showImageScroll?: boolean,
 }
 
 export default function HeroScroll({
@@ -21,6 +22,7 @@ export default function HeroScroll({
   showButton = true,
   buttonHref = "/member-info",
   buttonText = "Join SHPE",
+  showImageScroll = false,
 }: HeroScrollProps) {
   const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -29,7 +31,7 @@ export default function HeroScroll({
     if (!container) return;
 
     const imageWidth = container.clientWidth * 0.75;
-    const middleIndex = Math.floor(images.length / 2);
+    const middleIndex = images?.length ? Math.floor(images.length / 2) : 0;
     container.scrollLeft = middleIndex * imageWidth;
   }, [images]);
 
@@ -37,8 +39,10 @@ export default function HeroScroll({
     <>
       <section className="relative w-full overflow-hidden bg-gradient-to-br from-[#00031A] to-[#001F5B] pb-10 text-white font-sans border-blur">
         {/* Welcome Message Text */}
-        <div className="absolute top-14 left-1/2 transform -translate-x-1/2 z-20 text-center px-4 max-w-[90vw]">
-          <motion.h1
+        <div
+            className="text-center px-4 max-w-[90vw] mx-auto z-20 relative pt-32 pb-20"
+        >          
+        <motion.h1
             initial={{ opacity: 0, y: -30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
@@ -73,10 +77,13 @@ export default function HeroScroll({
           )}
         </div>
 
-        {/* Scrollable Images */}
+      {/* Scrollable Images */}
+      {showImageScroll && Array.isArray(images) && images.length > 0 && (
         <div
           ref={scrollRef}
-          className="w-full overflow-x-auto snap-x snap-mandatory scroll-smooth pt-[260px]"
+          className={`w-full overflow-x-auto snap-x snap-mandatory scroll-smooth ${
+            !welcomeMessage && !subMessage && !showButton ? "pt-[260px]" : "pt-10"
+          }`}
         >
           <div className="flex w-max gap-x-12 px-10">
             {images.map((src, idx) => (
@@ -99,6 +106,7 @@ export default function HeroScroll({
             ))}
           </div>
         </div>
+        )}
       </section>
       <hr className="blur" />
     </>

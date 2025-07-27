@@ -15,39 +15,16 @@ const buttonClass =
 
 const flyers = ["/images/events/flyers/gbody-03-26-25.png"];
 
-const images = [
-  // "/images/leadership/Spring_2025/grouppic_line.JPG",
-  // "/images/conference/2024/conference_upscaled.jpeg",
-  // "/images/leadership/2025-2026/boba_day.png",
-];
-
 export default function MemberInfoPage() {
   return (
     <div className="flex flex-col items-center mt-[55px] min-h-screen bg-gradient-to-b from-[#0a1f44] to-[#001f5b] text-white font-sans">
       {/* Welcome Message Text */}
       <HeroScroll
-        images={images}
         welcomeMessage="Explore Happenings for Members"
         subMessage="Get involved with SHPE @ Cornell"
-        showButton={false}
-      />
-
-          {/* Feedback Button */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1 }}
-            className="mt-4"
-          >
-            <a
-              href="https://docs.google.com/forms/d/e/1FAIpQLSefPfxjHbs45JLnP2LcNlrwjV3rT5Q3BlfkPQwEyqCBoiGojQ/viewform?usp=header" // Replace with your actual form URL
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block px-3 py-2 text-sm font-medium tracking-wider uppercase rounded-full bg-gradient-to-r from-[#FD652F] to-[#FF8E53] text-white shadow-lg hover:shadow-xl hover:shadow-orange-500/30 transition-all duration-300 hover:scale-105"
-            >
-              Give Us Feedback
-            </a>
-          </motion.div>
+        showButton={true}
+        buttonHref="https://docs.google.com/forms/d/e/1FAIpQLSefPfxjHbs45JLnP2LcNlrwjV3rT5Q3BlfkPQwEyqCBoiGojQ/viewform?usp=heade"
+        buttonText="Give Us Feedback"      />
 
       {/* Upcoming Events Header */}
       <h2 className="text-4xl font-extrabold text-[#0070C0] mb-6 mt-10 tracking-wide drop-shadow-lg">

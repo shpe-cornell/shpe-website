@@ -80,6 +80,7 @@ export default function Home() {
         showButton={true}
         buttonHref="https://shpe.org/membership/become-a-member/"
         buttonText="Join SHPE National"
+        showImageScroll={true}
       />
 
       {/* ==============================================================

@@ -4,18 +4,11 @@ import Image from "next/image";
 import HeroScroll from "../components/hero-scroll";
 import ExecCard from "../components/exec-card";
 
-const images = [
-  // "/images/leadership/Spring_2025/grouppic_line.JPG",
-  // "/images/conference/2024/conference_upscaled.jpeg",
-  // "/images/leadership/2025-2026/boba_day.png",
-];
-
 export default function TeamPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#0a1f44] to-[#001f5b] mt-15">
       {/* Hero Section */}
       <HeroScroll
-        images={images}
         welcomeMessage="Meet Your SHPE Leadership Team"
         subMessage="Dedicated professionals driving our organization forward"
         showButton={false}
