@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import Head from "next/head";
 import { Changa } from "next/font/google";
 import CountdownTimer from "../components/countdown";
@@ -8,9 +7,7 @@ import Announcements from "../components/announcements";
 
 const changa = Changa({ subsets: ["latin"], weight: ["400", "700"] });
 
-/* -------------------------------------------------------------------------- */
-/* Header */
-/* -------------------------------------------------------------------------- */
+/* Header Section */
 function HeaderSection() {
   return (
     <section className="text-center px-6 md:px-20 mt-10 max-w-4xl mx-auto">
@@ -27,9 +24,7 @@ function HeaderSection() {
   );
 }
 
-/* -------------------------------------------------------------------------- */
 /* Points Description */
-/* -------------------------------------------------------------------------- */
 function PointsDescription() {
   return (
     <div className="bg-gradient-to-tr from-[#001F5B] to-[#004080] shadow-lg border border-[#0070C0] rounded-xl p-8 w-full max-w-xl mx-auto md:mx-0">
@@ -46,22 +41,66 @@ function PointsDescription() {
   );
 }
 
-/* -------------------------------------------------------------------------- */
 /* Points Checker */
-/* -------------------------------------------------------------------------- */
-function PointsChecker({
-  fakePointsDatabase,
-}: {
-  fakePointsDatabase: Record<string, number>;
-}) {
+import { useState, useRef } from "react";
+
+function PointsChecker() {
   const [memberId, setMemberId] = useState("");
   const [points, setPoints] = useState<number | null>(null);
+  const [name, setName] = useState<string | null>(null);
+  const [events, setEvents] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
   const [lookupAttempted, setLookupAttempted] = useState(false);
 
-  const handleCheckPoints = (e?: React.FormEvent) => {
+  // Cache previous results by netid (lowercase)
+  const cacheRef = useRef<
+    Record<string, { points: number; name: string; events: string }>
+  >({});
+
+  const handleCheckPoints = async (e?: React.FormEvent) => {
     if (e) e.preventDefault();
     setLookupAttempted(true);
-    setPoints(fakePointsDatabase[memberId] ?? null);
+
+    const id = memberId.trim().toLowerCase();
+    if (!id) return;
+
+    if (cacheRef.current[id]) {
+      const cached = cacheRef.current[id];
+      setPoints(cached.points);
+      setName(cached.name);
+      setEvents(cached.events);
+      return;
+    }
+
+    setLoading(true);
+    setPoints(null);
+    setName(null);
+    setEvents(null);
+
+    try {
+      const res = await fetch(`/api/get-points?netid=${id}`);
+      if (!res.ok) {
+        setPoints(null);
+        setName(null);
+        setEvents(null);
+      } else {
+        const data = await res.json();
+        setPoints(Number(data.points));
+        setName(data.name);
+        setEvents(data.eventsAttended);
+        cacheRef.current[id] = {
+          points: Number(data.points),
+          name: data.name,
+          events: data.eventsAttended,
+        };
+      }
+    } catch {
+      setPoints(null);
+      setName(null);
+      setEvents(null);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -88,19 +127,26 @@ function PointsChecker({
         />
         <button
           type="submit"
-          className="bg-[#FD652F] hover:bg-[#e65516] text-white font-semibold px-6 py-3 rounded-full shadow-md hover:shadow-lg transition"
+          disabled={loading}
+          className="bg-[#FD652F] hover:bg-[#e65516] text-white font-semibold px-6 py-0 rounded-full shadow-md hover:shadow-lg transition"
         >
-          Check
+          {loading ? "Loading..." : "Check"}
         </button>
       </form>
 
-      {lookupAttempted && points !== null && (
-        <p className="text-7xl font-extrabold text-[#00A4FF] drop-shadow-lg mt-6">
-          {points}
-        </p>
+      {lookupAttempted && !loading && points !== null && (
+        <div className="text-center ">
+          <p className="text-xl text-[#0070C0] font-semibold">{name}</p>
+          <p className="text-7xl font-extrabold text-[#00A4FF] drop-shadow-lg">
+            {points}
+          </p>
+          <p className="text-md text-[#A4C2FF]">
+            Events attended: {events || "None"}
+          </p>
+        </div>
       )}
 
-      {lookupAttempted && points === null && (
+      {lookupAttempted && !loading && points === null && (
         <div className="text-center mt-6">
           <p className="text-xl text-[#0070C0] font-semibold tracking-wide">
             NetID not recognized.
@@ -114,9 +160,7 @@ function PointsChecker({
   );
 }
 
-/* -------------------------------------------------------------------------- */
 /* Footer Timer */
-/* -------------------------------------------------------------------------- */
 function FooterSection() {
   return (
     <section className="flex justify-center mt-16 px-4">
@@ -133,15 +177,6 @@ function FooterSection() {
   );
 }
 
-/* -------------------------------------------------------------------------- */
-/* Main Page Controll */
-/* -------------------------------------------------------------------------- */
-const fakePointsDatabase = {
-  "123": 15,
-  "456": 27,
-  "789": 42,
-};
-
 export default function PointsPage() {
   return (
     <div
@@ -156,7 +191,7 @@ export default function PointsPage() {
 
         <section className="flex flex-col md:flex-row justify-center items-start gap-12 w-full max-w-6xl mt-10 px-2 md:px-0">
           <PointsDescription />
-          <PointsChecker fakePointsDatabase={fakePointsDatabase} />
+          <PointsChecker />
         </section>
 
         <FooterSection />
