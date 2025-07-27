@@ -21,7 +21,7 @@ export function Navigation() {
   const getNavLinkClasses = (isActive: boolean) =>
     [
       "relative group px-3 md:px-4 py-1 flex items-center justify-center",
-      "font-bold rounded-full text-sm md:text-md lg:text-md transition-all duration-300 border-b-2 border-transparent",
+      "font-bold rounded-3xl text-sm md:text-md lg:text-md transition-all duration-300 border-b-2 border-transparent",
       isActive
         ? "bg-white text-[#001F5B] shadow-md scale-110 border-white shadow-[#72A9BE] hover:border-blue-300"
         : "text-[#001F5B] hover:text-[#0070C0] hover:border-white hover:scale-110 hover:shadow-md hover:shadow-[#93c5fd]",
