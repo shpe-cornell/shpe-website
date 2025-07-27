@@ -36,8 +36,8 @@ export default function HeroScroll({
   }, [images]);
 
   return (
-    <>
-      <section className="relative w-full overflow-hidden bg-gradient-to-br from-[#00031A] to-[#001F5B] pb-10 text-white font-sans border-blur">
+    <div className="overflow-visible relative w-full">
+      <section className="relative w-full bg-gradient-to-br from-[#00031A] to-[#001F5B] pb-10 text-white font-sans border-blur">
         {/* Welcome Message Text */}
         <div
             className="text-center px-4 max-w-[90vw] mx-auto z-20 relative pt-32 pb-20"
@@ -109,6 +109,6 @@ export default function HeroScroll({
         )}
       </section>
       <hr className="blur" />
-    </>
+    </div>
   );
 }
