@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { Changa } from "next/font/google";
 import { motion } from "framer-motion";
+import HeroScroll from "../components/hero-scroll";
 
 const changa = Changa({
   subsets: ["latin"],
@@ -14,30 +15,22 @@ const buttonClass =
 
 const flyers = ["/images/events/flyers/gbody-03-26-25.png"];
 
+const images = [
+  // "/images/leadership/Spring_2025/grouppic_line.JPG",
+  // "/images/conference/2024/conference_upscaled.jpeg",
+  // "/images/leadership/2025-2026/boba_day.png",
+];
+
 export default function MemberInfoPage() {
   return (
     <div className="flex flex-col items-center mt-[55px] min-h-screen bg-gradient-to-b from-[#0a1f44] to-[#001f5b] text-white font-sans">
       {/* Welcome Message Text */}
-      <section className="w-full min-h-[30vh] flex items-center justify-center bg-gradient-to-b from-[#00031A] to-[#001F5B] text-center px-6 relative overflow-hidden">
-        <div className="z-10 w-full max-w-7xl">
-          <motion.h1
-            initial={{ opacity: 0, y: -30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1 }}
-            className="text-4xl md:text-6xl font-bold tracking-tight bg-clip-text bg-gradient-to-r from-[#FD652F] to-[#FFFFFF] text-[#FD652F]"
-            style={{ fontFamily: "'Changa', sans-serif" }}
-          >
-            Members
-          </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.7 }}
-            className="text-[#E5EFFF] text-md sm:text-lg mt-4 max-w-xl mx-auto"
-          >
-            Get involved with SHPE @ Cornell!
-          </motion.p>
+      <HeroScroll
+        images={images}
+        welcomeMessage="Explore Happenings for Members"
+        subMessage="Get involved with SHPE @ Cornell"
+        showButton={false}
+      />
 
           {/* Feedback Button */}
           <motion.div
@@ -55,8 +48,6 @@ export default function MemberInfoPage() {
               Give Us Feedback
             </a>
           </motion.div>
-        </div>
-      </section>
 
       {/* Upcoming Events Header */}
       <h2 className="text-4xl font-extrabold text-[#0070C0] mb-6 mt-10 tracking-wide drop-shadow-lg">

@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
 import Donation_Section from "../components/donation-boxes";
+import HeroScroll from "../components/hero-scroll";
 
 // =============================================================================
 // Types and Constants
@@ -146,31 +146,21 @@ export default function SponsorPage() {
     ],
   ];
 
+  const images = [
+  // "/images/leadership/Spring_2025/grouppic_line.JPG",
+  // "/images/conference/2024/conference_upscaled.jpeg",
+  // "/images/leadership/2025-2026/boba_day.png",
+];
+
   return (
     <div className="flex flex-col min-h-screen mt-[55px] bg-gradient-to-b from-[#00031A] to-[#001F5B] text-white">
       {/* Welcome Message Text */}
-      <section className="w-full min-h-[50vh] flex items-center justify-center bg-gradient-to-b from-[#00031A] to-[#001F5B] text-center px-6">
-        <div className="z-10 w-full max-w-7xl">
-          <motion.h1
-            initial={{ opacity: 0, y: -30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1 }}
-            className="text-4xl md:text-6xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-[#85B6FF] to-[#FD652F]"
-            style={{ fontFamily: "'Changa', sans-serif" }}
-          >
-            Sponsorship
-          </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.7 }}
-            className="text-[#E5EFFF] text-md sm:text-lg mt-4 max-w-xl mx-auto"
-          >
-            Support SHPE @ Cornell
-          </motion.p>
-        </div>
-      </section>
+          <HeroScroll
+            images={images}
+            welcomeMessage="Explore Sponsorship Opportunities"
+            subMessage="Support SHPE @ Cornell"
+            showButton={false}
+          />
 
       <section className="max-w-4xl mx-auto py-16">
         <h1 className="text-4xl font-extrabold mb-6 text-center">
