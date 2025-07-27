@@ -5,9 +5,9 @@ import HeroScroll from "../components/hero-scroll";
 import ExecCard from "../components/exec-card";
 
 const images = [
-  "/images/leadership/Spring_2025/grouppic_line.JPG",
-  "/images/conference/2024/conference2.jpeg",
-  "/images/leadership/2025-2026/boba_day.png",
+  // "/images/leadership/Spring_2025/grouppic_line.JPG",
+  // "/images/conference/2024/conference_upscaled.jpeg",
+  // "/images/leadership/2025-2026/boba_day.png",
 ];
 
 export default function TeamPage() {
@@ -53,7 +53,7 @@ const execBoard = [
   {
     name: "Emilio Ceballos",
     position: "President",
-    image: "/images/leadership/Spring_2025/emilio.png",
+    image: "/images/leadership/Spring_2025/lessBlurry_emilio.jpeg",
     major: "MechE",
     year: "'26",
     email: "eac288@cornell.edu",
