@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Changa } from "next/font/google";
 import { motion } from "framer-motion";
 import HeroScroll from "../components/hero-scroll";
+import { useEffect, useState } from "react";
 
 const changa = Changa({
   subsets: ["latin"],
@@ -16,8 +17,22 @@ const buttonClass =
 const flyers = ["/images/events/flyers/gbody-03-26-25.png"];
 
 export default function MemberInfoPage() {
+
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 1000);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <div className="flex flex-col items-center mt-[55px] min-h-screen bg-gradient-to-b from-[#00031A] to-[#001f5b] mt-15 text-white font-sans">
+      {loading ? (
+        <div className="flex justify-center items-center h-50">
+          <img src= "images/shpe-logos/shpe-emblem-transparent.png" className="w-20 h-20 animate-spin" />
+        </div>
+      ) : (
+      <>
       {/* Welcome Message Text */}
       <HeroScroll
         welcomeMessage="Explore Happenings for Members"
@@ -26,6 +41,12 @@ export default function MemberInfoPage() {
         buttonHref="https://docs.google.com/forms/d/e/1FAIpQLSefPfxjHbs45JLnP2LcNlrwjV3rT5Q3BlfkPQwEyqCBoiGojQ/viewform?usp=heade"
         buttonText="Give Us Feedback"      />
 
+      {/* {loading ? (
+        <div className="flex justify-center items-center ">
+          <img src= "images/shpe-logos/shpe-emblem-transparent.png" className="w-20 h-20 animate-spin" />
+        </div>
+      ) : (
+      <> */}
       {/* Upcoming Events Header */}
       <h2 className="text-4xl font-extrabold text-[#FD652F] mb-6 mt-10 tracking-wide drop-shadow-lg">
         Upcoming Events
@@ -62,7 +83,9 @@ export default function MemberInfoPage() {
             ))}
           </div>
           <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-white opacity-50 animate-bounce text-sm pointer-events-none select-none">
-            . . .
+            {/* . . . */}
+            {/* V */}
+            . . . 
           </div>
         </div>
       </section>
@@ -105,6 +128,8 @@ export default function MemberInfoPage() {
           </a>
         </div>
       </section>
+      </>
+    )}
     </div>
   );
 }
