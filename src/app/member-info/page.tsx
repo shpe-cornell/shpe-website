@@ -21,18 +21,12 @@ export default function MemberInfoPage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 1000);
+    const timer = setTimeout(() => setLoading(false), 2000);
     return () => clearTimeout(timer);
   }, []);
 
   return (
     <div className="flex flex-col items-center mt-[55px] min-h-screen bg-gradient-to-b from-[#00031A] to-[#001f5b] mt-15 text-white font-sans">
-      {loading ? (
-        <div className="flex justify-center items-center h-50">
-          <img src= "images/shpe-logos/shpe-emblem-transparent.png" className="w-20 h-20 animate-spin" />
-        </div>
-      ) : (
-      <>
       {/* Welcome Message Text */}
       <HeroScroll
         welcomeMessage="Explore Happenings for Members"
@@ -41,12 +35,12 @@ export default function MemberInfoPage() {
         buttonHref="https://docs.google.com/forms/d/e/1FAIpQLSefPfxjHbs45JLnP2LcNlrwjV3rT5Q3BlfkPQwEyqCBoiGojQ/viewform?usp=heade"
         buttonText="Give Us Feedback"      />
 
-      {/* {loading ? (
+      {loading ? (
         <div className="flex justify-center items-center ">
           <img src= "images/shpe-logos/shpe-emblem-transparent.png" className="w-20 h-20 animate-spin" />
         </div>
       ) : (
-      <> */}
+      <>
       {/* Upcoming Events Header */}
       <h2 className="text-4xl font-extrabold text-[#FD652F] mb-6 mt-10 tracking-wide drop-shadow-lg">
         Upcoming Events
