@@ -17,7 +17,7 @@ const flyers = ["/images/events/flyers/gbody-03-26-25.png"];
 
 export default function MemberInfoPage() {
   return (
-    <div className="flex flex-col items-center mt-[55px] min-h-screen bg-gradient-to-b from-[#0a1f44] to-[#001f5b] mt-15 text-white font-sans">
+    <div className="flex flex-col items-center mt-[55px] min-h-screen bg-gradient-to-b from-[#00031A] to-[#001f5b] mt-15 text-white font-sans">
       {/* Welcome Message Text */}
       <HeroScroll
         welcomeMessage="Explore Happenings for Members"

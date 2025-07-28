@@ -6,7 +6,7 @@ import ExecCard from "../components/exec-card";
 
 export default function TeamPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#0a1f44] to-[#001f5b] mt-15">
+    <div className="min-h-screen bg-gradient-to-b from-[#00031A] to-[#001f5b] mt-15">
       {/* Hero Section */}
       <HeroScroll
         welcomeMessage="Meet Your SHPE Leadership Team"

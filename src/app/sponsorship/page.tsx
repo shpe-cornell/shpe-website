@@ -287,7 +287,7 @@ export default function SponsorPage() {
             Corporate Packet (.pdf)
           </a>
 
-          {/* Donate */}
+          {/* Donate Online*/}
           <a
             href="https://securelb.imodules.com/s/1717/giving/interior.aspx?sid=1717&gid=2&pgid=16421&bledit=1&dids=789.&appealcode=GIVDY25P"
             target="_blank"
@@ -312,18 +312,20 @@ export default function SponsorPage() {
                 d="M5 13l4 4L19 7"
               />
             </svg>
-            Donate Now
+            Donate Online
           </a>
 
-          {/* Learn More */}
-          <Link href="/about" passHref>
-            <p
-              className={buttonCommonClasses}
-              style={{
-                WebkitBackdropFilter: "blur(10px)",
-                backdropFilter: "blur(10px)",
-              }}
-            >
+          {/* Donate (physical) */}
+          <a
+            href="/important/Mail-In-Sponsor-Form.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={buttonCommonClasses}
+            style={{
+              WebkitBackdropFilter: "blur(10px)",
+              backdropFilter: "blur(10px)",
+            }}
+          >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-6 w-6 text-[#FD652F]"
@@ -338,9 +340,8 @@ export default function SponsorPage() {
                   d="M13 16h-1v-4h-1m1-4h.01M12 20a8 8 0 100-16 8 8 0 000 16z"
                 />
               </svg>
-              Learn About SHPE
-            </p>
-          </Link>
+              Donate by Mail
+          </a>
         </div>
       </section>
     </div>
