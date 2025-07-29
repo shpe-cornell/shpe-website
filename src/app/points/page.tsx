@@ -11,7 +11,7 @@ const changa = Changa({ subsets: ["latin"], weight: ["400", "700"] });
 function HeaderSection() {
   return (
     <section className="text-center px-6 md:px-20 mt-10 max-w-4xl mx-auto">
-      <h2 className="text-5xl md:text-6xl font-bold text-[#FD652F] mb-6 tracking-wide drop-shadow-md">
+      <h2 className="pb-5 text-4xl md:text-5xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-[#85B6FF] to-[#FD652F]">
         Conference Points System
       </h2>
       <p className="text-2xl text-[#3261a8] leading-relaxed max-w-prose mx-auto tracking-tight">
@@ -27,8 +27,8 @@ function HeaderSection() {
 /* Points Description */
 function PointsDescription() {
   return (
-    <div className="bg-gradient-to-tr from-[#001F5B] to-[#004080] shadow-lg border border-[#0070C0] rounded-xl p-8 w-full max-w-xl mx-auto md:mx-0">
-      <h3 className="text-center text-[#FD652F] text-3xl font-semibold underline underline-offset-4 mb-6 tracking-wide drop-shadow-sm">
+    <div className="bg-gradient-to-br from-[#001F5B] via-[#003366] to-[#004080] shadow-xl border border-[#0070C0]/30 rounded-xl p-8 w-full max-w-xl mx-auto md:mx-0 backdrop-blur-sm">
+      <h3 className="text-center text-3xl md:text-4xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-[#FF7B4D] via-[#FD652F] to-[#FF5100] pb-2">
         Points Breakdown
       </h3>
       <ul className="text-xl space-y-6 text-[#A4C2FF]">
@@ -128,7 +128,7 @@ function PointsChecker() {
         <button
           type="submit"
           disabled={loading}
-          className="bg-[#FD652F] hover:bg-[#e65516] text-white font-semibold px-6 py-0 rounded-full shadow-md hover:shadow-lg transition"
+          className="bg-[#FD652F] hover:bg-[#e65516] text-white font-semibold px-6 rounded-full shadow-md hover:shadow-lg transition"
         >
           {loading ? "Loading..." : "Check"}
         </button>
@@ -165,7 +165,7 @@ function FooterSection() {
   return (
     <section className="flex justify-center mt-16 px-4">
       <div
-        className="w-full max-w-3xl flex justify-center items-center p-8 rounded-2xl bg-gradient-to-tr from-[#004080] to-[#001F5B] shadow-inner"
+        className="w-full max-w-3xl flex justify-center items-center p-5 mb-10 rounded-2xl bg-gradient-to-tr from-[#004080] to-[#001F5B] shadow-inner"
         style={{
           boxShadow:
             "inset 0 4px 8px rgba(0,0,0,0.15), inset 0 16px 30px rgba(0,0,0,0.3)",
@@ -180,13 +180,13 @@ function FooterSection() {
 export default function PointsPage() {
   return (
     <div
-      className={`min-h-screen mt-[55px] pt-[70px] pb-16 bg-gradient-to-b from-[#00031A] to-[#001F5B] ${changa.className}`}
+      className={`min-h-screen pt-20 pt-[70px]  bg-gradient-to-b from-[#00031A] to-[#001F5B] ${changa.className}`}
     >
       <Head>
         <title>Points System</title>
       </Head>
 
-      <main className="flex flex-col items-center px-4 gap-12">
+      <main className="flex flex-col items-center px-4 gap-2">
         <HeaderSection />
 
         <section className="flex flex-col md:flex-row justify-center items-start gap-12 w-full max-w-6xl mt-10 px-2 md:px-0">

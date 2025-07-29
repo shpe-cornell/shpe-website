@@ -12,7 +12,7 @@ interface HeroScrollProps {
   showButton?: boolean;
   buttonHref?: string;
   buttonText?: string;
-  showImageScroll?: boolean,
+  showImageScroll?: boolean;
 }
 
 export default function HeroScroll({
@@ -39,10 +39,8 @@ export default function HeroScroll({
     <div className="overflow-visible relative w-full">
       <section className="relative w-full bg-gradient-to-br from-[#00031A] to-[#001F5B] pb-10 text-white font-sans border-blur">
         {/* Welcome Message Text */}
-        <div
-            className="text-center px-4 max-w-[90vw] mx-auto z-20 relative pt-32 pb-20"
-        >          
-        <motion.h1
+        <div className="text-center px-4 max-w-[90vw] mx-auto z-20 relative pt-8 pb-0">
+          <motion.h1
             initial={{ opacity: 0, y: -30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
@@ -77,35 +75,37 @@ export default function HeroScroll({
           )}
         </div>
 
-      {/* Scrollable Images */}
-      {showImageScroll && Array.isArray(images) && images.length > 0 && (
-        <div
-          ref={scrollRef}
-          className={`w-full overflow-x-auto snap-x snap-mandatory scroll-smooth ${
-            !welcomeMessage && !subMessage && !showButton ? "pt-[260px]" : "pt-10"
-          }`}
-        >
-          <div className="flex w-max gap-x-12 px-10">
-            {images.map((src, idx) => (
-              <div
-                key={idx}
-                className="relative min-w-[75vw] h-[500px] snap-center shrink-0 rounded-xs overflow-hidden border border-white/10 shadow-2xl"
-              >
-                <Image
-                  src={src}
-                  alt={`Hero image ${idx + 1}`}
-                  fill
-                  quality={100}
-                  sizes="(max-width: 768px) 75vw, 75vw"
-                  className="object-cover"
-                  draggable={false}
-                  loading="eager"
-                />
-                <div className="absolute inset-0 bg-black/20  z-10" />
-              </div>
-            ))}
+        {/* Scrollable Images */}
+        {showImageScroll && Array.isArray(images) && images.length > 0 && (
+          <div
+            ref={scrollRef}
+            className={`w-full overflow-x-auto snap-x snap-mandatory scroll-smooth ${
+              !welcomeMessage && !subMessage && !showButton
+                ? "pt-[260px]"
+                : "pt-10"
+            }`}
+          >
+            <div className="flex w-max gap-x-12 px-10">
+              {images.map((src, idx) => (
+                <div
+                  key={idx}
+                  className="relative min-w-[75vw] h-[500px] snap-center shrink-0 rounded-xs overflow-hidden border border-white/10 shadow-2xl"
+                >
+                  <Image
+                    src={src}
+                    alt={`Hero image ${idx + 1}`}
+                    fill
+                    quality={100}
+                    sizes="(max-width: 768px) 75vw, 75vw"
+                    className="object-cover"
+                    draggable={false}
+                    loading="eager"
+                  />
+                  <div className="absolute inset-0 bg-black/20  z-10" />
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
         )}
       </section>
       <hr className="blur" />

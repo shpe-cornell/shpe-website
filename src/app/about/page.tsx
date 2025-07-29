@@ -10,7 +10,7 @@ const images = [
 
 export default function AboutPage() {
   return (
-    <div className="flex flex-col min-h-screen mt-[55px] bg-gradient-to-b from-[#00031A] to-[#001F5B]">
+    <div className="flex flex-col min-h-screen pt-20 bg-gradient-to-b from-[#00031A] to-[#001F5B]">
       {/* Page title and images */}
       <HeroScroll
         welcomeMessage="Learn about SHPE @ Cornell"

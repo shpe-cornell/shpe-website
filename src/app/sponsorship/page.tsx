@@ -147,13 +147,13 @@ export default function SponsorPage() {
   ];
 
   return (
-    <div className="flex flex-col min-h-screen mt-[55px] bg-gradient-to-b from-[#00031A] to-[#001F5B] text-white">
+    <div className="flex flex-col min-h-screen pt-20 bg-gradient-to-b from-[#00031A] to-[#001F5B] text-white">
       {/* Welcome Message Text */}
-          <HeroScroll
-            welcomeMessage="Explore Sponsorship Opportunities"
-            subMessage="Support SHPE @ Cornell"
-            showButton={false}
-          />
+      <HeroScroll
+        welcomeMessage="Explore Sponsorship Opportunities"
+        subMessage="Support SHPE @ Cornell"
+        showButton={false}
+      />
 
       <section className="max-w-4xl mx-auto py-16">
         <h1 className="text-4xl font-extrabold mb-6 text-center">
@@ -326,21 +326,21 @@ export default function SponsorPage() {
               backdropFilter: "blur(10px)",
             }}
           >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6 text-[#FD652F]"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={2}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M13 16h-1v-4h-1m1-4h.01M12 20a8 8 0 100-16 8 8 0 000 16z"
-                />
-              </svg>
-              Donate by Mail
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6 text-[#FD652F]"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M13 16h-1v-4h-1m1-4h.01M12 20a8 8 0 100-16 8 8 0 000 16z"
+              />
+            </svg>
+            Donate by Mail (.pdf)
           </a>
         </div>
       </section>
