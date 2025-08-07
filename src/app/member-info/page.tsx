@@ -5,6 +5,7 @@ import { Changa } from "next/font/google";
 import { motion } from "framer-motion";
 import HeroScroll from "../components/hero-scroll";
 import { useEffect, useState } from "react";
+import BeholdWidget from "@behold/react"
 
 const changa = Changa({
   subsets: ["latin"],
@@ -50,9 +51,9 @@ export default function MemberInfoPage() {
           </h2>
 
           {/* Events Section */}
-          <section className="w-full flex flex-col lg:flex-row justify-center gap-8 max-w-7xl">
+          <section className="w-full flex flex-col lg:flex-row-reverse justify-center gap-8 max-w-7xl px-4">
             {/* Calendar */}
-            <div className="w-full lg:w-2/3 max-w-[800px] h-[600px] bg-[#002550] rounded-xl p-5 shadow-xl border border-[#004080]">
+            <div className="order-1 lg:order-2 w-full max-w-[800px] h-[400px] lg:h-[600px] bg-[#002550] rounded-xl p-5 shadow-xl border border-[#004080] mx-auto">
               <iframe
                 src="https://calendar.google.com/calendar/u/0/embed?src=10c8673a173371a1e5b9a8f48a00471f49c586b233f14ab287c11a8818f933ea@group.calendar.google.com&ctz=America/New_York"
                 style={{ border: 0 }}
@@ -63,8 +64,14 @@ export default function MemberInfoPage() {
               ></iframe>
             </div>
 
-            {/* Flyers */}
-            <div className="w-full lg:w-1/3 h-[600px] bg-[#002550] rounded-xl p-6 overflow-y-auto relative shadow-xl border border-[#004080]">
+            {/* Flyers (Behold posts) */}
+            <div className="order-2 lg:order-1 w-full lg:w-1/3 h-[400px] lg:h-[600px] bg-[#002550] rounded-xl p-5 shadow-xl border border-[#004080] overflow-y-auto scroll-mt-0">
+              <h3 className="text-2xl font-semibold text-[#40c4ff] mb-4 tracking-wide drop-shadow-sm text-center">
+                Explore Our Instagram
+              </h3>              
+              <BeholdWidget feedId="5hnsHoxgKwXhkvgSiGYB" />
+            </div>
+            {/* <div className="w-full lg:w-1/3 h-[600px] bg-[#002550] rounded-xl p-6 overflow-y-auto relative shadow-xl border border-[#004080]">
               <div className="space-y-12">
                 {flyers.map((src, idx) => (
                   <Image
@@ -80,10 +87,8 @@ export default function MemberInfoPage() {
                 ))}
               </div>
               <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-white opacity-50 animate-bounce text-sm pointer-events-none select-none">
-                {/* . . . */}
-                {/* V */}. . .
               </div>
-            </div>
+            </div> */}
           </section>
 
           {/* Get Plugged In Section */}
