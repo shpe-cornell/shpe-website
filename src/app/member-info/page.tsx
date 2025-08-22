@@ -15,8 +15,6 @@ const changa = Changa({
 const buttonClass =
   "w-[280px] px-6 py-4 text-xl text-white rounded-full transition font-semibold bg-[#001F5B] border border-white/30 hover:bg-[#0070C0] hover:scale-105";
 
-const flyers = ["/images/events/flyers/gbody-03-26-25.png"];
-
 export default function MemberInfoPage() {
   const [loading, setLoading] = useState(true);
 
