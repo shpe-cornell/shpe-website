@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@behold/react": "^0.1.10",
     "framer-motion": "^12.20.1",
     "googleapis": "^154.0.0",
     "next": "15.3.3",

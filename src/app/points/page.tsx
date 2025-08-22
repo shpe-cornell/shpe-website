@@ -114,6 +114,16 @@ function PointsChecker() {
         </button>
       </form>
 
+      {loading && (
+        <div className="flex justify-center items-center mt-4">
+          <img
+            src="images/shpe-logos/shpe-emblem-transparent.png"
+            className="w-20 h-20 animate-spin"
+            alt="Loading spinner"
+          />
+        </div>
+      )}
+
       {lookupAttempted && !loading && points !== null && (
         <div className="text-center mt-4">
           <p className="text-xl text-[#0070C0] font-semibold">{name}</p>
@@ -146,6 +156,13 @@ function FooterSection() {
 }
 
 export default function PointsPage() {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 2000);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <div
       className={`min-h-screen pt-[70px] bg-gradient-to-b from-[#00031A] to-[#001F5B] ${changa.className}`}

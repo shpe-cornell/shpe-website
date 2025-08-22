@@ -69,8 +69,16 @@ export function FooterNav() {
             </Link>
           ))}
         </div>
-        <p className="text-xs text-[#FD652F] font-semibold select-none mt-1">
-          All are welcome
+        <Link
+          href="https://hr.cornell.edu/about/workplace-rights/equal-education-and-employment"
+          className="text-xs text-[#FD652F] font-semibold select-none mt-1"
+        >
+          All are welcome | Equal Education and Employment
+        </Link>
+        <p className="text-xs text-[#FD652F]">
+          {" "}
+          This organization is a registered student organization of Cornell
+          University.{" "}
         </p>
       </div>
 
