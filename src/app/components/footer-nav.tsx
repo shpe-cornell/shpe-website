@@ -86,7 +86,7 @@ export function FooterNav() {
       <div className="flex basis-1/3 justify-end items-center space-x-3 text-right text-xs text-[#FD652F]">
         <div>
           <p>Cornell University</p>
-          <p>102 Holister Hall, Ithaca, NY 14853</p>
+          <p>102 Hollister Hall, Ithaca, NY 14853</p>
         </div>
         <Image
           src="/images/icons/location.png"
