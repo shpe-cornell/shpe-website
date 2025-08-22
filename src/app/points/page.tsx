@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useRef } from "react";
 import Head from "next/head";
+import { useEffect, useState, useRef } from "react";
 import { Changa } from "next/font/google";
 import CountdownTimer from "../components/countdown";
 import Announcements from "../components/announcements";
