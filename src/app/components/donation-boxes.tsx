@@ -42,7 +42,7 @@ export default function DonationSection() {
       amount: "$180",
       title: "Hotel Accommodation",
       description:
-        "Covers one night of lodging at the conference — safe, accessible housing so students can fully engage",
+        "Covers one night of lodging at the conference — safe, accessible housing so students can fully engage.",
       pricingType: "student",
       icon: "🏨",
     },
