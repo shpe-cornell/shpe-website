@@ -2,7 +2,7 @@ import { google } from "googleapis";
 import { NextRequest, NextResponse } from "next/server";
 
 const auth = new google.auth.GoogleAuth({
-  keyFile: "service-account.json", 
+  keyFile: "service-account.json",
   scopes: ["https://www.googleapis.com/auth/spreadsheets.readonly"],
 });
 
@@ -18,33 +18,30 @@ export async function GET(request: NextRequest) {
     }
 
     const spreadsheetId = "1MUc2QSEzI_EgW902LdGu1i4RMR6a14p-03Q0hrHBpL8";
-    const range = "Points Tracker!A2:D";
+    const range = "Points Tracker!A2:C"; // only NetID, Name, Points
 
     const response = await sheets.spreadsheets.values.get({
       spreadsheetId,
       range,
+      majorDimension: "COLUMNS",
     });
 
-    const rows = response.data.values || [];
+    const cols = response.data.values || [];
+    const netids = cols[0] || [];
+    const names = cols[1] || [];
+    const points = cols[2] || [];
 
-    // Find row with NetID match
-    const userRow = rows.find(
-      (row) => row[0]?.toLowerCase() === netid.toLowerCase()
-    );
+    // Find index of matching NetID
+    const index = netids.findIndex(id => id?.toLowerCase() === netid.toLowerCase());
 
-    if (!userRow) {
-      return NextResponse.json(
-        { error: "NetID not found" },
-        { status: 404 }
-      );
+    if (index === -1) {
+      return NextResponse.json({ error: "NetID not found" }, { status: 404 });
     }
 
-    // Return matched row as JSON
     return NextResponse.json({
-      netid: userRow[0],
-      name: userRow[1],
-      points: userRow[2],
-      eventsAttended: userRow[3],
+      netid: netids[index],
+      name: names[index],
+      points: points[index],
     });
   } catch (error) {
     console.error("Google Sheets API error:", error);

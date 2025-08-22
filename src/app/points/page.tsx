@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useRef } from "react";
 import Head from "next/head";
 import { Changa } from "next/font/google";
 import CountdownTimer from "../components/countdown";
@@ -42,20 +43,14 @@ function PointsDescription() {
 }
 
 /* Points Checker */
-import { useState, useRef } from "react";
-
 function PointsChecker() {
   const [memberId, setMemberId] = useState("");
   const [points, setPoints] = useState<number | null>(null);
   const [name, setName] = useState<string | null>(null);
-  const [events, setEvents] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [lookupAttempted, setLookupAttempted] = useState(false);
 
-  // Cache previous results by netid (lowercase)
-  const cacheRef = useRef<
-    Record<string, { points: number; name: string; events: string }>
-  >({});
+  const cacheRef = useRef<Record<string, { points: number; name: string }>>({});
 
   const handleCheckPoints = async (e?: React.FormEvent) => {
     if (e) e.preventDefault();
@@ -68,43 +63,28 @@ function PointsChecker() {
       const cached = cacheRef.current[id];
       setPoints(cached.points);
       setName(cached.name);
-      setEvents(cached.events);
       return;
     }
 
     setLoading(true);
     setPoints(null);
     setName(null);
-    setEvents(null);
 
     try {
       const res = await fetch(`/api/get-points?netid=${id}`);
-      if (!res.ok) {
-        setPoints(null);
-        setName(null);
-        setEvents(null);
-      } else {
-        const data = await res.json();
-        setPoints(Number(data.points));
-        setName(data.name);
-        setEvents(data.eventsAttended);
-        cacheRef.current[id] = {
-          points: Number(data.points),
-          name: data.name,
-          events: data.eventsAttended,
-        };
-      }
+      if (!res.ok) return;
+      const data = await res.json();
+      setPoints(Number(data.points));
+      setName(data.name);
+      cacheRef.current[id] = { points: Number(data.points), name: data.name };
     } catch {
-      setPoints(null);
-      setName(null);
-      setEvents(null);
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="flex flex-col items-center gap-6 w-full max-w-md mt-20 md:mt-0 mx-auto md:mx-0">
+    <div className="flex flex-col items-center gap-6 w-full max-w-md mt-20 md:mt-0 mx-auto">
       <label
         htmlFor="memberId"
         className="text-3xl text-[#FD652F] font-bold text-center tracking-wide"
@@ -135,13 +115,10 @@ function PointsChecker() {
       </form>
 
       {lookupAttempted && !loading && points !== null && (
-        <div className="text-center ">
+        <div className="text-center mt-4">
           <p className="text-xl text-[#0070C0] font-semibold">{name}</p>
           <p className="text-7xl font-extrabold text-[#00A4FF] drop-shadow-lg">
             {points}
-          </p>
-          <p className="text-md text-[#A4C2FF]">
-            Events attended: {events || "None"}
           </p>
         </div>
       )}
@@ -150,9 +127,6 @@ function PointsChecker() {
         <div className="text-center mt-6">
           <p className="text-xl text-[#0070C0] font-semibold tracking-wide">
             NetID not recognized.
-          </p>
-          <p className="text-sm text-gray-400 mt-1">
-            Contact us if you think this is wrong.
           </p>
         </div>
       )}
@@ -164,13 +138,7 @@ function PointsChecker() {
 function FooterSection() {
   return (
     <section className="flex justify-center mt-16 px-4">
-      <div
-        className="w-full max-w-3xl flex justify-center items-center p-5 mb-10 rounded-2xl bg-gradient-to-tr from-[#004080] to-[#001F5B] shadow-inner"
-        style={{
-          boxShadow:
-            "inset 0 4px 8px rgba(0,0,0,0.15), inset 0 16px 30px rgba(0,0,0,0.3)",
-        }}
-      >
+      <div className="w-full max-w-3xl flex justify-center items-center p-5 mb-10 rounded-2xl bg-gradient-to-tr from-[#004080] to-[#001F5B] shadow-inner">
         <CountdownTimer />
       </div>
     </section>
@@ -180,22 +148,19 @@ function FooterSection() {
 export default function PointsPage() {
   return (
     <div
-      className={`min-h-screen pt-20 pt-[70px]  bg-gradient-to-b from-[#00031A] to-[#001F5B] ${changa.className}`}
+      className={`min-h-screen pt-[70px] bg-gradient-to-b from-[#00031A] to-[#001F5B] ${changa.className}`}
     >
       <Head>
         <title>Points System</title>
       </Head>
-
       <main className="flex flex-col items-center px-4 gap-2">
         <HeaderSection />
-
         <section className="flex flex-col md:flex-row justify-center items-start gap-12 w-full max-w-6xl mt-10 px-2 md:px-0">
           <PointsDescription />
           <PointsChecker />
         </section>
-
         <FooterSection />
-        <Announcements></Announcements>
+        <Announcements />
       </main>
     </div>
   );
