@@ -69,25 +69,30 @@ export function FooterNav() {
             </Link>
           ))}
         </div>
-        <p className="text-xs text-[#FD652F] font-semibold select-none mt-1">
-          All are welcome
-        </p>
+        <Link 
+          href="https://hr.cornell.edu/about/workplace-rights/equal-education-and-employment"
+          className="text-xs text-[#FD652F] font-semibold select-none mt-1"
+        >
+          All are welcome | Equal Education and Employment
+        </Link>
+                <p className="text-xs text-[#FD652F]"> This organization is a registered student organization of Cornell University. </p>
+
       </div>
 
-      {/* Address */}
-      <div className="flex basis-1/3 justify-end items-center space-x-3 text-right text-xs text-[#FD652F]">
-        <div>
-          <p>Cornell University</p>
-          <p>146 Olin Hall, Ithaca, NY 14853</p>
+        {/* Address */}
+        <div className="flex basis-1/3 justify-end items-center space-x-3 text-right text-xs text-[#FD652F]">
+          <div>
+            <p>Cornell University</p>
+            <p>146 Olin Hall, Ithaca, NY 14853</p>
+          </div>
+          <Image
+            src="/images/icons/location.png"
+            alt="location icon"
+            width={20}
+            height={20}
+            priority
+          />
         </div>
-        <Image
-          src="/images/icons/location.png"
-          alt="location icon"
-          width={20}
-          height={20}
-          priority
-        />
-      </div>
     </nav>
   );
 }
