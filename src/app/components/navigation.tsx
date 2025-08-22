@@ -15,7 +15,7 @@ const changa = Changa({
 
 export function Navigation() {
   const path = usePathname();
-  const isPointsActive = path === "/points";
+  //const isPointsActive = path === "/points";
 
   const pages = [
     { name: "About", href: "/about" },
@@ -47,8 +47,7 @@ export function Navigation() {
 
   return (
     <nav
-      className="fixed top-0 w-full z-50 bg-[#E9F0FF]/80 backdrop-blur-xs shadow-md border-b border-[#E9F0FF] flex justify-center py-2 px-4"
-      style={{ fontFamily: "'Changa', sans-serif" }} // now applied to the whole nav
+      className={`fixed top-4 left-1/2 transform -translate-x-1/2 z-50 bg-[#E9F0FF]/80 backdrop-blur-xs shadow-md py-1 px-180 rounded-full border border-[#E9F0FF] w-[95%] max-w-6xl ${changa.className}`}
     >
       <div className="flex items-center justify-center space-x-4 md:space-x-6 lg:space-x-10">
         {/* SHPE Logo */}
