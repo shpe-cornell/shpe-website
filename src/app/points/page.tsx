@@ -1,13 +1,25 @@
 "use client";
 
 import Head from "next/head";
-import { useEffect, useState, useRef } from "react";
+import { useState, useRef } from "react";
 import { Changa } from "next/font/google";
 import CountdownTimer from "../components/countdown";
 import Announcements from "../components/announcements";
 import Papa from "papaparse";
 
 const changa = Changa({ subsets: ["latin"], weight: ["400", "700"] });
+
+// Define CSV row structure
+type CSVRow = {
+  NetID: string;
+  Name: string;
+  "Total Points": string; // initially a string from CSV
+};
+
+type MemberCache = {
+  points: number;
+  name: string;
+};
 
 /* Header Section */
 function HeaderSection() {
@@ -51,7 +63,7 @@ function PointsChecker() {
   const [loading, setLoading] = useState(false);
   const [lookupAttempted, setLookupAttempted] = useState(false);
 
-  const cacheRef = useRef<Record<string, { points: number; name: string }>>({});
+  const cacheRef = useRef<Record<string, MemberCache>>({});
 
   const handleCheckPoints = async (e?: React.FormEvent) => {
     if (e) e.preventDefault();
@@ -60,6 +72,7 @@ function PointsChecker() {
     const id = memberId.trim().toLowerCase();
     if (!id) return;
 
+    // Check cache first
     if (cacheRef.current[id]) {
       const cached = cacheRef.current[id];
       setPoints(cached.points);
@@ -73,17 +86,23 @@ function PointsChecker() {
 
     try {
       const res = await fetch("/points.csv");
+      if (!res.ok) throw new Error("CSV not found");
       const csvText = await res.text();
 
-      const parsed = Papa.parse(csvText, { header: true });
-      const rows = parsed.data as any[];
+      // Parse CSV with type
+      const parsed = Papa.parse<CSVRow>(csvText, {
+        header: true,
+        skipEmptyLines: true,
+      });
 
-      // Find row by NetID (case-insensitive)
-      const row = rows.find((r) => (r.NetID || "").trim().toLowerCase() === id);
+      const rows: CSVRow[] = parsed.data;
+
+      // Find member by NetID
+      const row = rows.find((r) => r.NetID.trim().toLowerCase() === id);
 
       if (row) {
         const totalPoints = Number(row["Total Points"] || 0);
-        const fullName = row["Name"] || "Unknown";
+        const fullName = row.Name || "Unknown";
         setPoints(totalPoints);
         setName(fullName);
         cacheRef.current[id] = { points: totalPoints, name: fullName };
@@ -93,6 +112,8 @@ function PointsChecker() {
       }
     } catch (err) {
       console.error("Error reading CSV:", err);
+      setPoints(null);
+      setName(null);
     } finally {
       setLoading(false);
     }
@@ -171,12 +192,6 @@ function FooterSection() {
 }
 
 export default function PointsPage() {
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 2000);
-    return () => clearTimeout(timer);
-  }, []);
 
   return (
     <div
