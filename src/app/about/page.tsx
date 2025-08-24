@@ -7,7 +7,6 @@ import HeroScroll from "../components/hero-scroll";
 //   // "/images/conference/2024/conference4.jpeg",
 //   // "/images/leadership/2025-2026/boba_day.png",
 // ];
-
 export default function AboutPage() {
   return (
     <div className="flex flex-col min-h-screen pt-20 bg-gradient-to-b from-[#00031A] to-[#001F5B]">

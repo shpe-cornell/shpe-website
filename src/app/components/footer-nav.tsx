@@ -1,7 +1,10 @@
 "use client";
 
 import Link from "next/link";
+<<<<<<< HEAD
 // import { usePathname } from "next/navigation";
+=======
+>>>>>>> 86acff94743f9f9921536d8ecc4e54456877757e
 import Image from "next/image";
 
 const shadowStyle = "transition-transform duration-300 group-hover:scale-120";
@@ -25,8 +28,6 @@ const socialLinks = [
 ];
 
 export function FooterNav() {
-  // const path = usePathname();
-
   return (
     <nav
       className="w-full flex items-center justify-between bg-[#001F5B] px-6 py-4 shadow-lg"
