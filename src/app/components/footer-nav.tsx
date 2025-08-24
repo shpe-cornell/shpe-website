@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import Image from "next/image";
 
 const shadowStyle = "transition-transform duration-300 group-hover:scale-120";
@@ -25,7 +24,6 @@ const socialLinks = [
 ];
 
 export function FooterNav() {
-  const path = usePathname();
 
   return (
     <nav

@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import HeroScroll from "../components/hero-scroll";
 import ExecCard from "../components/exec-card";
 

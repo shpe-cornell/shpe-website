@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import Donation_Section from "../components/donation-boxes";
 import HeroScroll from "../components/hero-scroll";
 
@@ -172,7 +171,7 @@ export default function SponsorPage() {
         </h2>
 
         {Object.entries(sponsors)
-          .filter(([_, logos]) => logos.length > 0) // Only show tiers with sponsors
+          .filter(([logos]) => logos.length > 0) // Only show tiers with sponsors
           .map(([tier, logos]) => (
             <div key={tier} className="mb-16">
               <h3 className="text-2xl font-semibold text-center uppercase mb-6 tracking-wide text-gray-200">

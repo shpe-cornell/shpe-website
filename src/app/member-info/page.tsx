@@ -1,8 +1,6 @@
 "use client";
 
-import Image from "next/image";
 import { Changa } from "next/font/google";
-import { motion } from "framer-motion";
 import HeroScroll from "../components/hero-scroll";
 import { useEffect, useState } from "react";
 import BeholdWidget from "@behold/react"
@@ -39,6 +37,7 @@ export default function MemberInfoPage() {
           <img
             src="images/shpe-logos/shpe-emblem-transparent.png"
             className="w-20 h-20 animate-spin"
+            alt='SHPE logo'
           />
         </div>
       ) : (
