@@ -5,6 +5,7 @@ import { useEffect, useState, useRef } from "react";
 import { Changa } from "next/font/google";
 import CountdownTimer from "../components/countdown";
 import Announcements from "../components/announcements";
+import Papa from "papaparse";
 
 const changa = Changa({ subsets: ["latin"], weight: ["400", "700"] });
 
@@ -71,13 +72,27 @@ function PointsChecker() {
     setName(null);
 
     try {
-      const res = await fetch(`/api/get-points?netid=${id}`);
-      if (!res.ok) return;
-      const data = await res.json();
-      setPoints(Number(data.points));
-      setName(data.name);
-      cacheRef.current[id] = { points: Number(data.points), name: data.name };
-    } catch {
+      const res = await fetch("/points.csv");
+      const csvText = await res.text();
+
+      const parsed = Papa.parse(csvText, { header: true });
+      const rows = parsed.data as any[];
+
+      // Find row by NetID (case-insensitive)
+      const row = rows.find((r) => (r.NetID || "").trim().toLowerCase() === id);
+
+      if (row) {
+        const totalPoints = Number(row["Total Points"] || 0);
+        const fullName = row["Name"] || "Unknown";
+        setPoints(totalPoints);
+        setName(fullName);
+        cacheRef.current[id] = { points: totalPoints, name: fullName };
+      } else {
+        setPoints(null);
+        setName(null);
+      }
+    } catch (err) {
+      console.error("Error reading CSV:", err);
     } finally {
       setLoading(false);
     }

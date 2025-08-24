@@ -2,11 +2,11 @@ import Image from "next/image";
 import HeroScroll from "../components/hero-scroll";
 
 //some images of shpe tabling or volunteering might be nice for this
-const images = [
-  // "/images/leadership/Spring_2025/grouppic_line.JPG",
-  // "/images/conference/2024/conference4.jpeg",
-  // "/images/leadership/2025-2026/boba_day.png",
-];
+// const images = [
+//   // "/images/leadership/Spring_2025/grouppic_line.JPG",
+//   // "/images/conference/2024/conference4.jpeg",
+//   // "/images/leadership/2025-2026/boba_day.png",
+// ];
 
 export default function AboutPage() {
   return (

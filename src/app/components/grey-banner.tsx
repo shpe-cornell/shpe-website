@@ -16,10 +16,10 @@ export default function GreyBanner() {
 
       {/* Content */}
       <div className="relative w-full flex flex-col lg:flex-row items-center justify-between gap-4 z-10 px-6">
-        <link
+        {/* <link
           href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap"
           rel="stylesheet"
-        />
+        /> */}
         <p className="text-[#001F5B] text-center font-bold lg:text-left text-[clamp(1.2rem,5vw,3rem)]">
           Welcome to SHPE at Cornell !
         </p>

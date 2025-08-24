@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+// import Link from "next/link";
 import Donation_Section from "../components/donation-boxes";
 import HeroScroll from "../components/hero-scroll";
 

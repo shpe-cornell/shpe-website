@@ -1,11 +1,11 @@
 "use client";
 
-import Image from "next/image";
+// import Image from "next/image";
 import { Changa } from "next/font/google";
-import { motion } from "framer-motion";
+// import { motion } from "framer-motion";
 import HeroScroll from "../components/hero-scroll";
 import { useEffect, useState } from "react";
-import BeholdWidget from "@behold/react"
+import BeholdWidget from "@behold/react";
 
 const changa = Changa({
   subsets: ["latin"],
@@ -66,7 +66,7 @@ export default function MemberInfoPage() {
             <div className="order-2 lg:order-1 w-full lg:w-1/3 h-[400px] lg:h-[600px] bg-[#002550] rounded-xl p-5 shadow-xl border border-[#004080] overflow-y-auto scroll-mt-0">
               <h3 className="text-2xl font-semibold text-[#40c4ff] mb-4 tracking-wide drop-shadow-sm text-center">
                 Explore Our Instagram
-              </h3>              
+              </h3>
               <BeholdWidget feedId="5hnsHoxgKwXhkvgSiGYB" />
             </div>
             {/* <div className="w-full lg:w-1/3 h-[600px] bg-[#002550] rounded-xl p-6 overflow-y-auto relative shadow-xl border border-[#004080]">

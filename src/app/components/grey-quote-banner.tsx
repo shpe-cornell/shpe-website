@@ -1,5 +1,5 @@
 "use client";
-import Link from "next/link";
+// import Link from "next/link";
 
 export default function GreyQuoteBanner() {
   return (
@@ -9,10 +9,10 @@ export default function GreyQuoteBanner() {
 
       {/* Quote */}
       <div className="relative z-10 max-w-5xl text-center p-6 md:p-10">
-        <link
+        {/* <link
           href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap"
           rel="stylesheet"
-        />
+        /> */}
         <p
           className="text-white text-xl md:text-2xl lg:text-3xl leading-relaxed italic font-light"
           style={{ fontFamily: "'Dancing Script', cursive" }}
