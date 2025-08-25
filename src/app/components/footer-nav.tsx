@@ -8,7 +8,7 @@ const shadowStyle = "transition-transform duration-300 group-hover:scale-120";
 const socialLinks = [
   {
     href: "https://join.slack.com/t/cornellshpe/shared_invite/zt-37j10butw-sgOpkzAGx9JRtKH6x~5n8w",
-    src: "/images/icons/slack.png",
+    src: "/images/icons/slack-2.png",
     alt: "Slack icon",
   },
   {
@@ -26,12 +26,12 @@ const socialLinks = [
 export function FooterNav() {
   return (
     <nav
-      className="w-full flex items-center justify-between bg-[#001F5B] px-6 py-4 shadow-lg"
+      className="w-full flex flex-col md:flex-row items-center justify-between bg-[#001F5B] px-6 py-6 shadow-lg space-y-6 md:space-y-0"
       style={{ fontFamily: "'Jaldi', sans-serif" }}
     >
       {/* Logo and Copyright */}
-      <div className="flex flex-col justify-center items-start basis-1/3">
-        <Link href="/" className="flex flex-col items-start">
+      <div className="flex flex-col justify-center items-center md:items-start text-center md:text-left">
+        <Link href="/" className="flex flex-col items-center md:items-start">
           <Image
             src="/images/shpe-logos/shpe_transparent.png"
             alt="SHPE Logo"
@@ -45,8 +45,8 @@ export function FooterNav() {
       </div>
 
       {/* Social Media Links */}
-      <div className="flex flex-col basis-1/3 justify-center items-center space-y-1">
-        <div className="flex space-x-10">
+      <div className="flex flex-col justify-center items-center space-y-2 text-center">
+        <div className="flex space-x-6">
           {socialLinks.map(({ href, src, alt }) => (
             <Link
               key={alt}
@@ -72,26 +72,26 @@ export function FooterNav() {
         >
           All are welcome | Equal Education and Employment
         </Link>
-        <p className="text-xs text-[#FD652F]">
-          {" "}
+        <p className="text-xs text-[#FD652F] whitespace-nowrap">
           This organization is a registered student organization of Cornell
-          University.{" "}
+          University.
         </p>
       </div>
 
       {/* Address */}
-      <div className="flex basis-1/3 justify-end items-center space-x-3 text-right text-xs text-[#FD652F]">
-        <div>
-          <p>Cornell University</p>
-          <p>102 Hollister Hall, Ithaca, NY 14853</p>
-        </div>
+      <div className="flex flex-col md:flex-row justify-center md:justify-end items-center md:items-end space-x-0 md:space-x-3 text-center md:text-right text-xs text-[#FD652F]">
         <Image
           src="/images/icons/location.png"
           alt="location icon"
           width={20}
           height={20}
           priority
+          className="mb-2 md:mb-0"
         />
+        <div>
+          <p>Cornell University</p>
+          <p>102 Hollister Hall, Ithaca, NY 14853</p>
+        </div>
       </div>
     </nav>
   );

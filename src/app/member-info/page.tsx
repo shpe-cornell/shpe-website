@@ -35,7 +35,7 @@ export default function MemberInfoPage() {
       {loading ? (
         <div className="flex justify-center items-center ">
           <img
-            src="images/shpe-logos/shpe-emblem-transparent.png"
+            src="/images/shpe-logos/shpe-emblem-transparent.png"
             className="w-20 h-20 animate-spin"
             alt="SHPE logo"
           />
