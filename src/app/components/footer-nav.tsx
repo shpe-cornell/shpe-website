@@ -7,7 +7,7 @@ const shadowStyle = "transition-transform duration-300 group-hover:scale-120";
 
 const socialLinks = [
   {
-    href: "https://join.slack.com/t/cornellshpe/shared_invite/zt-37j10butw-sgOpkzAGx9JRtKH6x~5n8w",
+    href: "https://join.slack.com/t/shpecornell/signup",
     src: "/images/icons/slack-2.png",
     alt: "Slack icon",
   },

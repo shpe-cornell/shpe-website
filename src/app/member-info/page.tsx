@@ -97,7 +97,7 @@ export default function MemberInfoPage() {
             </h2>
             <div className="flex flex-col sm:flex-row flex-wrap gap-6 justify-center items-center">
               <a
-                href="https://cornellshpe.slack.com/join/shared_invite/zt-37j10butw-sgOpkzAGx9JRtKH6x~5n8w#/shared-invite/email"
+                href="https://join.slack.com/t/shpecornell/signup"
                 target="_blank"
                 rel="noopener noreferrer"
               >

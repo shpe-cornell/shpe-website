@@ -38,7 +38,7 @@ export function Navigation() {
   return (
     <nav
       className={`fixed top-4 left-1/2 transform -translate-x-1/2 z-50 
-        bg-[#E9F0FF]/80 backdrop-blur-xs shadow-md py-1 px-180 
+        bg-[#E9F0FF]/80 backdrop-blur-xs shadow-md py-1 px-6 
         rounded-full border border-[#E9F0FF] w-[95%] max-w-6xl ${changa.className}`}
     >
       <div className="flex items-center justify-center space-x-4 md:space-x-6 lg:space-x-10">
@@ -54,7 +54,7 @@ export function Navigation() {
           />
         </Link>
 
-        {/* Desktop Links (unchanged) */}
+        {/* Desktop Links */}
         <div className="hidden md:flex items-center space-x-4 md:space-x-6 lg:space-x-10">
           {pages.map((page) => {
             const isActive = path === page.href;
@@ -79,22 +79,24 @@ export function Navigation() {
         </button>
       </div>
 
-      {/* Mobile Dropdown */}
+      {/* Mobile Dropdown (outside the pill) */}
       {menuOpen && (
-        <div className="md:hidden mt-2 flex flex-col space-y-2 bg-[#E9F0FF] rounded-2xl shadow p-3 w-full">
-          {pages.map((page) => {
-            const isActive = path === page.href;
-            return (
-              <Link
-                key={page.name}
-                href={page.href}
-                className={getNavLinkClasses(isActive)}
-                onClick={() => setMenuOpen(false)}
-              >
-                {page.name}
-              </Link>
-            );
-          })}
+        <div className="absolute top-full left-0 mt-3 w-full px-3 md:hidden">
+          <div className="flex flex-col space-y-2 bg-[#E9F0FF] rounded-2xl shadow p-3">
+            {pages.map((page) => {
+              const isActive = path === page.href;
+              return (
+                <Link
+                  key={page.name}
+                  href={page.href}
+                  className={getNavLinkClasses(isActive)}
+                  onClick={() => setMenuOpen(false)}
+                >
+                  {page.name}
+                </Link>
+              );
+            })}
+          </div>
         </div>
       )}
     </nav>
