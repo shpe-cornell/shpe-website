@@ -31,6 +31,11 @@ PROJECT ARCHITECTURE BREAKDOWN:
 - TBD
 
 ================================================================================
+Important Links:
+================================================================================
+Gauging general availability: https://lettucemeet.com/l/5AX5Y
+
+================================================================================
 DEVELOPER NECESSARY INSTALLATIONS:
 ================================================================================
 - npm install pg (for integrating database)

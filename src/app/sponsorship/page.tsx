@@ -94,9 +94,15 @@ const Dash = (
 
 const sponsors = {
   Platinum: ["/images/sponsors/Lockheed_Martin_logo.svg.png"],
-  Gold: ["/images/sponsors/Capital_One_logo.svg.png"],
+  Gold: [
+    "/images/sponsors/Capital_One_logo.svg.png",
+    "/images/sponsors/Accenture.svg-2.png",
+  ],
   Silver: [],
-  Bronze: ["/images/sponsors/Jane_Street.png"],
+  Bronze: [
+    "/images/sponsors/Jane_Street.png",
+    "/images/sponsors/Bloomberg.jpeg",
+  ],
   Other: [],
 };
 
