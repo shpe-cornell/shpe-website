@@ -1,5 +1,36 @@
 @import "tailwindcss";
 
+
+@keyframes borderFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-borderFlow {
+  background-image: linear-gradient(
+    120deg,
+    #0070C0,
+    #72A9BE,
+    #FD652F,
+    #72A9BE,
+    #0070C0
+  );
+  animation: borderFlow 10s ease infinite;
+  background-size: 200% 200%;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  border-radius: 0.75rem;
+  opacity: 0.9;
+}
+
 /* Our Edits */
 .shpe-navy {
   color: #001F5B;

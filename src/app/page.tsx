@@ -8,7 +8,7 @@ import HorizontalAccordion from "./components/horizontal-accordion";
 // Hero Images
 // ==============================================================
 const images = [
-  "/images/conference/2024/conference_upscaled.jpeg",
+  "/images/conference/2024/conferencepic.jpeg",
   "/images/conference/2024/conference_colorful.jpeg",
   "/images/leadership/Spring_2025/grouppic_upscaled.jpeg",
 ];

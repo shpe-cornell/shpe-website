@@ -1,18 +1,34 @@
-// components/announcements.tsx
-import Link from "next/link";
-
 interface Announcement {
   date: string;
   title: string;
   description: string;
-  link?: string; // Now optional
-  linkText?: string; // Now optional
+  link?: string;
+  linkText?: string;
   isNew?: boolean;
 }
 
 const ANNOUNCEMENTS_LIST: Announcement[] = [
   {
-    date: "July 11,2024",
+    date: "October 11, 2025",
+    title: "🚨 Make Sure to Submit Your Resume!",
+    description: `
+     Submit your resume in the portal!<br/><br/>
+
+      <strong>Other updates:</strong> As the conference gets closer, companies will send out links for you to show your interest and “pre-register” for each specific company. 
+      You may not get all the links you’re interested in, so this sheet compiles every link that companies send out. 
+      <em>This is one of the best ways to improve your chances of landing interviews pre-conference!</em><br/><br/>
+
+      🔗 <a href="https://docs.google.com/spreadsheets/d/1427lVK5Z2fT9uSD9TmJU6zgUrws5sRu55eShLa7-c_k/edit?usp=drivesdk"
+      target="_blank" rel="noopener noreferrer"
+      class="text-[#FD652F] underline hover:text-[#FF8A65]">
+      Check the Pre-Registration Sheet (updated weekly)</a><br/><br/>
+
+      Thank you all — if you have any questions, please reach out! 💙🧡<br/><br/>
+    `,
+    isNew: true,
+  },
+  {
+    date: "July 11, 2024",
     title: "No Announcements Yet",
     description: "Have a fun summer!",
   },
@@ -42,7 +58,8 @@ export default function Announcements() {
                 </div>
               )}
 
-              <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+              <div className="flex flex-col sm:flex-row sm:items-start gap-4">
+                {/* Date */}
                 <div className="flex items-center gap-3 min-w-[120px]">
                   <div className="w-3 h-3 bg-[#FD652F] rounded-full flex-shrink-0"></div>
                   <span className="text-sm text-[#C1D3FF]">
@@ -50,33 +67,19 @@ export default function Announcements() {
                   </span>
                 </div>
 
+                {/* Main content */}
                 <div className="flex-1">
-                  <h3 className="text-xl font-semibold text-white mb-1">
+                  <h3 className="text-xl font-semibold text-white mb-3">
                     {announcement.title}
                   </h3>
-                  <p className="text-[#E5EFFF] mb-3">
-                    {announcement.description}
-                  </p>
-                  {announcement.link && announcement.linkText && (
-                    <Link
-                      href={announcement.link}
-                      className="text-[#FD652F] hover:text-[#FF8A65] font-medium inline-flex items-center gap-1"
-                    >
-                      {announcement.linkText}
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-4 w-4"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                    </Link>
-                  )}
+
+                  {/* ✅ HERE’S THE FIX — renders HTML properly */}
+                  <div
+                    className="text-[#E5EFFF] mb-3 leading-relaxed space-y-1"
+                    dangerouslySetInnerHTML={{
+                      __html: announcement.description,
+                    }}
+                  />
                 </div>
               </div>
             </div>

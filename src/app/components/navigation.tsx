@@ -21,8 +21,9 @@ export function Navigation() {
     { name: "About", href: "/about" },
     { name: "Team", href: "/team" },
     { name: "Members", href: "/member-info" },
+    { name: "Gallery", href: "/gallery" },
     { name: "Sponsorship", href: "/sponsorship" },
-    { name: "Conference", href: "/points" },
+    { name: "Points", href: "/points" },
   ];
 
   const getNavLinkClasses = (isActive: boolean) =>

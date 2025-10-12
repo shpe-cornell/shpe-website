@@ -1,4 +1,5 @@
 "use client";
+/* eslint-disable @typescript-eslint/no-unused-vars, @next/next/no-img-element */
 
 import Donation_Section from "../components/donation-boxes";
 import HeroScroll from "../components/hero-scroll";
@@ -46,7 +47,6 @@ interface SponsorCardProps {
 // Component
 // =============================================================================
 function SponsorCard({ tier, logo }: SponsorCardProps) {
-  // If tier not specified, default is bronze
   const style = tierStyles[tier as Tier] || tierStyles.Bronze;
 
   return (
@@ -55,9 +55,8 @@ function SponsorCard({ tier, logo }: SponsorCardProps) {
         className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${style.shine} opacity-0 group-hover:opacity-30 transition-opacity duration-300 pointer-events-none`}
       ></div>
 
-      {/* Main */}
       <div
-        className={`w-full max-w-[240px] h-[140px] border-4 rounded-3xl px-6 py-4 flex items-center justify-center bg-white ${style.border} ${style.shadow} transition-all duration-300 group-hover:scale-[1.04] group-hover:shadow-[0_0_25px_-5px_var(--tw-shadow-color)]`}
+        className={`w-full max-w-[240px] h-[140px] border-4 rounded-3xl px-6 py-4 flex items-center justify-center bg-white ${style.border} ${style.shadow} transition-all duration-300 group-hover:scale-[1.04]`}
       >
         <img
           src={logo}
@@ -67,7 +66,6 @@ function SponsorCard({ tier, logo }: SponsorCardProps) {
         />
       </div>
 
-      {/* Shine effect */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden rounded-2xl pointer-events-none">
         <div className="absolute top-0 left-[-100%] w-1/3 h-full bg-gradient-to-r from-transparent via-white/70 to-transparent group-hover:left-[150%] transition-all duration-1000"></div>
       </div>
@@ -153,7 +151,6 @@ export default function SponsorPage() {
 
   return (
     <div className="flex flex-col min-h-screen pt-20 bg-gradient-to-b from-[#00031A] to-[#001F5B] text-white">
-      {/* Welcome Message Text */}
       <HeroScroll
         welcomeMessage="Explore Sponsorship Opportunities"
         subMessage="Support SHPE @ Cornell"
@@ -177,14 +174,14 @@ export default function SponsorPage() {
         </h2>
 
         {Object.entries(sponsors)
-          .filter(([logos]) => logos.length > 0) // Only show tiers with sponsors
+          .filter(([_, logos]) => (logos as string[]).length > 0)
           .map(([tier, logos]) => (
             <div key={tier} className="mb-16">
               <h3 className="text-2xl font-semibold text-center uppercase mb-6 tracking-wide text-gray-200">
                 {tier} Sponsors
               </h3>
               <div className="flex flex-wrap justify-center gap-6">
-                {logos.map((logo, idx) => (
+                {(logos as string[]).map((logo, idx) => (
                   <SponsorCard key={idx} tier={tier} logo={logo} />
                 ))}
               </div>
@@ -192,79 +189,80 @@ export default function SponsorPage() {
           ))}
       </section>
 
+      {/* ✅ Responsive Sponsorship Table (scrolls smoothly on mobile) */}
       <section className="w-full px-4 md:px-12 py-5 bg-transparent">
-        <div className="w-full max-w-7xl mx-auto bg-[#0A0A2A]/70 backdrop-blur-md rounded-3xl shadow-xl border border-[#1F2C50] p-6 md:p-12">
-          <h2 className="text-4xl font-extrabold text-center text-white mb-12 tracking-tight">
+        <div className="w-full max-w-7xl mx-auto bg-[#0A0A2A]/70 backdrop-blur-md rounded-3xl shadow-xl border border-[#1F2C50] p-4 sm:p-8 md:p-12">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-center text-white mb-10 sm:mb-12 tracking-tight">
             Sponsorship Tier Comparison
           </h2>
 
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm md:text-base text-white border-separate border-spacing-y-2 border-spacing-x-2 table-fixed">
-              <thead>
-                <tr className="bg-gradient-to-r from-[#1A2A50] to-[#2A3970] text-white">
-                  <th className="text-left py-4 px-4 font-semibold tracking-wide rounded-l-2xl shadow-sm bg-[#1F2C50]/90 w-1/3">
-                    Benefit
-                  </th>
-                  <th className="text-center py-4 px-4 font-bold uppercase bg-[#1F2C50]/90 w-1/6">
-                    Platinum
-                  </th>
-                  <th className="text-center py-4 px-4 font-bold uppercase bg-[#1F2C50]/90 w-1/6">
-                    Gold
-                  </th>
-                  <th className="text-center py-4 px-4 font-bold uppercase bg-[#1F2C50]/90 w-1/6">
-                    Silver
-                  </th>
-                  <th className="text-center py-4 px-4 font-bold uppercase bg-[#1F2C50]/90 w-1/6">
-                    Bronze
-                  </th>
-                  <th className="text-center py-4 px-4 font-bold uppercase bg-[#1F2C50]/90 rounded-r-2xl w-1/6">
-                    Other
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {benefits.map(
-                  ([benefit, platinum, gold, silver, bronze, other], i) => (
-                    <tr
-                      key={i}
-                      className={`transition ${
-                        i % 2 === 0 ? "bg-[#1B2340]/70" : "bg-[#2A355D]/50"
-                      } hover:bg-[#344b7e]/30`}
-                    >
-                      <td className="py-3 px-4 font-medium text-gray-100">
-                        {benefit}
-                      </td>
-                      <td className="py-3 px-4 text-center">{platinum}</td>
-                      <td className="py-3 px-4 text-center">{gold}</td>
-                      <td className="py-3 px-4 text-center">{silver}</td>
-                      <td className="py-3 px-4 text-center">{bronze}</td>
-                      <td className="py-3 px-4 text-center">{other}</td>
-                    </tr>
-                  )
-                )}
-              </tbody>
-            </table>
+          {/* Scrollable wrapper */}
+          <div className="relative">
+            {/* subtle gradient edges for style */}
+            <div className="absolute left-0 top-0 bottom-0 w-6 bg-gradient-to-r from-[#0A0A2A] to-transparent pointer-events-none" />
+            <div className="absolute right-0 top-0 bottom-0 w-6 bg-gradient-to-l from-[#0A0A2A] to-transparent pointer-events-none" />
+
+            <div className="overflow-x-auto scrollbar-thin scrollbar-thumb-[#1F2C50] scrollbar-track-transparent scroll-smooth">
+              <table className="min-w-[700px] w-full text-xs sm:text-sm md:text-base text-white border-separate border-spacing-y-2 border-spacing-x-2">
+                <thead>
+                  <tr className="bg-gradient-to-r from-[#1A2A50] to-[#2A3970] text-white">
+                    <th className="text-left py-4 px-4 font-semibold tracking-wide rounded-l-2xl shadow-sm bg-[#1F2C50]/90 min-w-[160px]">
+                      Benefit
+                    </th>
+                    <th className="text-center py-4 px-4 font-bold uppercase bg-[#1F2C50]/90">
+                      Platinum
+                    </th>
+                    <th className="text-center py-4 px-4 font-bold uppercase bg-[#1F2C50]/90">
+                      Gold
+                    </th>
+                    <th className="text-center py-4 px-4 font-bold uppercase bg-[#1F2C50]/90">
+                      Silver
+                    </th>
+                    <th className="text-center py-4 px-4 font-bold uppercase bg-[#1F2C50]/90">
+                      Bronze
+                    </th>
+                    <th className="text-center py-4 px-4 font-bold uppercase bg-[#1F2C50]/90 rounded-r-2xl">
+                      Other
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {benefits.map(
+                    ([benefit, platinum, gold, silver, bronze, other], i) => (
+                      <tr
+                        key={i}
+                        className={`transition ${
+                          i % 2 === 0 ? "bg-[#1B2340]/70" : "bg-[#2A355D]/50"
+                        } hover:bg-[#344b7e]/30`}
+                      >
+                        <td className="py-3 px-4 font-medium text-gray-100 whitespace-pre-wrap">
+                          {benefit}
+                        </td>
+                        <td className="py-3 px-4 text-center">{platinum}</td>
+                        <td className="py-3 px-4 text-center">{gold}</td>
+                        <td className="py-3 px-4 text-center">{silver}</td>
+                        <td className="py-3 px-4 text-center">{bronze}</td>
+                        <td className="py-3 px-4 text-center">{other}</td>
+                      </tr>
+                    )
+                  )}
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </section>
 
       <section id="pricing">
-        {/* ==============================================================
-          Non-Sponsor Donation Details
-        ============================================================== */}
-        <Donation_Section></Donation_Section>
+        <Donation_Section />
       </section>
 
-      {/* ==============================================================
-          Support SHPE Section
-        ============================================================== */}
       <section className="text-center pb-10 pt-8">
         <h2 className="text-3xl font-semibold text-[#FD652F] mb-12 tracking-wide drop-shadow-sm">
           Support SHPE @ Cornell
         </h2>
 
         <div className="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-6">
-          {/* Corporate Packet */}
           <a
             href="/important/25-26-corporate.pdf"
             target="_blank"
@@ -292,7 +290,6 @@ export default function SponsorPage() {
             Corporate Packet (.pdf)
           </a>
 
-          {/* Donate Online*/}
           <a
             href="https://securelb.imodules.com/s/1717/giving/interior.aspx?sid=1717&gid=2&pgid=16421&bledit=1&dids=789.&appealcode=GIVDY25P"
             target="_blank"
@@ -320,7 +317,6 @@ export default function SponsorPage() {
             Donate Online
           </a>
 
-          {/* Donate (physical) */}
           <a
             href="/important/Mail-In-Sponsor-Form.pdf"
             target="_blank"

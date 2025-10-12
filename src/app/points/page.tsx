@@ -26,12 +26,12 @@ function HeaderSection() {
   return (
     <section className="text-center px-6 md:px-20 mt-10 max-w-4xl mx-auto">
       <h2 className="pb-5 text-4xl md:text-5xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-[#85B6FF] to-[#FD652F]">
-        Conference Points System
+        Convention Points System
       </h2>
       <p className="text-2xl text-[#3261a8] leading-relaxed max-w-prose mx-auto tracking-tight">
         Our club uses a point-based system to recognize active members. Points
         are awarded for attending events, participating in outreach, and
-        volunteering. These points determine eligibility for conferences and
+        volunteering. These points determine eligibility for conventions and
         exclusive opportunities.
       </p>
     </section>
@@ -192,7 +192,6 @@ function FooterSection() {
 }
 
 export default function PointsPage() {
-
   return (
     <div
       className={`min-h-screen pt-[70px] bg-gradient-to-b from-[#00031A] to-[#001F5B] ${changa.className}`}

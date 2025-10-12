@@ -117,7 +117,7 @@ const execBoard = [
   {
     name: "Marcos Martinez",
     position: "Events Chair",
-    image: "/images/icons/usericon.png",
+    image: "/images/leadership/2025-2026/marcos.jpeg",
     major: "MechE",
     year: "'28",
     email: "",
@@ -126,7 +126,7 @@ const execBoard = [
   {
     name: "David Valarezo",
     position: "Community Outreach Chair",
-    image: "/images/icons/usericon.png",
+    image: "/images/leadership/2025-2026/david.png",
     major: "CS",
     year: "'27",
     email: "",
@@ -135,7 +135,7 @@ const execBoard = [
   {
     name: "Hilary Cabrera Orozco",
     position: "Treasurer",
-    image: "/images/icons/usericon.png",
+    image: "/images/leadership/2025-2026/hilary.png",
     major: "IS",
     year: "'26",
     email: "",
@@ -144,7 +144,7 @@ const execBoard = [
   {
     name: "Josue Ortiz",
     position: "Academic Excellence Chair",
-    image: "/images/icons/usericon.png",
+    image: "/images/leadership/2025-2026/josue.jpg",
     major: "CS & ORIE",
     year: "'26",
     email: "",
