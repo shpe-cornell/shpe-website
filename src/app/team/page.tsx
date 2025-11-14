@@ -9,7 +9,6 @@ export default function TeamPage() {
       {/* Hero Section */}
       <HeroScroll
         welcomeMessage="Meet Your SHPE Leadership Team"
-        subMessage="Dedicated professionals driving our organization forward"
         showButton={false}
       />
 
@@ -21,6 +20,9 @@ export default function TeamPage() {
             Executive Board 2024-2025
           </h1>
           <div className="mx-auto mt-4 h-1 w-24 bg-[#0070C0] opacity-80"></div>
+          <p className="text-center text-sm text-[#E5EFFF] mt-4 animate-pulse">
+            👉 Click card for contact details
+          </p>
         </div>
 
         {/* Executive Grid */}

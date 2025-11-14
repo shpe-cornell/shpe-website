@@ -91,7 +91,10 @@ const Dash = (
 );
 
 const sponsors = {
-  Platinum: ["/images/sponsors/Lockheed_Martin_logo.svg.png"],
+  Platinum: [
+    "/images/sponsors/Lockheed_Martin_logo.svg.png",
+    "/images/sponsors/Intuit.png",
+  ],
   Gold: [
     "/images/sponsors/Capital_One_logo.svg.png",
     "/images/sponsors/Accenture.svg-2.png",

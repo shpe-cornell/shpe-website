@@ -95,10 +95,11 @@ export default function Home() {
       </Section>
 
       {/* ==============================================================
-          What We Do
-        ============================================================== */}
+    What We Do
+============================================================== */}
       <Section title="What We Do">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 w-full px-4 py-6">
+        {/* 1 per row on mobile, 2 per row on tablets, 3 per row on large screens */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full px-4 py-6">
           {boxes.map((box, idx) => (
             <div
               key={idx}
