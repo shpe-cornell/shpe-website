@@ -78,8 +78,8 @@ export default function Home() {
         welcomeMessage="Welcome to SHPE @ Cornell"
         subMessage="Empowerment. Community. Excellence."
         showButton={true}
-        buttonHref="https://shpe.org/membership/become-a-member/"
-        buttonText="Join SHPE National"
+        buttonHref="https://join.slack.com/t/shpecornell/signup"
+        buttonText="Join Cornell SHPE"
         showImageScroll={true}
       />
 
