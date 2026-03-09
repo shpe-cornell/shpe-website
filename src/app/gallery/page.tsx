@@ -2,89 +2,31 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import EventGallery from "../components/event-gallery";
 import HeroScroll from "../components/hero-scroll";
-
-const events = [
-  {
-    name: "General Body Meeting 1",
-    subtitle: "Getting to Know Each Other Through Bingo",
-
-    hero: "/images/events/25-26/gbody1/g1.jpeg",
-    photos: [
-      {
-        src: "/images/events/25-26/gbody1/g1.jpeg",
-        caption: "Our first GBM of 2025 🎉",
-      },
-      {
-        src: "/images/events/25-26/gbody1/g2.png",
-        caption: "Networking and catching up after summer break.",
-      },
-      {
-        src: "/images/events/25-26/gbody1/g3.jpeg",
-        caption: "Welcoming new members into the familia 💙",
-      },
-      {
-        src: "/images/events/25-26/gbody1/g4.jpeg",
-        caption: "Great turnout and energy all around!",
-      },
-      {
-        src: "/images/events/25-26/gbody1/g5.jpeg",
-        caption: "Ending the night with smiles and good vibes.",
-      },
-      {
-        src: "/images/events/25-26/gbody1/g7.jpeg",
-        caption: "Say I scream for ice cream! 🍦🍧",
-      },
-      {
-        src: "/images/events/25-26/gbody1/g6.jpeg",
-        caption: "Fun and games during bingo night!",
-      },
-      {
-        src: "/images/events/25-26/gbody1/g8.jpeg",
-        caption: "Nothing better than meeting new people 😄",
-      },
-    ],
-  },
-  {
-    name: "Bienvenidos",
-    subtitle:
-      "Annual welcome-back celebration hosted by the Latino Living Center to build community among students, staff, and faculty",
-    hero: "/images/events/25-26/bienvenidos/b1.png",
-    photos: [
-      { src: "/images/events/25-26/bienvenidos/b1.png" },
-      { src: "/images/events/25-26/bienvenidos/b2.png" },
-      { src: "/images/events/25-26/bienvenidos/b3.jpeg" },
-    ],
-  },
-  {
-    name: "Merch Plug",
-    hero: "/images/events/25-26/merch_plug.png",
-    photos: [],
-  },
-  {
-    name: "Familia Moments",
-    subtitle: "Candid memories 💙🧡🩵",
-    hero: "/images/events/25-26/Familia/familia.jpg",
-    photos: [
-      {
-        src: "/images/events/25-26/Familia/familia.jpg",
-        caption: "🍎 Apple Fest 🍏",
-      },
-      {
-        src: "/images/events/25-26/Familia/f1.jpg",
-        caption: "Apple Fest 🧃",
-      },
-      {
-        src: "/images/events/25-26/Familia/f2.jpeg",
-        caption: "Conference 2024 👩‍💼🤵‍♂️",
-      },
-    ],
-  },
-];
+import { galleryEvents as events } from "../data/gallery-data";
 
 export default function GalleryPage() {
-  const [activeEvent, setActiveEvent] = useState<number | null>(null);
+  const [activePhotoIndexes, setActivePhotoIndexes] = useState<number[]>(
+    events.map(() => 0),
+  );
+
+  const showPreviousPhoto = (eventIndex: number, photoCount: number) => {
+    if (photoCount <= 1) return;
+    setActivePhotoIndexes((prev) =>
+      prev.map((photoIndex, idx) =>
+        idx === eventIndex ? (photoIndex - 1 + photoCount) % photoCount : photoIndex,
+      ),
+    );
+  };
+
+  const showNextPhoto = (eventIndex: number, photoCount: number) => {
+    if (photoCount <= 1) return;
+    setActivePhotoIndexes((prev) =>
+      prev.map((photoIndex, idx) =>
+        idx === eventIndex ? (photoIndex + 1) % photoCount : photoIndex,
+      ),
+    );
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#00031A] via-[#000E33] to-[#001F5B] text-white font-sans pt-24 pb-24">
@@ -103,28 +45,18 @@ export default function GalleryPage() {
       <div className="flex flex-col items-center px-4 sm:px-8 md:px-16 max-w-6xl mx-auto pt-6">
         {/* Hint Message */}
         <p className="text-[#AFCBFF] text-center text-base sm:text-lg italic mb-6">
-          Click any picture to view that day’s full album 📸
+          Use the arrows under each image to browse that event’s photos 📸
         </p>
 
         <section className="flex flex-col items-center gap-16 w-full">
           {events.map((event, idx) => {
-            const hasGallery = event.photos && event.photos.some((p) => p.src);
+            const hasGallery = event.photos && event.photos.length > 0;
+            const activePhoto = hasGallery
+              ? event.photos[activePhotoIndexes[idx] ?? 0]
+              : null;
+            const currentImage = activePhoto?.src ?? event.hero;
             return (
-              <div
-                key={idx}
-                tabIndex={hasGallery ? 0 : -1}
-                role={hasGallery ? "button" : "img"}
-                aria-label={
-                  hasGallery
-                    ? `Open ${event.name} album`
-                    : `${event.name} headline image`
-                }
-                onClick={() => hasGallery && setActiveEvent(idx)}
-                onKeyDown={(e) =>
-                  hasGallery && e.key === "Enter" && setActiveEvent(idx)
-                }
-                className="w-full focus-visible:outline-none group cursor-pointer"
-              >
+              <div key={idx} className="w-full group">
                 {/* ==============================================================
                     COOL CINEMATIC BORDER
                 ============================================================== */}
@@ -157,7 +89,7 @@ export default function GalleryPage() {
 
                   {/* --- HERO PHOTO --- */}
                   <Image
-                    src={event.hero}
+                    src={currentImage}
                     alt={`${event.name} cover photo`}
                     fill
                     className="object-cover"
@@ -167,6 +99,30 @@ export default function GalleryPage() {
                   {/* --- LIGHT SHINE --- */}
                   <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/10 to-transparent mix-blend-overlay pointer-events-none" />
                 </div>
+
+                {hasGallery && (
+                  <div className="mt-3 flex items-center justify-between px-1 sm:px-2">
+                    <button
+                      type="button"
+                      onClick={() => showPreviousPhoto(idx, event.photos.length)}
+                      className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#AFCBFF]/45 bg-[#00163E]/70 text-white hover:border-white hover:bg-[#001F5B]"
+                      aria-label={`Previous ${event.name} photo`}
+                    >
+                      ←
+                    </button>
+                    <span className="text-sm text-[#AFCBFF]">
+                      {activePhotoIndexes[idx] + 1} / {event.photos.length}
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => showNextPhoto(idx, event.photos.length)}
+                      className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#AFCBFF]/45 bg-[#00163E]/70 text-white hover:border-white hover:bg-[#001F5B]"
+                      aria-label={`Next ${event.name} photo`}
+                    >
+                      →
+                    </button>
+                  </div>
+                )}
 
                 {/* TITLE + SUBTITLE */}
                 <div className="text-center mt-5">
@@ -184,16 +140,6 @@ export default function GalleryPage() {
           })}
         </section>
       </div>
-
-      {/* ==============================================================
-          Expanded Event Gallery
-      ============================================================== */}
-      {activeEvent !== null && (
-        <EventGallery
-          event={events[activeEvent]}
-          onClose={() => setActiveEvent(null)}
-        />
-      )}
     </div>
   );
 }

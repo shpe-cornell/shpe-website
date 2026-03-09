@@ -1,11 +1,13 @@
 "use client";
 
+import { supabase } from "../lib/supabase";
 import Head from "next/head";
+import Image from "next/image";
 import { useState, useRef } from "react";
 import { Changa } from "next/font/google";
 import CountdownTimer from "../components/countdown";
-import Announcements from "../components/announcements";
 import Papa from "papaparse";
+import { countryBubbles, eventBubbles } from "../data/points-carousel-data";
 
 const changa = Changa({ subsets: ["latin"], weight: ["400", "700"] });
 
@@ -41,15 +43,15 @@ function HeaderSection() {
 /* Points Description */
 function PointsDescription() {
   return (
-    <div className="bg-gradient-to-br from-[#001F5B] via-[#003366] to-[#004080] shadow-xl border border-[#0070C0]/30 rounded-xl p-8 w-full max-w-xl mx-auto md:mx-0 backdrop-blur-sm">
+    <div className="bg-gradient-to-br from-[#001F5B] via-[#003366] to-[#004080] shadow-xl border border-[#0070C0]/30 rounded-xl p-7 w-full max-w-[470px] mx-auto md:mx-0 backdrop-blur-sm">
       <h3 className="text-center text-3xl md:text-4xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-[#FF7B4D] via-[#FD652F] to-[#FF5100] pb-2">
         Points Breakdown
       </h3>
-      <ul className="text-xl space-y-6 text-[#A4C2FF]">
-        <li className="pl-15">+1 — Complete Tech Workshops & Study Jams</li>
-        <li className="pl-15">+2 — Join Professional Development & Socials</li>
-        <li className="pl-15">+3 — Contribute to G-body Initiatives</li>
-        <li className="pl-15">+5 — Lead/Serve in Community Projects</li>
+      <ul className="mt-4 space-y-4 text-lg text-[#A4C2FF] text-left">
+        <li className="leading-snug">+1 — Complete Tech Workshops & Study Jams</li>
+        <li className="leading-snug">+2 — Join Professional Development & Socials</li>
+        <li className="leading-snug">+3 — Contribute to G-body Initiatives</li>
+        <li className="leading-snug">+5 — Lead/Serve in Community Projects</li>
       </ul>
     </div>
   );
@@ -120,7 +122,7 @@ function PointsChecker() {
   };
 
   return (
-    <div className="flex flex-col items-center gap-6 w-full max-w-md mt-20 md:mt-0 mx-auto">
+    <div className="flex flex-col items-center gap-6 w-full max-w-[420px] mt-12 md:mt-0 mx-auto">
       <label
         htmlFor="memberId"
         className="text-3xl text-[#FD652F] font-bold text-center tracking-wide"
@@ -183,9 +185,164 @@ function PointsChecker() {
 /* Footer Timer */
 function FooterSection() {
   return (
-    <section className="flex justify-center mt-16 px-4">
-      <div className="w-full max-w-3xl flex justify-center items-center p-5 mb-10 rounded-2xl bg-gradient-to-tr from-[#004080] to-[#001F5B] shadow-inner">
-        <CountdownTimer />
+    <section className="flex justify-center -mt-2 px-4 mb-0">
+      <div className="w-full max-w-3xl flex justify-center items-center py-2">
+        <div className="w-full text-center">
+          <div className="h-px w-full bg-gradient-to-r from-transparent via-[#72A9BE]/60 to-transparent mb-4" />
+          <CountdownTimer />
+          <div className="h-px w-full bg-gradient-to-r from-transparent via-[#FD652F]/45 to-transparent mt-4" />
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function CountryRepresentationSection() {
+  const verticalBubbles = [...countryBubbles, ...countryBubbles];
+
+  return (
+    <section className="w-full">
+      <div className="rounded-2xl border border-white/15 bg-[#00163e]/35 p-4">
+        <h3 className="text-center text-lg font-bold text-[#EAF2FF]">
+          Represent Your Country
+        </h3>
+        <div className="relative mt-4 h-[430px] overflow-hidden">
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_15%,rgba(114,169,190,0.12),transparent_45%),radial-gradient(circle_at_50%_85%,rgba(253,101,47,0.10),transparent_48%)]" />
+          <div
+            className="relative z-10 flex flex-col items-center gap-4"
+            style={{ animation: "countryStreamVertical 40s linear infinite" }}
+          >
+            {verticalBubbles.map((bubble, idx) => (
+              <div
+                key={`${bubble.country}-${idx}`}
+                className="relative h-[118px] w-[118px] rounded-full overflow-hidden border border-white/35 shadow-[0_8px_20px_rgba(0,0,0,0.32)]"
+              >
+                <Image
+                  src={bubble.image}
+                  alt={`${bubble.country} at SHPE Conference`}
+                  fill
+                  sizes="118px"
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#00112f]/75 via-transparent to-transparent" />
+                <p className="absolute bottom-1 left-1/2 -translate-x-1/2 text-[10px] text-white font-semibold tracking-wide px-2 py-0.5 rounded-full bg-[#001f5b]/65 whitespace-nowrap">
+                  {bubble.country}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function EventsCarouselSection() {
+  const verticalBubbles = [...eventBubbles, ...eventBubbles];
+
+  return (
+    <section className="w-full">
+      <div className="rounded-2xl border border-white/15 bg-[#00163e]/35 p-4">
+        <h3 className="text-center text-lg font-bold text-[#EAF2FF]">
+          Events Highlights
+        </h3>
+        <div className="relative mt-4 h-[430px] overflow-hidden">
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_15%,rgba(114,169,190,0.12),transparent_45%),radial-gradient(circle_at_50%_85%,rgba(253,101,47,0.10),transparent_48%)]" />
+          <div
+            className="relative z-10 flex flex-col items-center gap-4"
+            style={{ animation: "countryStreamVertical 38s linear infinite reverse" }}
+          >
+            {verticalBubbles.map((bubble, idx) => (
+              <div
+                key={`${bubble.label}-${idx}`}
+                className="relative h-[118px] w-[118px] rounded-full overflow-hidden border border-white/35 shadow-[0_8px_20px_rgba(0,0,0,0.32)]"
+              >
+                <Image
+                  src={bubble.image}
+                  alt={`${bubble.label} at SHPE`}
+                  fill
+                  sizes="118px"
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#00112f]/75 via-transparent to-transparent" />
+                <p className="absolute bottom-1 left-1/2 -translate-x-1/2 text-[10px] text-white font-semibold tracking-wide px-2 py-0.5 rounded-full bg-[#001f5b]/65 whitespace-nowrap">
+                  {bubble.label}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function MobileCarouselsSection() {
+  const mobileEventStream = [...eventBubbles, ...eventBubbles];
+  const mobileCountryStream = [...countryBubbles, ...countryBubbles];
+
+  return (
+    <section className="xl:hidden w-full mt-4 space-y-4 px-2">
+      <div className="rounded-2xl border border-white/15 bg-[#00163e]/35 p-3">
+        <h3 className="text-center text-base font-bold text-[#EAF2FF] mb-3">
+          Events Highlights
+        </h3>
+        <div className="overflow-hidden">
+          <div
+            className="flex w-max gap-3"
+            style={{ animation: "countryStream 30s linear infinite" }}
+          >
+            {mobileEventStream.map((bubble, idx) => (
+              <div
+                key={`mobile-event-${idx}`}
+                className="relative shrink-0 h-[106px] w-[106px] rounded-full overflow-hidden border border-white/35 shadow-[0_8px_20px_rgba(0,0,0,0.32)]"
+              >
+                <Image
+                  src={bubble.image}
+                  alt={`${bubble.label} at SHPE`}
+                  fill
+                  sizes="106px"
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#00112f]/75 via-transparent to-transparent" />
+                <p className="absolute bottom-1 left-1/2 -translate-x-1/2 text-[9px] text-white font-semibold tracking-wide px-1.5 py-0.5 rounded-full bg-[#001f5b]/65 whitespace-nowrap">
+                  {bubble.label}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div className="rounded-2xl border border-white/15 bg-[#00163e]/35 p-3">
+        <h3 className="text-center text-base font-bold text-[#EAF2FF] mb-3">
+          Represent Your Country
+        </h3>
+        <div className="overflow-hidden">
+          <div
+            className="flex w-max gap-3"
+            style={{ animation: "countryStream 34s linear infinite reverse" }}
+          >
+            {mobileCountryStream.map((bubble, idx) => (
+              <div
+                key={`mobile-country-${idx}`}
+                className="relative shrink-0 h-[106px] w-[106px] rounded-full overflow-hidden border border-white/35 shadow-[0_8px_20px_rgba(0,0,0,0.32)]"
+              >
+                <Image
+                  src={bubble.image}
+                  alt={`${bubble.country} at SHPE Conference`}
+                  fill
+                  sizes="106px"
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#00112f]/75 via-transparent to-transparent" />
+                <p className="absolute bottom-1 left-1/2 -translate-x-1/2 text-[9px] text-white font-semibold tracking-wide px-1.5 py-0.5 rounded-full bg-[#001f5b]/65 whitespace-nowrap">
+                  {bubble.country}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );
@@ -194,20 +351,30 @@ function FooterSection() {
 export default function PointsPage() {
   return (
     <div
-      className={`min-h-screen pt-[70px] bg-gradient-to-b from-[#00031A] to-[#001F5B] ${changa.className}`}
+      className={`relative min-h-screen pt-[70px] bg-gradient-to-b from-[#00031A] to-[#001F5B] ${changa.className}`}
     >
       <Head>
         <title>Points System</title>
       </Head>
       <main className="flex flex-col items-center px-4 gap-2">
         <HeaderSection />
-        <section className="flex flex-col md:flex-row justify-center items-start gap-12 w-full max-w-6xl mt-10 px-2 md:px-0">
+        <section className="flex flex-col md:flex-row justify-center items-start gap-6 w-full max-w-[800px] mt-10 px-2 md:px-0">
           <PointsDescription />
           <PointsChecker />
         </section>
         <FooterSection />
-        <Announcements />
+        <MobileCarouselsSection />
       </main>
+
+      {/* Right rail carousel (does not affect existing layout dimensions) */}
+      <div className="hidden xl:block absolute right-4 top-[170px] w-[220px] z-20">
+        <CountryRepresentationSection />
+      </div>
+
+      {/* Left rail events carousel (does not affect existing layout dimensions) */}
+      <div className="hidden xl:block absolute left-4 top-[170px] w-[220px] z-20">
+        <EventsCarouselSection />
+      </div>
     </div>
   );
 }

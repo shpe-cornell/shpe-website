@@ -2,28 +2,27 @@
 
 export default function GreyQuoteBanner() {
   return (
-    <div className="relative w-full h-auto flex items-center justify-center px-6 py-10 bg-gradient-to-r from-[#00031A] to-[#001F5B] overflow-hidden">
-      {/* Background effects */}
-      <div className="absolute inset-0 bg-white/10 backdrop-blur-md rounded-xl pointer-events-none z-0" />
+    <section className="relative w-full px-6 py-14 bg-gradient-to-b from-[#000B2A] via-[#001742] to-[#001F5B] overflow-hidden">
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-white/8 to-transparent" />
 
-      {/* Quote */}
-      <div className="relative z-10 max-w-5xl text-center p-6 md:p-10">
-        {/* <link
-          href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap"
-          rel="stylesheet"
-        /> */}
+      <div className="relative z-10 mx-auto max-w-5xl rounded-2xl border border-[#6E9BE2]/35 bg-[#031435]/55 px-6 py-10 md:px-12 shadow-[0_10px_28px_rgba(0,0,0,0.3)]">
+        <p className="text-[#AFCBFF] text-4xl leading-none mb-3">“</p>
         <p
-          className="text-white text-xl md:text-2xl lg:text-3xl leading-relaxed italic font-light"
-          style={{ fontFamily: "'Dancing Script', cursive" }}
+          className="text-[#EAF2FF] text-lg md:text-2xl leading-relaxed font-medium text-center tracking-[0.01em]"
+          style={{ fontFamily: "'Changa', sans-serif" }}
         >
-          “I gained more than just career skills—I became part of a supportive
-          community, dedicated to helping others like me, including children of
-          immigrants and first-generation college students.”
+          I gained more than just career skills. I became part of a supportive
+          community dedicated to helping others like me, including children of
+          immigrants and first-generation college students.
         </p>
-        <p className="mt-4 text-[#85B6FF] font-medium tracking-wide text-sm sm:text-md not-italic">
-          – Juan Gomez ‘19
+        <p
+          className="mt-6 text-center text-[#9FC2FF] font-semibold tracking-wide text-sm md:text-base"
+          style={{ fontFamily: "'Changa', sans-serif" }}
+        >
+          Juan Gomez ’19
         </p>
+        <p className="text-[#AFCBFF] text-4xl leading-none mt-1 text-right">”</p>
       </div>
-    </div>
+    </section>
   );
 }

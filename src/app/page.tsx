@@ -3,69 +3,11 @@
 import HeroScroll from "./components/hero-scroll";
 import GreyQuoteBanner from "./components/grey-quote-banner";
 import HorizontalAccordion from "./components/horizontal-accordion";
-
-// ==============================================================
-// Hero Images
-// ==============================================================
-const images = [
-  "/images/conference/2024/conferencepic.jpeg",
-  "/images/conference/2024/conference_colorful.jpeg",
-  "/images/leadership/Spring_2025/grouppic_upscaled.jpeg",
-];
-
-// ==============================================================
-// What We Do Items
-// ==============================================================
-const boxes = [
-  {
-    title: "Professional Development",
-    text: "Resume reviews, mock interviews, and technical workshops to shape the engineers of tomorrow.",
-  },
-  {
-    title: "Community Outreach",
-    text: "We spark STEM curiosity in schools, mentoring the next generation of thinkers.",
-  },
-  {
-    title: "Info Sessions",
-    text: "Top companies connect with SHPE to present roles, missions, and paths for growth.",
-  },
-  {
-    title: "Socials",
-    text: "Culture meets community. From game nights to fiestas — we make bonding fun.",
-  },
-  {
-    title: "MentorSHPE",
-    text: "Underclassmen are matched with leaders to grow through guidance and shared experience.",
-  },
-  {
-    title: "Study Jams",
-    text: "Our collaborative study zones support academic excellence and reduce stress during crunch time.",
-  },
-];
-
-// ==============================================================
-// Accordion Items
-// ==============================================================
-const items = [
-  {
-    title: "Donate",
-    description: "Support our mission through donations.",
-    icon: "/images/icons/donate.png",
-    link: "/sponsorship#pricing",
-  },
-  {
-    title: "Become a Member",
-    description: "Join our supportive community.",
-    icon: "/images/icons/member.png",
-    link: "https://shpe.org/membership/become-a-member/",
-  },
-  {
-    title: "Events",
-    description: "See upcoming SHPE activities and programs.",
-    icon: "/images/icons/united.png",
-    link: "/member-info",
-  },
-];
+import {
+  homeExploreItems,
+  homeHeroImages,
+  homeInfoBoxes,
+} from "./data/home-data";
 
 export default function Home() {
   return (
@@ -74,12 +16,12 @@ export default function Home() {
           Hero Section
         ============================================================== */}
       <HeroScroll
-        images={images}
+        images={[...homeHeroImages]}
         welcomeMessage="Welcome to SHPE @ Cornell"
         subMessage="Empowerment. Community. Excellence."
         showButton={true}
         buttonHref="https://join.slack.com/t/shpecornell/signup"
-        buttonText="Join Cornell SHPE"
+        buttonText="Join Our Community"
         showImageScroll={true}
       />
 
@@ -100,7 +42,7 @@ export default function Home() {
       <Section title="What We Do">
         {/* 1 per row on mobile, 2 per row on tablets, 3 per row on large screens */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full px-4 py-6">
-          {boxes.map((box, idx) => (
+          {homeInfoBoxes.map((box, idx) => (
             <div
               key={idx}
               className="bg-white/10 border border-white/20 backdrop-blur-md rounded-xl p-6 shadow-xl hover:shadow-2xl transition-shadow duration-300 hover:scale-[1.03]"
@@ -120,7 +62,7 @@ export default function Home() {
           Accordion Section
         ============================================================== */}
       <Section title="Explore More">
-        <HorizontalAccordion items={items} />
+        <HorizontalAccordion items={homeExploreItems} />
       </Section>
     </div>
   );

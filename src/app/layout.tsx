@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Changa } from "next/font/google";
 import "./globals.css";
 import { Navigation } from "./components/navigation";
 import { FooterNav } from "./components/footer-nav";
+import { GivingDayPopup } from "./components/giving-day-popup";
+import { CursorBackgroundFx } from "./components/cursor-background-fx";
 
 // const jaldi = Jaldi({
 //   subsets: ["latin"],
@@ -17,6 +19,12 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+});
+
+const changa = Changa({
+  variable: "--font-changa",
+  subsets: ["latin"],
+  weight: ["400", "700"],
 });
 
 export const metadata: Metadata = {
@@ -58,15 +66,19 @@ export default function RootLayout({
         <meta name="theme-color" content="#001F5B" />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased `}
+        className={`${geistSans.variable} ${geistMono.variable} ${changa.variable} ${changa.className} antialiased`}
       >
-        <header className="text-white text-center">
-          <Navigation />
-        </header>
-        {children}
-        <footer className="bg-[#001F5B] text-white">
-          <FooterNav />
-        </footer>
+        <CursorBackgroundFx />
+        <div className="relative z-10">
+          <header className="text-white text-center">
+            <Navigation />
+          </header>
+          <GivingDayPopup />
+          {children}
+          <footer className="text-white">
+            <FooterNav />
+          </footer>
+        </div>
       </body>
     </html>
   );

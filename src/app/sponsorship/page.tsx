@@ -1,42 +1,17 @@
 "use client";
 /* eslint-disable @typescript-eslint/no-unused-vars, @next/next/no-img-element */
 
+import { useState, type CSSProperties, type MouseEvent } from "react";
 import Donation_Section from "../components/donation-boxes";
 import HeroScroll from "../components/hero-scroll";
-
-// =============================================================================
-// Types and Constants
-// =============================================================================
-type Tier = "Platinum" | "Gold" | "Silver" | "Bronze";
-
-interface TierStyle {
-  border: string;
-  shadow: string;
-  shine: string;
-}
-
-const tierStyles: Record<Tier, TierStyle> = {
-  Platinum: {
-    border: "border-[#B7BFCC]",
-    shadow: "shadow-[0_0_20px_-5px_rgba(183,191,204,0.8)]",
-    shine: "from-[#E6F0FF] to-[#FFFFFF]",
-  },
-  Gold: {
-    border: "border-[#C09E5E]",
-    shadow: "shadow-[0_0_20px_-5px_rgba(192,158,94,0.8)]",
-    shine: "from-[#FFF4E0] to-[#FFFFFF]",
-  },
-  Silver: {
-    border: "border-[#A0A0A0]",
-    shadow: "shadow-[0_0_20px_-5px_rgba(160,160,160,0.6)]",
-    shine: "from-[#F5F5F5] to-[#FFFFFF]",
-  },
-  Bronze: {
-    border: "border-[#CD7F32]",
-    shadow: "shadow-[0_0_20px_-5px_rgba(205,127,50,0.6)]",
-    shine: "from-[#FFE9DD] to-[#FFFFFF]",
-  },
-};
+import { givingDayCampaign } from "../data/giving-day-data";
+import {
+  sponsorshipBenefits,
+  sponsorsByTier,
+  tierStyles,
+  type BenefitValue,
+  type Tier,
+} from "../data/sponsorship-data";
 
 interface SponsorCardProps {
   tier: string;
@@ -90,21 +65,10 @@ const Dash = (
   <span className="inline-block w-5 h-5 text-gray-200 select-none">—</span>
 );
 
-const sponsors = {
-  Platinum: [
-    "/images/sponsors/Lockheed_Martin_logo.svg.png",
-    "/images/sponsors/Intuit.png",
-  ],
-  Gold: [
-    "/images/sponsors/Capital_One_logo.svg.png",
-    "/images/sponsors/Accenture.svg-2.png",
-  ],
-  Silver: [],
-  Bronze: [
-    "/images/sponsors/Jane_Street.png",
-    "/images/sponsors/Bloomberg.jpeg",
-  ],
-  Other: [],
+const renderBenefitValue = (value: BenefitValue) => {
+  if (value === "check") return CheckIcon;
+  if (value === "dash") return Dash;
+  return value;
 };
 
 // =============================================================================
@@ -114,61 +78,150 @@ const sponsors = {
 export default function SponsorPage() {
   const buttonCommonClasses =
     "rounded-xl border border-[#A5AACD]/40 bg-gradient-to-r from-[#001F5B] to-[#003377] text-white font-medium py-4 px-8 flex items-center justify-center gap-3 text-base transition transform hover:scale-105 hover:shadow-md hover:from-[#003377] hover:to-[#0050a0]";
+  const [cursorGlow, setCursorGlow] = useState({
+    x: 50,
+    y: 50,
+    active: false,
+  });
 
-  const benefits = [
-    ["Cost", "$2,000+", "$1,750", "$1,500", "$1,250", "<$1,000"],
-    [
-      "Recognition on Cornell SHPE Website",
-      CheckIcon,
-      CheckIcon,
-      CheckIcon,
-      CheckIcon,
-      CheckIcon,
-    ],
-    ["Resume Book", CheckIcon, CheckIcon, CheckIcon, CheckIcon, Dash],
-    [
-      "Speaking Opportunity at SHPE G-Body Meeting",
-      CheckIcon,
-      CheckIcon,
-      CheckIcon,
-      Dash,
-      Dash,
-    ],
-    [
-      "Complimentary Information Session",
-      CheckIcon,
-      CheckIcon,
-      Dash,
-      Dash,
-      Dash,
-    ],
-    [
-      "Company Logo on SHPE Merch and Additional Info Session",
-      CheckIcon,
-      Dash,
-      Dash,
-      Dash,
-      Dash,
-    ],
-  ];
+  const handleLetterMouseMove = (event: MouseEvent<HTMLDivElement>) => {
+    const bounds = event.currentTarget.getBoundingClientRect();
+    const x = ((event.clientX - bounds.left) / bounds.width) * 100;
+    const y = ((event.clientY - bounds.top) / bounds.height) * 100;
+    setCursorGlow({ x, y, active: true });
+  };
+
+  const interactiveGlowStyle: CSSProperties = {
+    background: `radial-gradient(130px circle at ${cursorGlow.x}% ${cursorGlow.y}%, rgba(255,210,182,0.14) 0%, rgba(253,101,47,0.1) 30%, transparent 68%)`,
+    opacity: cursorGlow.active ? 1 : 0,
+    transition: "opacity 220ms ease",
+  };
 
   return (
     <div className="flex flex-col min-h-screen pt-20 bg-gradient-to-b from-[#00031A] to-[#001F5B] text-white">
       <HeroScroll
         welcomeMessage="Explore Sponsorship Opportunities"
         subMessage="Support SHPE @ Cornell"
-        showButton={false}
+        showButton={true}
+        buttonHref={givingDayCampaign.url}
+        buttonText="Cornell Giving Day"
       />
 
-      <section className="max-w-4xl mx-auto py-16">
-        <h1 className="text-4xl font-extrabold mb-6 text-center">
-          Partner With Us
-        </h1>
-        <p className="text-xl leading-relaxed text-gray-300 text-center">
-          Cornell SHPE collaborates with corporate partners to bring impactful
-          workshops, mentorship, scholarships, and career opportunities to our
-          members. Thank you to all our sponsors for your generous support!
-        </p>
+      <section className="max-w-6xl mx-auto py-4 px-4">
+        <div
+          className="relative overflow-hidden rounded-xl border border-[#FD652F]/45 bg-gradient-to-br from-[#00143F] via-[#001B52] to-[#002763] px-4 py-4 sm:px-6 sm:py-5 shadow-[0_14px_30px_rgba(0,0,0,0.3)]"
+          onMouseMove={handleLetterMouseMove}
+          onMouseEnter={() =>
+            setCursorGlow((prev) => ({ ...prev, active: true }))
+          }
+          onMouseLeave={() =>
+            setCursorGlow((prev) => ({ ...prev, active: false }))
+          }
+        >
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_15%_20%,rgba(133,182,255,0.18)_0%,transparent_42%),radial-gradient(circle_at_80%_70%,rgba(253,101,47,0.12)_0%,transparent_38%)]" />
+          <div
+            className="pointer-events-none absolute inset-0"
+            style={interactiveGlowStyle}
+          />
+          <span className="pointer-events-none absolute left-4 top-4 text-2xl text-[#FFD2B6]/80">
+            ❦
+          </span>
+          <span className="pointer-events-none absolute right-4 top-4 text-2xl text-[#FFD2B6]/80">
+            ❦
+          </span>
+          <span className="pointer-events-none absolute bottom-4 left-4 text-2xl text-[#FFD2B6]/80">
+            ❦
+          </span>
+          <span className="pointer-events-none absolute bottom-4 right-4 text-2xl text-[#FFD2B6]/80">
+            ❦
+          </span>
+
+          <div className="relative z-10 mx-auto max-w-[980px] text-[#EAF2FF]">
+            <svg
+              viewBox="0 0 800 140"
+              aria-hidden="true"
+              className="mx-auto block w-full max-w-[760px] text-[#FFD2B6]"
+            >
+              <g
+                fill="none"
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M30 70h170" strokeWidth="1.6" opacity=".7" />
+                <path d="M600 70h170" strokeWidth="1.6" opacity=".7" />
+                <path
+                  d="M200 70c40 0 48-34 88-34s48 34 88 34"
+                  strokeWidth="2.4"
+                />
+                <path
+                  d="M600 70c-40 0-48-34-88-34s-48 34-88 34"
+                  strokeWidth="2.4"
+                />
+                <path
+                  d="M322 70c20 0 30-18 42-18s22 18 42 18"
+                  strokeWidth="2.2"
+                />
+                <path
+                  d="M478 70c-20 0-30-18-42-18s-22 18-42 18"
+                  strokeWidth="2.2"
+                />
+                <circle cx="400" cy="70" r="6" strokeWidth="2" />
+                <path
+                  d="M400 58v-16M400 82v16M388 70h-16M412 70h16"
+                  strokeWidth="1.5"
+                  opacity=".7"
+                />
+              </g>
+            </svg>
+
+            <div className="text-center">
+              <p className="mb-2 text-xs uppercase tracking-[0.2em] text-[#85B6FF]">
+                A Letter from SHPE at Cornell
+              </p>
+              <h1 className="mb-2 font-serif text-2xl font-semibold sm:text-3xl">
+                Partner With Us
+              </h1>
+              <p className="mx-auto max-w-4xl font-serif text-sm leading-relaxed text-[#D6E5FF] sm:text-base">
+                Cornell SHPE collaborates with corporate partners to bring
+                impactful workshops, mentorship, scholarships, and career
+                opportunities to our members.
+              </p>
+              <p className="mx-auto mt-2 max-w-4xl font-serif text-sm italic text-[#FFD2B6] sm:text-base">
+                Thank you to our sponsors, because of{" "}
+                <span className="impact-you">you</span> our students can keep
+                building community, lead, and explore opportunities.
+              </p>
+              <a
+                href="https://securelb.imodules.com/s/1717/giving/interior.aspx?sid=1717&gid=2&pgid=16421&bledit=1&dids=789.&appealcode=GIVDY25P"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-4 inline-flex items-center justify-center rounded-full border border-[#FD652F]/45 bg-[#FD652F] px-6 py-2.5 font-serif text-base font-semibold text-white shadow-[0_6px_16px_rgba(253,101,47,0.28)] transition-all duration-200 hover:scale-[1.02] hover:bg-[#ff7a4a]"
+              >
+                Donate now
+              </a>
+            </div>
+
+            <svg
+              viewBox="0 0 800 50"
+              aria-hidden="true"
+              className="mx-auto mt-4 block w-full max-w-[620px] text-[#FFD2B6]"
+            >
+              <g fill="none" stroke="currentColor" strokeLinecap="round">
+                <path d="M130 25h210" strokeWidth="1.2" opacity=".6" />
+                <path d="M460 25h210" strokeWidth="1.2" opacity=".6" />
+                <path
+                  d="M340 25c18 0 18-12 36-12s18 12 36 12"
+                  strokeWidth="1.8"
+                />
+                <path
+                  d="M460 25c-18 0-18-12-36-12s-18 12-36 12"
+                  strokeWidth="1.8"
+                />
+              </g>
+            </svg>
+          </div>
+        </div>
       </section>
 
       <section>
@@ -176,7 +229,7 @@ export default function SponsorPage() {
           Our Sponsors
         </h2>
 
-        {Object.entries(sponsors)
+        {Object.entries(sponsorsByTier)
           .filter(([_, logos]) => (logos as string[]).length > 0)
           .map(([tier, logos]) => (
             <div key={tier} className="mb-16">
@@ -230,25 +283,33 @@ export default function SponsorPage() {
                   </tr>
                 </thead>
                 <tbody>
-                  {benefits.map(
-                    ([benefit, platinum, gold, silver, bronze, other], i) => (
-                      <tr
-                        key={i}
-                        className={`transition ${
-                          i % 2 === 0 ? "bg-[#1B2340]/70" : "bg-[#2A355D]/50"
-                        } hover:bg-[#344b7e]/30`}
-                      >
-                        <td className="py-3 px-4 font-medium text-gray-100 whitespace-pre-wrap">
-                          {benefit}
-                        </td>
-                        <td className="py-3 px-4 text-center">{platinum}</td>
-                        <td className="py-3 px-4 text-center">{gold}</td>
-                        <td className="py-3 px-4 text-center">{silver}</td>
-                        <td className="py-3 px-4 text-center">{bronze}</td>
-                        <td className="py-3 px-4 text-center">{other}</td>
-                      </tr>
-                    )
-                  )}
+                  {sponsorshipBenefits.map((row, i) => (
+                    <tr
+                      key={row.benefit}
+                      className={`transition ${
+                        i % 2 === 0 ? "bg-[#1B2340]/70" : "bg-[#2A355D]/50"
+                      } hover:bg-[#344b7e]/30`}
+                    >
+                      <td className="py-3 px-4 font-medium text-gray-100 whitespace-pre-wrap">
+                        {row.benefit}
+                      </td>
+                      <td className="py-3 px-4 text-center">
+                        {renderBenefitValue(row.platinum)}
+                      </td>
+                      <td className="py-3 px-4 text-center">
+                        {renderBenefitValue(row.gold)}
+                      </td>
+                      <td className="py-3 px-4 text-center">
+                        {renderBenefitValue(row.silver)}
+                      </td>
+                      <td className="py-3 px-4 text-center">
+                        {renderBenefitValue(row.bronze)}
+                      </td>
+                      <td className="py-3 px-4 text-center">
+                        {renderBenefitValue(row.other)}
+                      </td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </div>
