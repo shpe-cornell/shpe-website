@@ -11,7 +11,7 @@ const changa = Changa({
 });
 
 const buttonClass =
-  "w-[280px] px-6 py-4 text-xl text-white rounded-full transition font-semibold bg-[#001F5B] border border-white/30 hover:bg-[#0070C0] hover:scale-105";
+  "w-full max-w-[280px] px-6 py-3 sm:py-4 text-lg sm:text-xl text-white rounded-full transition font-semibold bg-[#001F5B] border border-white/30 hover:bg-[#0070C0] hover:scale-105";
 
 export default function MemberInfoPage() {
   const [loading, setLoading] = useState(true);
@@ -22,7 +22,7 @@ export default function MemberInfoPage() {
   }, []);
 
   return (
-    <div className="flex flex-col items-center pt-20 min-h-screen bg-gradient-to-b from-[#00031A] to-[#001f5b] pt-20 text-white font-sans">
+    <div className="flex flex-col items-center pt-20 min-h-screen bg-gradient-to-b from-[#00031A] to-[#001f5b] text-white font-sans">
       {/* Welcome Message Text */}
       <HeroScroll
         welcomeMessage="Explore Happenings for Members"
@@ -43,14 +43,14 @@ export default function MemberInfoPage() {
       ) : (
         <>
           {/* Upcoming Events Header */}
-          <h2 className="text-4xl font-extrabold text-[#FD652F] mb-6 mt-10 tracking-wide drop-shadow-lg">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#FD652F] mb-6 mt-10 tracking-wide drop-shadow-lg text-center px-4">
             Upcoming Events
           </h2>
 
           {/* Events Section */}
           <section className="w-full flex flex-col lg:flex-row-reverse justify-center gap-8 max-w-7xl px-4">
             {/* Calendar */}
-            <div className="order-1 lg:order-2 w-full max-w-[800px] h-[400px] lg:h-[600px] bg-[#002550] rounded-xl p-5 shadow-xl border border-[#004080] mx-auto">
+            <div className="order-1 lg:order-2 w-full max-w-[800px] h-[340px] sm:h-[400px] lg:h-[600px] bg-[#002550] rounded-xl p-4 sm:p-5 shadow-xl border border-[#004080] mx-auto">
               <iframe
                 src="https://calendar.google.com/calendar/u/0/embed?src=10c8673a173371a1e5b9a8f48a00471f49c586b233f14ab287c11a8818f933ea@group.calendar.google.com&ctz=America/New_York"
                 style={{ border: 0 }}
@@ -62,8 +62,8 @@ export default function MemberInfoPage() {
             </div>
 
             {/* Flyers (Behold posts) */}
-            <div className="order-2 lg:order-1 w-full lg:w-1/3 h-[400px] lg:h-[600px] bg-[#002550] rounded-xl p-5 shadow-xl border border-[#004080] overflow-y-auto scroll-mt-0">
-              <h3 className="text-2xl font-semibold text-[#40c4ff] mb-4 tracking-wide drop-shadow-sm text-center">
+            <div className="order-2 lg:order-1 w-full lg:w-1/3 h-[340px] sm:h-[400px] lg:h-[600px] bg-[#002550] rounded-xl p-4 sm:p-5 shadow-xl border border-[#004080] overflow-y-auto scroll-mt-0">
+              <h3 className="text-xl sm:text-2xl font-semibold text-[#40c4ff] mb-4 tracking-wide drop-shadow-sm text-center">
                 Explore Our Instagram
               </h3>
               <BeholdWidget feedId="5hnsHoxgKwXhkvgSiGYB" />
@@ -89,9 +89,9 @@ export default function MemberInfoPage() {
           </section>
 
           {/* Get Plugged In Section */}
-          <section className="w-full max-w-5xl text-center mt-10 mb-12">
+          <section className="w-full max-w-5xl text-center mt-10 mb-12 px-4">
             <h2
-              className={`text-4xl font-extrabold mb-8  text-[#40c4ff] tracking-wide drop-shadow-lg ${changa.className}`}
+              className={`text-3xl sm:text-4xl font-extrabold mb-8 text-[#40c4ff] tracking-wide drop-shadow-lg ${changa.className}`}
             >
               Get Plugged In
             </h2>

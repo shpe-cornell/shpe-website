@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "postbuild": "node scripts/remove-exported-checkin.mjs"
   },
   "dependencies": {
     "@behold/react": "^0.1.10",

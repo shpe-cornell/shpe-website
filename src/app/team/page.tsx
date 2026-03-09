@@ -22,7 +22,11 @@ export default function TeamPage() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-12 justify-items-center">
           {execBoard.map((member, idx) => (
-            <ExecCard key={`${member.name}-${idx}`} member={member} />
+            <ExecCard
+              key={`${member.name}-${idx}`}
+              member={member}
+              priority={idx < 2}
+            />
           ))}
         </div>
       </div>

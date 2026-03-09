@@ -27,10 +27,10 @@ type MemberCache = {
 function HeaderSection() {
   return (
     <section className="text-center px-6 md:px-20 mt-10 max-w-4xl mx-auto">
-      <h2 className="pb-5 text-4xl md:text-5xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-[#85B6FF] to-[#FD652F]">
+      <h2 className="pb-5 text-3xl md:text-5xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-[#85B6FF] to-[#FD652F]">
         Convention Points System
       </h2>
-      <p className="text-2xl text-[#3261a8] leading-relaxed max-w-prose mx-auto tracking-tight">
+      <p className="text-lg md:text-2xl text-[#3261a8] leading-relaxed max-w-prose mx-auto tracking-tight">
         Our club uses a point-based system to recognize active members. Points
         are awarded for attending events, participating in outreach, and
         volunteering. These points determine eligibility for conventions and
@@ -44,10 +44,10 @@ function HeaderSection() {
 function PointsDescription() {
   return (
     <div className="bg-gradient-to-br from-[#001F5B] via-[#003366] to-[#004080] shadow-xl border border-[#0070C0]/30 rounded-xl p-7 w-full max-w-[470px] mx-auto md:mx-0 backdrop-blur-sm">
-      <h3 className="text-center text-3xl md:text-4xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-[#FF7B4D] via-[#FD652F] to-[#FF5100] pb-2">
+      <h3 className="text-center text-2xl md:text-4xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-[#FF7B4D] via-[#FD652F] to-[#FF5100] pb-2">
         Points Breakdown
       </h3>
-      <ul className="mt-4 space-y-4 text-lg text-[#A4C2FF] text-left">
+      <ul className="mt-4 space-y-4 text-base md:text-lg text-[#A4C2FF] text-left">
         <li className="leading-snug">+1 — Complete Tech Workshops & Study Jams</li>
         <li className="leading-snug">+2 — Join Professional Development & Socials</li>
         <li className="leading-snug">+3 — Contribute to G-body Initiatives</li>
@@ -125,7 +125,7 @@ function PointsChecker() {
     <div className="flex flex-col items-center gap-6 w-full max-w-[420px] mt-12 md:mt-0 mx-auto">
       <label
         htmlFor="memberId"
-        className="text-3xl text-[#FD652F] font-bold text-center tracking-wide"
+        className="text-2xl sm:text-3xl text-[#FD652F] font-bold text-center tracking-wide"
       >
         Check My Points ✏️
       </label>
@@ -140,7 +140,7 @@ function PointsChecker() {
           value={memberId}
           onChange={(e) => setMemberId(e.target.value)}
           placeholder="Enter Your NetID"
-          className="w-[280px] px-5 py-3 text-center text-white bg-[#002F6C] border-2 border-[#FD652F] rounded-lg outline-none placeholder:text-[#A4C2FF] focus:ring-2 focus:ring-[#FD652F] transition"
+          className="w-full max-w-[280px] px-5 py-3 text-center text-white bg-[#002F6C] border-2 border-[#FD652F] rounded-lg outline-none placeholder:text-[#A4C2FF] focus:ring-2 focus:ring-[#FD652F] transition"
           autoComplete="off"
         />
         <button
@@ -165,7 +165,7 @@ function PointsChecker() {
       {lookupAttempted && !loading && points !== null && (
         <div className="text-center mt-4">
           <p className="text-xl text-[#0070C0] font-semibold">{name}</p>
-          <p className="text-7xl font-extrabold text-[#00A4FF] drop-shadow-lg">
+          <p className="text-6xl sm:text-7xl font-extrabold text-[#00A4FF] drop-shadow-lg">
             {points}
           </p>
         </div>

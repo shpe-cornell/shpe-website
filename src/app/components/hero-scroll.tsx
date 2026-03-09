@@ -103,7 +103,7 @@ export default function HeroScroll({
           <motion.h1
             initial={{ opacity: 1, y: 0 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-3xl sm:text-4xl md:text-6xl font-bold tracking-tight"
+            className="text-2xl sm:text-4xl md:text-6xl font-bold tracking-tight"
             style={{ fontFamily: "'Changa', sans-serif" }}
           >
             <span className="paint-fill-title" data-text={welcomeMessage}>
@@ -128,8 +128,8 @@ export default function HeroScroll({
               transition={{ delay: 1.2 }}
               className="mt-6 relative inline-flex items-center justify-center"
             >
-              <Link href={buttonHref}>
-                <button className="join-community-btn px-5 py-2 md:px-8 md:py-3 text-sm md:text-md font-medium rounded-full text-white hover:shadow-xl hover:scale-105 transition-all duration-300">
+              <Link href={buttonHref} className="w-full sm:w-auto">
+                <button className="join-community-btn w-full sm:w-auto px-5 py-2 md:px-8 md:py-3 text-sm md:text-md font-medium rounded-full text-white hover:shadow-xl hover:scale-105 transition-all duration-300">
                   <span className="wave-button-label">
                     {buttonText.split("").map((char, idx) => (
                       <span

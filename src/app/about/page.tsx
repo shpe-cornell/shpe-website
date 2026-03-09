@@ -8,6 +8,11 @@ import HeroScroll from "../components/hero-scroll";
 //   // "/images/leadership/2025-2026/boba_day.png",
 // ];
 export default function AboutPage() {
+  const sectionHeadingClass =
+    "text-[#FD652F] text-2xl sm:text-3xl px-5 sm:px-10 py-6 sm:py-8 font-bold";
+  const sectionBodyClass =
+    "text-white text-base sm:text-xl leading-relaxed px-5 sm:px-10";
+
   return (
     <div className="flex flex-col min-h-screen pt-20 bg-gradient-to-b from-[#00031A] to-[#001F5B]">
       {/* Page title and images */}
@@ -18,10 +23,8 @@ export default function AboutPage() {
       />
 
       {/* Mission Statement section */}
-      <h2 className="text-[#FD652F] text-3xl px-10 py-8 font-bold">
-        Mission Statement
-      </h2>
-      <p className="text-white text-xl px-10">
+      <h2 className={sectionHeadingClass}>Mission Statement</h2>
+      <p className={sectionBodyClass}>
         SHPE changes lives by empowering the Hispanic community and individuals
         from all backgrounds to realize their fullest potential and impact the
         world through STEM awareness, access, support, and development. Our
@@ -42,10 +45,8 @@ export default function AboutPage() {
       </div>
 
       {/* SHPE National section */}
-      <h2 className="text-[#FD652F] text-3xl px-10 pb-8 font-bold">
-        About SHPE National
-      </h2>
-      <p className="text-white text-xl px-10">
+      <h2 className={sectionHeadingClass}>About SHPE National</h2>
+      <p className={sectionBodyClass}>
         The Society of Hispanic Professional Engineers (SHPE), Inc. is a
         non-profit organization dedicated to increasing the participation of
         Hispanic professionals and college students in the fields of
@@ -69,10 +70,8 @@ export default function AboutPage() {
       </div>
 
       {/* Cornell Chapter section */}
-      <h2 className="text-[#FD652F] text-3xl px-10 pb-8 font-bold">
-        Chapter History
-      </h2>
-      <p className="text-white px-10 text-xl">
+      <h2 className={sectionHeadingClass}>Chapter History</h2>
+      <p className={sectionBodyClass}>
         The Cornell University Student Chapter of SHPE was founded in the fall
         of 1979 by Federico Moncayo, Edwin Rivera, Samuel Ramos, and Mario
         Rivera, under the advisement of Ron Simmons, the Director of the
@@ -95,7 +94,7 @@ export default function AboutPage() {
       </div>
 
       {/* Bylaws section */}
-      <h1 className="text-[#FD652F] text-3xl px-10 pb-8 font-bold">
+      <h1 className="text-[#FD652F] text-2xl sm:text-3xl px-5 sm:px-10 pb-8 font-bold">
         {/* Link to gdoc or cg once its ready */}
         Explore our bylaws{" "}
         <a className="underline" href="https://google.com">

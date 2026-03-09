@@ -5,9 +5,10 @@ import type { ExecMember } from "../data/team-data";
 
 interface ExecCardProps {
   member: ExecMember;
+  priority?: boolean;
 }
 
-export default function ExecCard({ member }: ExecCardProps) {
+export default function ExecCard({ member, priority = false }: ExecCardProps) {
   return (
     <div className="w-[270px] rounded-lg overflow-hidden group relative bg-[#001f5b] border border-gray-600/30 hover:border-orange-400/50 shadow-lg hover:shadow-[0_0_20px_-5px_rgba(100,150,255,0.3)] transition-all duration-300">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(100,150,255,0.08)_0%,transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -22,6 +23,8 @@ export default function ExecCard({ member }: ExecCardProps) {
             src={member.image}
             alt={member.name}
             fill
+            sizes="200px"
+            priority={priority}
             className="object-cover group-hover:brightness-110 transition duration-300"
             draggable={false}
           />

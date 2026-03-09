@@ -373,3 +373,15 @@ body {
   --idle-delay: 3.72s;
   --idle-duration: 4.35s;
 }
+
+@media (max-width: 640px) {
+  .paint-fill-title,
+  .paint-fill-title::before {
+    white-space: normal;
+    text-wrap: balance;
+  }
+
+  .hero-value-staircase {
+    display: none;
+  }
+}

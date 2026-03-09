@@ -21,7 +21,7 @@ export function Navigation() {
   const getNavLinkClasses = (isActive: boolean) =>
     [
       "relative px-2 py-1.5 flex items-center justify-center",
-      "font-bold text-xs md:text-sm transition-all duration-150",
+      "font-bold text-sm md:text-sm transition-all duration-150",
       "after:content-[''] after:absolute after:left-0 after:-bottom-0.5 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:transition-transform after:duration-300 after:ease-out after:bg-[#FD652F] hover:after:scale-x-100",
       isActive
         ? "text-white after:scale-x-100"
@@ -31,7 +31,7 @@ export function Navigation() {
   const pointsButtonClasses = (isActive: boolean) =>
     [
       "relative px-3 py-1.5 flex items-center justify-center rounded-full",
-      "font-bold text-xs md:text-sm transition-all duration-250",
+      "font-bold text-sm md:text-sm transition-all duration-250",
       "border border-[#85B6FF]/40 bg-[#001F5B]/28 backdrop-blur-sm",
       isActive
         ? "text-white border-[#FD652F]/70 bg-[#0e2f70]/55 shadow-[0_4px_12px_rgba(253,101,47,0.18)]"
