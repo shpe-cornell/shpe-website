@@ -34,7 +34,7 @@ export const quickLinks: FooterQuickLink[] = [
     href: "https://shpe.org/membership/become-a-member/",
   },
   {
-    label: "Add our Calender",
+    label: "Add our Calendar",
     href: "https://calendar.google.com/calendar/u/0?cid=MTBjODY3M2ExNzMzNzFhMWU1YjlhOGY0OGEwMDQ3MWY0OWM1ODZiMjMzZjE0YWIyODdjMTFhODgxOGY5MzNlYUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t",
   },
 ];
