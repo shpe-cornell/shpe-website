@@ -4,7 +4,6 @@
 import { useState, type CSSProperties, type MouseEvent } from "react";
 import Donation_Section from "../components/donation-boxes";
 import HeroScroll from "../components/hero-scroll";
-import { givingDayCampaign } from "../data/giving-day-data";
 import {
   sponsorshipBenefits,
   sponsorsByTier,
@@ -103,8 +102,8 @@ export default function SponsorPage() {
         welcomeMessage="Explore Sponsorship Opportunities"
         subMessage="Support SHPE @ Cornell"
         showButton={true}
-        buttonHref={givingDayCampaign.url}
-        buttonText="Cornell Giving Day"
+        buttonHref="https://securelb.imodules.com/s/1717/giving/interior.aspx?sid=1717&gid=2&pgid=16421&bledit=1&dids=789."
+        buttonText="Donate Now"
       />
 
       <section className="max-w-6xl mx-auto py-4 px-4">
@@ -193,7 +192,7 @@ export default function SponsorPage() {
                 building community, lead, and explore opportunities.
               </p>
               <a
-                href="https://securelb.imodules.com/s/1717/giving/interior.aspx?sid=1717&gid=2&pgid=16421&bledit=1&dids=789.&appealcode=GIVDY25P"
+                href="https://securelb.imodules.com/s/1717/giving/interior.aspx?sid=1717&gid=2&pgid=16421&bledit=1&dids=789."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-4 inline-flex items-center justify-center rounded-full border border-[#FD652F]/45 bg-[#FD652F] px-6 py-2.5 font-serif text-base font-semibold text-white shadow-[0_6px_16px_rgba(253,101,47,0.28)] transition-all duration-200 hover:scale-[1.02] hover:bg-[#ff7a4a]"
@@ -355,7 +354,7 @@ export default function SponsorPage() {
           </a>
 
           <a
-            href="https://securelb.imodules.com/s/1717/giving/interior.aspx?sid=1717&gid=2&pgid=16421&bledit=1&dids=789.&appealcode=GIVDY25P"
+            href="https://securelb.imodules.com/s/1717/giving/interior.aspx?sid=1717&gid=2&pgid=16421&bledit=1&dids=789."
             target="_blank"
             rel="noopener noreferrer"
             className={buttonCommonClasses}

@@ -3,7 +3,6 @@ import { Geist, Geist_Mono, Changa } from "next/font/google";
 import "./globals.css";
 import { Navigation } from "./components/navigation";
 import { FooterNav } from "./components/footer-nav";
-import { GivingDayPopup } from "./components/giving-day-popup";
 import { CursorBackgroundFx } from "./components/cursor-background-fx";
 
 // const jaldi = Jaldi({
@@ -73,7 +72,6 @@ export default function RootLayout({
           <header className="text-white text-center">
             <Navigation />
           </header>
-          <GivingDayPopup />
           {children}
           <footer className="text-white">
             <FooterNav />
