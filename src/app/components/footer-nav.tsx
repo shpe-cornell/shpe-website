@@ -2,10 +2,22 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { quickLinks, socialLinks } from "../data/footer-data";
 
 export function FooterNav() {
+  const path = usePathname();
   const currentYear = new Date().getFullYear();
+  const donateLink = quickLinks.find(
+    ({ label }) => label.toLowerCase() === "donate",
+  );
+  const standardQuickLinks = quickLinks.filter(
+    ({ label }) => label.toLowerCase() !== "donate",
+  );
+
+  if (path?.startsWith("/register/") || path?.startsWith("/admin")) {
+    return null;
+  }
 
   return (
     <nav className="w-full border-t border-white/15 bg-[#001F5B] px-6 md:px-10 py-8">
@@ -25,7 +37,7 @@ export function FooterNav() {
                 priority
               />
               <p className="mt-2 text-xs text-[#FD652F] font-semibold">
-                @ {currentYear} SHPE at Cornell
+                © {currentYear} SHPE at Cornell
               </p>
             </Link>
           </div>
@@ -70,7 +82,7 @@ export function FooterNav() {
             <p className="text-sm font-bold tracking-wide text-[#85B6FF]">
               Quick Links:
             </p>
-            {quickLinks.map(({ label, href }) => (
+            {standardQuickLinks.map(({ label, href }) => (
               <Link
                 key={label}
                 href={href}
@@ -81,6 +93,26 @@ export function FooterNav() {
                 {label}
               </Link>
             ))}
+            {donateLink && (
+              <Link
+                href={donateLink.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-2 inline-flex items-center justify-center rounded-full border border-[#FD652F] bg-[#FD652F] px-5 py-1.5 text-sm font-semibold text-white shadow-[0_6px_16px_rgba(253,101,47,0.32)] transition-all duration-200 hover:scale-[1.03] hover:bg-[#e65516]"
+              >
+                <span className="wave-button-label">
+                  {"Donate".split("").map((char, idx) => (
+                    <span
+                      key={`${char}-${idx}`}
+                      className="wave-letter-soft"
+                      style={{ animationDelay: `${idx * 0.05}s` }}
+                    >
+                      {char}
+                    </span>
+                  ))}
+                </span>
+              </Link>
+            )}
           </div>
         </div>
 

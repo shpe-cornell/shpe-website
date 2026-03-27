@@ -30,6 +30,10 @@ export const socialLinks: SocialLink[] = [
 export const quickLinks: FooterQuickLink[] = [
   { label: "SHPE '26 Convention", href: "https://shpe.org/2026-shpe/" },
   {
+    label: "Donate",
+    href: "https://securelb.imodules.com/s/1717/giving/interior.aspx?sid=1717&gid=2&pgid=16421&bledit=1&dids=789.",
+  },
+  {
     label: "Become a National Member",
     href: "https://shpe.org/membership/become-a-member/",
   },

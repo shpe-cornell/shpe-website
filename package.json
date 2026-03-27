@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@behold/react": "^0.1.10",
+    "@supabase/ssr": "^0.9.0",
     "@supabase/supabase-js": "^2.98.0",
     "framer-motion": "^12.20.1",
     "googleapis": "^154.1.0",
@@ -18,6 +19,7 @@
     "next": "^15.5.12",
     "papaparse": "^5.5.3",
     "pdfjs-dist": "^5.3.93",
+    "qrcode": "^1.5.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-icons": "^5.5.0"
@@ -27,6 +29,7 @@
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/papaparse": "^5.3.16",
+    "@types/qrcode": "^1.5.6",
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
     "eslint": "^10.0.1",

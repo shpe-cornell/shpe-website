@@ -18,6 +18,10 @@ export function Navigation() {
   const path = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
 
+  if (path?.startsWith("/register/") || path?.startsWith("/admin")) {
+    return null;
+  }
+
   const getNavLinkClasses = (isActive: boolean) =>
     [
       "relative px-2 py-1.5 flex items-center justify-center",

@@ -1,26 +1,24 @@
 "use client";
 
-import { supabase } from "../lib/supabase";
 import Head from "next/head";
 import Image from "next/image";
 import { useState, useRef } from "react";
 import { Changa } from "next/font/google";
 import CountdownTimer from "../components/countdown";
-import Papa from "papaparse";
 import { countryBubbles, eventBubbles } from "../data/points-carousel-data";
 
 const changa = Changa({ subsets: ["latin"], weight: ["400", "700"] });
 
-// Define CSV row structure
-type CSVRow = {
-  NetID: string;
-  Name: string;
-  "Total Points": string; // initially a string from CSV
-};
-
 type MemberCache = {
   points: number;
   name: string;
+};
+
+type PointsLookupResponse = {
+  status?: "success" | "not_found";
+  name?: string;
+  totalPoints?: number;
+  error?: string;
 };
 
 /* Header Section */
@@ -48,8 +46,12 @@ function PointsDescription() {
         Points Breakdown
       </h3>
       <ul className="mt-4 space-y-4 text-base md:text-lg text-[#A4C2FF] text-left">
-        <li className="leading-snug">+1 — Complete Tech Workshops & Study Jams</li>
-        <li className="leading-snug">+2 — Join Professional Development & Socials</li>
+        <li className="leading-snug">
+          +1 — Complete Tech Workshops & Study Jams
+        </li>
+        <li className="leading-snug">
+          +2 — Join Professional Development & Socials
+        </li>
         <li className="leading-snug">+3 — Contribute to G-body Initiatives</li>
         <li className="leading-snug">+5 — Lead/Serve in Community Projects</li>
       </ul>
@@ -74,7 +76,7 @@ function PointsChecker() {
     const id = memberId.trim().toLowerCase();
     if (!id) return;
 
-    // Check cache first
+    // Return from cache if already looked up
     if (cacheRef.current[id]) {
       const cached = cacheRef.current[id];
       setPoints(cached.points);
@@ -87,33 +89,29 @@ function PointsChecker() {
     setName(null);
 
     try {
-      const res = await fetch("/points.csv");
-      if (!res.ok) throw new Error("CSV not found");
-      const csvText = await res.text();
-
-      // Parse CSV with type
-      const parsed = Papa.parse<CSVRow>(csvText, {
-        header: true,
-        skipEmptyLines: true,
+      const response = await fetch("/api/points", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ netId: id }),
       });
 
-      const rows: CSVRow[] = parsed.data;
+      const payload = (await response.json()) as PointsLookupResponse;
 
-      // Find member by NetID
-      const row = rows.find((r) => r.NetID.trim().toLowerCase() === id);
+      if (!response.ok) {
+        throw new Error(payload.error ?? "Could not fetch points.");
+      }
 
-      if (row) {
-        const totalPoints = Number(row["Total Points"] || 0);
-        const fullName = row.Name || "Unknown";
-        setPoints(totalPoints);
-        setName(fullName);
-        cacheRef.current[id] = { points: totalPoints, name: fullName };
-      } else {
+      if (payload.status !== "success" || payload.totalPoints === undefined || !payload.name) {
         setPoints(null);
         setName(null);
+        return;
       }
+
+      setPoints(payload.totalPoints);
+      setName(payload.name);
+      cacheRef.current[id] = { points: payload.totalPoints, name: payload.name };
     } catch (err) {
-      console.error("Error reading CSV:", err);
+      console.error("Error fetching points:", err);
       setPoints(null);
       setName(null);
     } finally {
@@ -142,6 +140,7 @@ function PointsChecker() {
           placeholder="Enter Your NetID"
           className="w-full max-w-[280px] px-5 py-3 text-center text-white bg-[#002F6C] border-2 border-[#FD652F] rounded-lg outline-none placeholder:text-[#A4C2FF] focus:ring-2 focus:ring-[#FD652F] transition"
           autoComplete="off"
+          autoCapitalize="none"
         />
         <button
           type="submit"
@@ -168,6 +167,7 @@ function PointsChecker() {
           <p className="text-6xl sm:text-7xl font-extrabold text-[#00A4FF] drop-shadow-lg">
             {points}
           </p>
+          <p className="text-[#A4C2FF] text-sm mt-1">points this year</p>
         </div>
       )}
 
@@ -175,6 +175,9 @@ function PointsChecker() {
         <div className="text-center mt-6">
           <p className="text-xl text-[#0070C0] font-semibold tracking-wide">
             NetID not recognized.
+          </p>
+          <p className="text-[#A4C2FF] text-sm mt-1">
+            Check in at your next event to get started!
           </p>
         </div>
       )}
@@ -250,7 +253,9 @@ function EventsCarouselSection() {
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_15%,rgba(114,169,190,0.12),transparent_45%),radial-gradient(circle_at_50%_85%,rgba(253,101,47,0.10),transparent_48%)]" />
           <div
             className="relative z-10 flex flex-col items-center gap-4"
-            style={{ animation: "countryStreamVertical 38s linear infinite reverse" }}
+            style={{
+              animation: "countryStreamVertical 38s linear infinite reverse",
+            }}
           >
             {verticalBubbles.map((bubble, idx) => (
               <div
@@ -366,12 +371,12 @@ export default function PointsPage() {
         <MobileCarouselsSection />
       </main>
 
-      {/* Right rail carousel (does not affect existing layout dimensions) */}
+      {/* Right rail carousel */}
       <div className="hidden xl:block absolute right-4 top-[170px] w-[220px] z-20">
         <CountryRepresentationSection />
       </div>
 
-      {/* Left rail events carousel (does not affect existing layout dimensions) */}
+      {/* Left rail events carousel */}
       <div className="hidden xl:block absolute left-4 top-[170px] w-[220px] z-20">
         <EventsCarouselSection />
       </div>
