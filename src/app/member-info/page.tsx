@@ -13,12 +13,38 @@ const changa = Changa({
 const buttonClass =
   "w-full max-w-[280px] px-6 py-3 sm:py-4 text-lg sm:text-xl text-white rounded-full transition font-semibold bg-[#001F5B] border border-white/30 hover:bg-[#0070C0] hover:scale-105";
 
+type MemberPoints = {
+  name: string;
+  netId: string;
+  points: number;
+};
+
 export default function MemberInfoPage() {
   const [loading, setLoading] = useState(true);
+  const [pointsLoading, setPointsLoading] = useState(true);
+  const [members, setMembers] = useState<MemberPoints[]>([]);
 
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 2000);
     return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    const fetchPoints = async () => {
+      try {
+        const response = await fetch("/api/points/all");
+        const data = await response.json();
+        if (data.status === "success") {
+          setMembers(data.members);
+        }
+      } catch (error) {
+        console.error("Error fetching points:", error);
+      } finally {
+        setPointsLoading(false);
+      }
+    };
+
+    fetchPoints();
   }, []);
 
   return (
@@ -125,6 +151,47 @@ export default function MemberInfoPage() {
                 <button className={buttonClass}>Follow us on LinkedIn</button>
               </a>
             </div>
+          </section>
+
+          {/* Points Leaderboard Section */}
+          <section className="w-full max-w-5xl text-center mt-10 mb-12 px-4">
+            <h2
+              className={`text-3xl sm:text-4xl font-extrabold mb-8 text-[#FD652F] tracking-wide drop-shadow-lg ${changa.className}`}
+            >
+              Points Leaderboard
+            </h2>
+            {pointsLoading ? (
+              <div className="flex justify-center items-center">
+                <img
+                  src="/images/shpe-logos/shpe-emblem-transparent.png"
+                  className="w-20 h-20 animate-spin"
+                  alt="Loading points"
+                />
+              </div>
+            ) : (
+              <div className="bg-[#002550] rounded-xl p-6 shadow-xl border border-[#004080] max-h-96 overflow-y-auto">
+                <div className="space-y-2">
+                  {members.map((member, index) => (
+                    <div
+                      key={member.netId}
+                      className="flex justify-between items-center py-2 px-4 bg-[#001F5B] rounded-lg border border-[#0070C0]/30"
+                    >
+                      <div className="flex items-center gap-4">
+                        <span className="text-[#40c4ff] font-bold text-lg w-8 text-left">
+                          {index + 1}.
+                        </span>
+                        <span className="text-white font-semibold text-left">
+                          {member.name}
+                        </span>
+                      </div>
+                      <span className="text-[#FD652F] font-bold text-xl">
+                        {member.points} pts
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </section>
         </>
       )}
