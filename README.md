@@ -46,6 +46,7 @@ src/
 ```
 
 ## Security Notes
-All database operations are server-side through API routes.
-Uses service role key only (SUPABASE_SERVICE_ROLE_KEY), never anon key.
-Includes in-memory rate limiting (20 requests per minute per IP) on all public API routes.
+
+- All database operations are server-side through API routes.
+- Uses service role key only (`SUPABASE_SERVICE_ROLE_KEY`), never anon key.
+- Includes in-memory rate limiting (20 requests per minute per IP) on all public API routes.
