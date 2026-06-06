@@ -1,36 +1,51 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+shpe-website
+Public-facing website for SHPE Cornell built with Next.js App Router.
 
 ## Getting Started
-
-First, run the development server:
-
-```bash
+```
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+```
+Open http://localhost:3000
+
+Create a `.env` file in the project root with:
+
+```
+NEXT_PUBLIC_SUPABASE_URL=
+SUPABASE_SERVICE_ROLE_KEY=
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## File Structure
+```
+src/
+  app/
+    about/              # About page
+    gallery/            # Photo gallery page
+    join/               # Membership join form
+    member-info/        # Member points and info lookup
+    points/             # Points leaderboard page
+    sponsorship/        # Sponsorship info page
+    team/               # Exec team page
+    checkin/[eventId]/  # Event check-in flow
+    register/[eventId]/ # Event registration flow
+    api/
+      checkin/          # Check-in API route
+      join/             # Join/membership API route
+      points/           # Points lookup API routes
+      register/         # Event registration API route
+    components/         # Shared UI components (nav, footer, hero, cards, etc.)
+    data/               # Static content data (team, events, navigation, etc.)
+    globals.css         # Shared styles
+    layout.tsx          # Root layout (font, HTML shell)
+    page.tsx            # Home page
+  lib/
+    supabase-server.ts  # Supabase client
+    rate-limit.ts       # API rate limiter
+    api-guards.ts       # Shared API guard helpers
+    validation.ts       # Input validation
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Security Notes
+All database operations are server-side through API routes.
+Uses service role key only (SUPABASE_SERVICE_ROLE_KEY), never anon key.
+Includes in-memory rate limiting (20 requests per minute per IP) on all public API routes.
