@@ -41,19 +41,13 @@ export const tierStyles: Record<Tier, TierStyle> = {
 };
 
 export const sponsorsByTier: Record<Tier | "Other", string[]> = {
-  Platinum: [
-    "/images/sponsors/Lockheed_Martin_logo.svg.png",
-    "/images/sponsors/Intuit.png",
-  ],
+  Platinum: [],
   Gold: [
-    "/images/sponsors/Capital_One_logo.svg.png",
+    "/images/sponsors/Bloomberg.jpeg",
     "/images/sponsors/Accenture.svg-2.png",
   ],
   Silver: [],
-  Bronze: [
-    "/images/sponsors/Jane_Street.png",
-    "/images/sponsors/Bloomberg.jpeg",
-  ],
+  Bronze: ["/images/sponsors/Jane_Street.png"],
   Other: [],
 };
 

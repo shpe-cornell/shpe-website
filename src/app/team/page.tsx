@@ -15,7 +15,7 @@ export default function TeamPage() {
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <div className="text-center mb-10">
           <h1 className="text-4xl font-bold tracking-tight text-[#FD652F] drop-shadow-md">
-            Executive Board 2025-2026
+            Executive Board 2026-2027
           </h1>
           <div className="mx-auto mt-4 h-1 w-24 bg-[#0070C0] opacity-80"></div>
         </div>

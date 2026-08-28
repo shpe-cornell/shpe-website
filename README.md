@@ -8,6 +8,8 @@ npm run dev
 ```
 Open http://localhost:3000
 
+To use points feature in dev:
+
 Create a `.env` file in the project root with:
 
 ```

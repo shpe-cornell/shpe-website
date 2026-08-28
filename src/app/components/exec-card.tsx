@@ -26,6 +26,7 @@ export default function ExecCard({ member, priority = false }: ExecCardProps) {
             sizes="200px"
             priority={priority}
             className="object-cover group-hover:brightness-110 transition duration-300"
+            style={{ objectPosition: member.imagePosition || "center" }}
             draggable={false}
           />
           <div className="absolute inset-0 bg-[linear-gradient(135deg,transparent_95%,rgba(100,150,255,0.1)_100%)]" />
