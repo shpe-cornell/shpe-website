@@ -11,14 +11,40 @@ const changa = Changa({
 });
 
 const buttonClass =
-  "w-full max-w-[280px] px-6 py-3 sm:py-4 text-lg sm:text-xl text-white rounded-full transition font-semibold bg-[#001F5B] border border-white/30 hover:bg-[#0070C0] hover:scale-105";
+  "w-full max-w-[280px] px-6 py-3 sm:py-4 text-lg sm:text-xl text-white rounded-lg transition font-semibold bg-[#001F5B] border-2 border-[#40c4ff] hover:bg-[#0070C0] hover:border-[#85B6FF] hover:scale-105";
+
+type MemberPoints = {
+  name: string;
+  netId: string;
+  points: number;
+};
 
 export default function MemberInfoPage() {
   const [loading, setLoading] = useState(true);
+  const [pointsLoading, setPointsLoading] = useState(true);
+  const [members, setMembers] = useState<MemberPoints[]>([]);
 
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 2000);
     return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    const fetchPoints = async () => {
+      try {
+        const response = await fetch("/api/points/all");
+        const data = await response.json();
+        if (data.status === "success") {
+          setMembers(data.members);
+        }
+      } catch (error) {
+        console.error("Error fetching points:", error);
+      } finally {
+        setPointsLoading(false);
+      }
+    };
+
+    fetchPoints();
   }, []);
 
   return (
@@ -50,7 +76,7 @@ export default function MemberInfoPage() {
           {/* Events Section */}
           <section className="w-full flex flex-col lg:flex-row-reverse justify-center gap-8 max-w-7xl px-4">
             {/* Calendar */}
-            <div className="order-1 lg:order-2 w-full max-w-[800px] h-[340px] sm:h-[400px] lg:h-[600px] bg-[#002550] rounded-xl p-4 sm:p-5 shadow-xl border border-[#004080] mx-auto">
+            <div className="order-1 lg:order-2 w-full max-w-[800px] h-[340px] sm:h-[400px] lg:h-[600px] bg-[#002550] rounded-xl p-4 sm:p-5 shadow-xl mx-auto">
               <iframe
                 src="https://calendar.google.com/calendar/u/0/embed?src=10c8673a173371a1e5b9a8f48a00471f49c586b233f14ab287c11a8818f933ea@group.calendar.google.com&ctz=America/New_York"
                 style={{ border: 0 }}
@@ -62,7 +88,7 @@ export default function MemberInfoPage() {
             </div>
 
             {/* Flyers (Behold posts) */}
-            <div className="order-2 lg:order-1 w-full lg:w-1/3 h-[340px] sm:h-[400px] lg:h-[600px] bg-[#002550] rounded-xl p-4 sm:p-5 shadow-xl border border-[#004080] overflow-y-auto scroll-mt-0">
+            <div className="order-2 lg:order-1 w-full lg:w-1/3 h-[340px] sm:h-[400px] lg:h-[600px] bg-[#002550] rounded-xl p-4 sm:p-5 shadow-xl overflow-y-auto scroll-mt-0">
               <h3 className="text-xl sm:text-2xl font-semibold text-[#40c4ff] mb-4 tracking-wide drop-shadow-sm text-center">
                 Explore Our Instagram
               </h3>
@@ -126,6 +152,7 @@ export default function MemberInfoPage() {
               </a>
             </div>
           </section>
+
         </>
       )}
     </div>

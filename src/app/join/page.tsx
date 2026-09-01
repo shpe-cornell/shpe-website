@@ -94,7 +94,7 @@ export default function JoinPage() {
     <div
       className={`min-h-screen pt-28 pb-12 px-4 flex items-center justify-center bg-gradient-to-b from-[#00031A] to-[#001F5B] ${changa.className}`}
     >
-      <div className="w-full max-w-xl bg-[#00163E]/70 border border-[#0070C0]/40 rounded-2xl shadow-[0_12px_34px_rgba(0,0,0,0.32)] p-6 sm:p-8">
+      <div className="w-full max-w-xl bg-[#00163E]/70 rounded-2xl shadow-[0_12px_34px_rgba(0,0,0,0.32)] p-6 sm:p-8">
         <div className="flex flex-col items-center text-center">
           <img
             src="/images/shpe-logos/shpe-emblem-transparent.png"
@@ -119,7 +119,7 @@ export default function JoinPage() {
               required
               autoComplete="off"
               autoCapitalize="none"
-              className="w-full px-5 py-3 text-white bg-[#002F6C] border-2 border-[#FD652F] rounded-lg outline-none placeholder:text-[#A4C2FF]"
+              className="w-full px-5 py-3 text-white bg-[#002F6C] rounded-lg outline-none placeholder:text-[#A4C2FF]"
             />
 
             <input
@@ -127,7 +127,7 @@ export default function JoinPage() {
               value={cornellEmail}
               readOnly
               placeholder="Cornell Email"
-              className="w-full px-5 py-3 text-[#A4C2FF] bg-[#001A40] border-2 border-[#0070C0] rounded-lg outline-none"
+              className="w-full px-5 py-3 text-[#A4C2FF] bg-[#001A40] rounded-lg outline-none"
             />
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -137,7 +137,7 @@ export default function JoinPage() {
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
                 required
-                className="w-full px-5 py-3 text-white bg-[#002F6C] border-2 border-[#FD652F] rounded-lg outline-none placeholder:text-[#A4C2FF]"
+                className="w-full px-5 py-3 text-white bg-[#002F6C] rounded-lg outline-none placeholder:text-[#A4C2FF]"
               />
               <input
                 type="text"
@@ -145,7 +145,7 @@ export default function JoinPage() {
                 value={lastName}
                 onChange={(e) => setLastName(e.target.value)}
                 required
-                className="w-full px-5 py-3 text-white bg-[#002F6C] border-2 border-[#FD652F] rounded-lg outline-none placeholder:text-[#A4C2FF]"
+                className="w-full px-5 py-3 text-white bg-[#002F6C] rounded-lg outline-none placeholder:text-[#A4C2FF]"
               />
             </div>
 
@@ -156,12 +156,12 @@ export default function JoinPage() {
                 value={graduationYear}
                 onChange={(e) => setGraduationYear(e.target.value)}
                 required
-                className="w-full px-5 py-3 text-white bg-[#002F6C] border-2 border-[#FD652F] rounded-lg outline-none placeholder:text-[#A4C2FF]"
+                className="w-full px-5 py-3 text-white bg-[#002F6C] rounded-lg outline-none placeholder:text-[#A4C2FF]"
               />
               <select
                 value={graduationSemester}
                 onChange={(e) => setGraduationSemester(e.target.value)}
-                className="w-full px-5 py-3 text-white bg-[#002F6C] border-2 border-[#FD652F] rounded-lg outline-none"
+                className="w-full px-5 py-3 text-white bg-[#002F6C] rounded-lg outline-none"
               >
                 <option value="Spring">Spring</option>
                 <option value="Fall">Fall</option>

@@ -45,7 +45,7 @@ export default function Home() {
           {homeInfoBoxes.map((box, idx) => (
             <div
               key={idx}
-              className="bg-white/10 border border-white/20 backdrop-blur-md rounded-xl p-6 shadow-xl hover:shadow-2xl transition-shadow duration-300 hover:scale-[1.03]"
+              className="bg-white/10 backdrop-blur-md rounded-xl p-6 shadow-xl hover:shadow-2xl transition-shadow duration-300 hover:scale-[1.03]"
             >
               <h3 className="text-xl font-semibold text-[#FD652F]">
                 {box.title}

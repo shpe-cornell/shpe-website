@@ -188,14 +188,10 @@ export default function HeroScroll({
                     <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
                   </motion.div>
                 </AnimatePresence>
-
-                <div className="absolute inset-0 rounded-xl p-[2px] bg-[length:200%_200%] animate-borderFlow pointer-events-none">
-                  <div className="h-full w-full rounded-[inherit] bg-[#00112A]" />
-                </div>
               </div>
-            </div>
+              </div>
 
-            <div className="mt-3 flex items-center justify-center gap-2">
+              <div className="mt-3 flex items-center justify-center gap-2">
               {images.map((_, idx) => (
                 <button
                   key={idx}
