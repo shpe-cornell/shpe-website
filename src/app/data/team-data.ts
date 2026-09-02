@@ -9,6 +9,8 @@ export type ExecMember = {
   year: string;
   email: string;
   linkedin: string;
+  applyLink?: string;
+  applyCta?: string;
 };
 
 export const execBoard: ExecMember[] = [
@@ -129,5 +131,16 @@ export const execBoard: ExecMember[] = [
     year: "'27",
     email: "aoh24@cornell.edu",
     linkedin: "https://www.linkedin.com/in/alain-huerta-salas-683569316/",
+  },
+  {
+    name: "You?",
+    position: "Freshman Representative",
+    image: "/images/icons/usericon.png",
+    major: "Major",
+    year: "'30",
+    email: "",
+    linkedin: "",
+    applyLink: "https://forms.gle/ZwASkD6E32MhLbnu9",
+    applyCta: "Interested? Apply Here",
   },
 ];
