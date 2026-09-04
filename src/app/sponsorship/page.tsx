@@ -207,7 +207,7 @@ export default function SponsorPage() {
 
         <div className="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-6">
           <a
-            href="/important/25-26-corporate.pdf"
+            href="/important/26-27-corporate.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className={buttonCommonClasses}

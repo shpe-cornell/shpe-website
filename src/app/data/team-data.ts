@@ -2,8 +2,6 @@ export type ExecMember = {
   name: string;
   position: string;
   image: string;
-  // Optional CSS object-position for the headshot crop, e.g. "center 20%".
-  // Defaults to centered when omitted.
   imagePosition?: string;
   major: string;
   year: string;
