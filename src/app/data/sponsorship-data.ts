@@ -45,6 +45,7 @@ export const sponsorsByTier: Record<Tier | "Other", string[]> = {
   Gold: [
     "/images/sponsors/Bloomberg.jpeg",
     "/images/sponsors/Accenture.svg-2.png",
+    "/images/sponsors/Capital_One_logo.svg.png",
   ],
   Silver: [],
   Bronze: ["/images/sponsors/Jane_Street.png"],

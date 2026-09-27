@@ -69,11 +69,11 @@ export const execBoard: ExecMember[] = [
   {
     name: "Jonathan Lopez Flores",
     position: "Webmaster",
-    image: "/images/leadership/2026-2027/jonathan.png",
+    image: "/images/leadership/2026-2027/jonathan.jpg",
     imagePosition: "top",
     major: "CS",
     year: "'29",
-    email: "",
+    email: "jal579@cornell.edu",
     linkedin: "https://www.linkedin.com/in/jonathanlopezf/",
   },
   {
