@@ -40,15 +40,6 @@ export const execBoard: ExecMember[] = [
     linkedin: "https://www.linkedin.com/in/sarah-garcia-moreno-45645425b/",
   },
   {
-    name: "Alexis Laurel",
-    position: "Secretary",
-    image: "/images/leadership/2026-2027/alexis.png",
-    major: "ECE",
-    year: "'27",
-    email: "",
-    linkedin: "https://www.linkedin.com/in/alexisnlaurel/",
-  },
-  {
     name: "Erik Mauricio",
     position: "Corporate Chair",
     image: "/images/leadership/2026-2027/erik.jpg",
