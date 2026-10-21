@@ -122,6 +122,15 @@ export const execBoard: ExecMember[] = [
     linkedin: "https://www.linkedin.com/in/alain-huerta-salas-683569316/",
   },
   {
+    name: "Angela Sotil-Diaz",
+    position: "Publicity Chair",
+    image: "/images/leadership/2026-2027/angela.jpg",
+    major: "Bio",
+    year: "'28",
+    email: "aas24@cornell.edu",
+    linkedin: "https://www.linkedin.com/in/angela-arianna-sotil-diaz/",
+  },
+  {
     name: "Chrystopher Guevara",
     position: "Freshman Representative",
     image: "/images/leadership/2026-2027/chrystopher.jpg",
